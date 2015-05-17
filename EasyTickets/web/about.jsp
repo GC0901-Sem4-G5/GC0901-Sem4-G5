@@ -1,6 +1,6 @@
 <%-- 
-    Document   : contact
-    Created on : May 16, 2015, 5:04:11 PM
+    Document   : about
+    Created on : May 17, 2015, 11:41:15 PM
     Author     : Hoang Ha Nguyen
 --%>
 
@@ -12,7 +12,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Contact Us</title>
+        <title>About Us</title>
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
         <script src="javascript/image_slide.js" type="text/javascript"></script>
         <script src="javascript/jquery.js" type="text/javascript"></script>
@@ -30,8 +30,8 @@
                     <ul id="nav">
                         <li><a href="index.html">Home</a></li>
                         <li><a href="events.jsp">Events</a></li>
-                        <li class="current"><a href="contact.jsp">Contact Us</a></li>
-                        <li><a href="about.jsp">About Us</a></li>
+                        <li><a href="contact.jsp">Contact Us</a></li>
+                        <li class="current"><a href="about.jsp">About Us</a></li>
                     </ul>
                 </div>	
             </nav>
@@ -39,7 +39,7 @@
         <div id="slideshow_container">  
             <div class="slideshow">
                 <ul class="slideshow">
-                    <li class="show"><img width="940" height="250" src="images/contact.jpg" alt="&quot;Enter your caption here&quot;" /></li>
+                    <li class="show"><img width="940" height="250" src="images/aboutus.jpg" alt="&quot;Enter your caption here&quot;" /></li>
                     <li><img width="940" height="250" src="images/home_2.jpg" alt="&quot;Enter your caption here&quot;" /></li>
                 </ul> 
             </div> 	
@@ -76,18 +76,13 @@
             <div id="content">
                 <div class="content_item">
                     <div class="form_settings">
-                        <h2>Contact Us</h2>
-                        <p style="padding-bottom: 15px;">‘Showbiz‘is the company is principally into ticket sales, marketing and distribution of event tickets. The services include providing information on multiple event categories, providing ticketing facilities for several leading multiplexes, arenas and stadiums. They are thinking of the concept of developing a web portal, where a customer can book movie tickets in theatres that are made available in the site. They wish to launch the website by the name ‘www.easytickets.com’ where they can provide convenient, secure, and fair access to the best possible tickets offered by the clients. Showbiz aims at making events happening across the city more accessible-just a click away. Booking tickets can now an effortless, fun and exciting experience for every showbiz customer.</p>           
-                        <p><span>Name</span><input class="contact" type="text" name="your_name" value="" /></p>
-                        <p><span>Email Address</span><input class="contact" type="text" name="your_email" value="" /></p>
-                        <p><span>Message</span><textarea class="contact textarea" rows="8" cols="50" name="your_message"></textarea></p>
-                        <p style="padding: 10px 0 10px 0;">Please enter the answer to this simple maths question (to prevent spam)</p>
-                        <p><span>Maths Question: 9 + 3 = ?</span><input type="text" name="user_answer" class="contact" /><input type="hidden" name="answer" value="4d76fe9775" /></p>
-                        <p style="padding-top: 15px"><span>&nbsp;</span><input class="submit" type="submit" name="contact_submitted" value="Send" /></p>
+                        <h2>About Us</h2>
+                        <p style="padding-bottom: 15px;">‘Showbiz‘is the company is principally into ticket sales, marketing and distribution of event tickets. The services include providing information on multiple event categories, providing ticketing facilities for several leading multiplexes, arenas and stadiums. They are thinking of the concept of developing a web portal, where a customer can book movie tickets in theatres that are made available in the site. They wish to launch the website by the name ‘www.easytickets.com’ where they can provide convenient, secure, and fair access to the best possible tickets offered by the clients. Showbiz aims at making events happening across the city more accessible-just a click away. Booking tickets can now an effortless, fun and exciting experience for every showbiz customer.</p>             
                     </div><!--close form_settings-->
                 </div><!--close content_item-->
             </div><!--close content-->   
         </div><!--close site_content-->  
+
         <footer>
             <a href="index.jsp">Home</a> | <a href="events.jsp">Events</a> | <a href="contact.jsp">Contact Us</a> | <a href="about.jsp">About Us</a>
         </footer>

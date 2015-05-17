@@ -31,6 +31,7 @@
                         <li class="current"><a href="index.html">Home</a></li>
                         <li><a href="events.jsp">Events</a></li>
                         <li><a href="contact.jsp">Contact Us</a></li>
+                        <li><a href="aboutus.jsp">About Us</a></li>
                     </ul>
                 </div>	
             </nav>
@@ -67,8 +68,8 @@
                 <div class="sidebar">
                     <div class="sidebar_item">
                         <h2>Contact</h2>
-                        <p>Phone: +44 (0)1234 567891</p>
-                        <p>Email: <a href="mailto:info@youremail.co.uk">info@youremail.co.uk</a></p>
+                        <p>Phone: +84 (0)1234 567891</p>
+                        <p>Email: <a href="mailto:info@showbiz.com">info@showbiz.com</a></p>
                     </div> 
                 </div>
             </div>	
@@ -76,8 +77,8 @@
             <div id="content">
                 <div class="content_item">
                     <h1>Welcome To G5's EasyTickets Website</h1> 
-                    <p>ĐÂY LÀ ĐOẠN TEXT GIỚI THIỆU BLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAÂAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</p>   		
-                    <p>DƯỚI NÀY CŨNG LÀ ĐOẠN TEXT GIỚI THIỆU. BLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</p>
+                    <p>ĐÂY LÀ ĐOẠN TEXT GIỚI THIỆU BLAAAAAAAAAAAAAAAAAAAA</p>   		
+                    <p>DƯỚI NÀY CŨNG LÀ ĐOẠN TEXT GIỚI THIỆU. BLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</p>
 
                     <div class="content_container">
                         <p>Ở ĐÂY CŨNG VẬY NỐT</p>
@@ -97,8 +98,7 @@
         </div>  	
 
         <footer>
-            <a href="index.html">Home</a> | <a href="ourwork.html">Our Work</a> | <a href="testimonials.html">Testimonials</a> | <a href="projects.html">Projects</a> | <a href="contact.html">Contact</a><br/><br/>
-            <a href="http://fotogrph.com">Images</a> |  <a href="http://www.heartinternet.co.uk/vps/">Virtual Server</a>  | website template by <a href="http://www.freehtml5templates.co.uk">Free HTML5 Templates</a>
+            <a href="index.jsp">Home</a> | <a href="events.jsp">Events</a> | <a href="contact.jsp">Contact Us</a> | <a href="about.jsp">About Us</a>
         </footer>
 
     </body>
