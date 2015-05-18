@@ -23,6 +23,7 @@
             <div id="strapline">
                 <div id="welcome_slogan">
                     <h3>Welcome To Easy Tickets <span>G5</span></h3>
+                    
                 </div>
             </div>	  
             <nav>
@@ -32,6 +33,7 @@
                         <li><a href="events.jsp">Events</a></li>
                         <li><a href="contact.jsp">Contact Us</a></li>
                         <li><a href="aboutus.jsp">About Us</a></li>
+                        <li><a style="margin-left: 300px" href="signup.jsp">Sign Up</a></li>
                     </ul>
                 </div>	
             </nav>
@@ -44,58 +46,6 @@
                 </ul> 
             </div> 	
         </div>  
-        <div id="site_content">		
-            <div class="sidebar_container">       
-                <div class="sidebar">
-                    <div class="sidebar_item">
-                        <h2>ESCAPE RAIN FOREST</h2>
-                        <p>Mùa hè chưa bao giờ hết nhiệt!! Hãy chuẩn bị tinh thần cho những cuộc vui không có điểm dừng cùng các Raver tại Escape Rain Forest 2015 ngày 16/5/2015.</p>
-                    </div>
-                </div>  		
-                <div class="sidebar">
-                    <div class="sidebar_item">
-                        <h2>Latest Update</h2>
-                        <h3>May 29th 2015</h3>
-                        <p>VIBRATION EVENTS FEATURING ALY & FILA IN HANOI</p>         
-                    </div>
-                </div>
-                <div class="sidebar">
-                    <div class="sidebar_item">
-                        <h3>Today - May 16th 2015</h3>
-                        <p>CA TRÙ THĂNG LONG.</p>         
-                    </div>
-                </div>		
-                <div class="sidebar">
-                    <div class="sidebar_item">
-                        <h2>Contact</h2>
-                        <p>Phone: +84 (0)1234 567891</p>
-                        <p>Email: <a href="mailto:info@showbiz.com">info@showbiz.com</a></p>
-                    </div> 
-                </div>
-            </div>	
-
-            <div id="content">
-                <div class="content_item">
-                    <h1>Welcome To G5's EasyTickets Website</h1> 
-                    <p>ĐÂY LÀ ĐOẠN TEXT GIỚI THIỆU BLAAAAAAAAAAAAAAAAAAAA</p>   		
-                    <p>DƯỚI NÀY CŨNG LÀ ĐOẠN TEXT GIỚI THIỆU. BLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</p>
-
-                    <div class="content_container">
-                        <p>Ở ĐÂY CŨNG VẬY NỐT</p>
-                        <div class="button_small">
-                            <a href="#">Read more</a>
-                        </div>
-                    </div>
-                    <div class="content_container">
-                        <p>CŨNG THẾ LUÔN</p>          
-                        <div class="button_small">
-                            <a href="#">Read more</a>
-                        </div>		  
-                    </div>	
-
-                </div>
-            </div>   
-        </div>  	
 
         <footer>
             <a href="index.jsp">Home</a> | <a href="events.jsp">Events</a> | <a href="contact.jsp">Contact Us</a> | <a href="about.jsp">About Us</a>
