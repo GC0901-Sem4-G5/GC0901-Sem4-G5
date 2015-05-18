@@ -28,7 +28,7 @@
             <nav>
                 <div id="menubar">
                     <ul id="nav">
-                        <li class="current"><a href="index.html">Home</a></li>
+                        <li class="current"><a href="index.jsp">Home</a></li>
                         <li><a href="events.jsp">Events</a></li>
                         <li><a href="contact.jsp">Contact Us</a></li>
                         <li><a href="aboutus.jsp">About Us</a></li>
