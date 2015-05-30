@@ -48,8 +48,8 @@
             <div class="sidebar_container">       
                 <div class="sidebar">
                     <div class="sidebar_item">
-                        <h2>ESCAPE RAIN FOREST</h2>
-                        <p>Mùa hè chưa bao giờ hết nhiệt!! Hãy chuẩn bị tinh thần cho những cuộc vui không có điểm dừng cùng các Raver tại Escape Rain Forest 2015 ngày 16/5/2015.</p>
+                        <h2>Global Volunteering Day 2015</h2>
+                        <p>Nếu bạn là một người trẻ đam mê các hoạt động tình nguyện, mong muốn được giao lưu văn hóa quốc tế và hi vọng tìm kiếm một cơ hội tình nguyện tại nước ngoài thì chắc hẳn Tổ chức Tình nguyện vì hòa bình Việt Nam (Volunteers for Peace VietNam) đã không còn là cái tên quá xa lạ với bạn nữa.</p>
                     </div>
                 </div>  		
                 <div class="sidebar">

@@ -357,3 +357,36 @@ footer a:hover
   border-radius: 7px 7px 7px 7px;
   -moz-border-radius: 7px 7px 7px 7px;
   -webkit-border: 7px 7px 7px 7px;}
+
+#new-article{
+    background: #f3f3f3 url(images/new.jpg) no-repeat;
+}
+#new-article #corner{
+    padding: 0 0 20px 0;
+    background: url(images/corner.jpg) no-repeat right bottom;
+}
+.f-left {float:left;}
+#new-article .article-img{
+    width: 136px;
+    height: 115px;
+    position: relative;
+    left: 20px;
+    margin: 0;
+}
+#container { 
+    border-top: 1px solid #c1c1c1;
+} 
+.box { min-height:1px; }
+p { margin:15px 0; }
+a.more{width:59px;height: 20px;background: #ee8100 url(images/more.jpg) no-repeat; color: #fff;text-align: center; line-height: 20px;font-size: 85%;display: block;float: right;text-decoration: none;margin-right: 20px; margin-top: 15px;}
+a.more:hover{color: #ffddb4;}
+.clear { clear:both; }
+
+.content {
+    float: left; 
+    padding: 0 0 0 0;
+    width:510px;overflow: hidden;
+    z-index: 10;
+}
+
+.panel .in { background: url(img/panel-bot.jpg) no-repeat bottom;padding: 10px; }
