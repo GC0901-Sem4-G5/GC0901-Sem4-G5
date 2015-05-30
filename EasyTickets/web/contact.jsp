@@ -82,7 +82,7 @@
                         <p><span>Email Address</span><input class="contact" type="text" name="your_email" value="" /></p>
                         <p><span>Message</span><textarea class="contact textarea" rows="8" cols="50" name="your_message"></textarea></p>
                         <p style="padding: 10px 0 10px 0;">Please enter the answer to this simple maths question (to prevent spam)</p>
-                        <p><span>Maths Question: 9 + 3 = ?</span><input type="text" name="user_answer" class="contact" /><input type="hidden" name="answer" value="4d76fe9775" /></p>
+                        <p><span>Maths Question: 6 + 9 = ?</span><input type="text" name="user_answer" class="contact" /><input type="hidden" name="answer" value="4d76fe9775" /></p>
                         <p style="padding-top: 15px"><span>&nbsp;</span><input class="submit" type="submit" name="contact_submitted" value="Send" /></p>
                     </div><!--close form_settings-->
                 </div><!--close content_item-->
