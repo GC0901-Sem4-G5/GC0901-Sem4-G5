@@ -58,6 +58,7 @@ create table [Event](
 	enddate datetime not null,
 	eventname varchar(100) not null,
 	content text not null,
+	enventImg varchar(100),
 	location int foreign key references location(id),
 	created timestamp not null
 ) --- thong tin chi tiet su kien --- 
