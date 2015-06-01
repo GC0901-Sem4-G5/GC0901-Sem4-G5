@@ -79,39 +79,22 @@
                     <h1>Welcome To G5's EasyTickets Website</h1> 
                     <div id="container" class="box">
                         <div id="obsah" class="content box">
-                            <div class="in">
-                                <div id="new-article">
-                                    <div id="corner">
-                                        <h2><a href="">Global Volunteering Day 2015</a></h2>
-                                        <div class="f-left article-img"><img src="images/rsz_event1.jpg" alt="" />
-                                            <div></div>
-                                        </div>
-                                        <p class="f-left"> Nếu bạn là một người trẻ đam mê các hoạt động tình nguyện, mong muốn được giao lưu văn hóa quốc tế và hi vọng tìm kiếm một cơ hội tình nguyện tại nước ngoài thì chắc hẳn Tổ chức Tình nguyện vì hòa bình Việt Nam (Volunteers for Peace VietNam) đã không còn là cái tên quá xa lạ với bạn nữa. <a href="" class="more">MORE</a></p>
-                                        <div class="clear"></div>
-                                    </div>
-                                </div>
-                                <div id="new-article">
-                                    <div id="corner">
-                                        <h2><a href="">Night Market For Nepal</a></h2>
-                                        <div class="f-left article-img"><img src="images/event_2.jpg" alt="" />
-                                            <div></div>
-                                        </div>
-                                        <p class="f-left"> With the aim of raising fund for victims in Nepal, there will be a big night market in stunning EDen, Au Co with tons of interesting things: Fun activities for children and families. International cuisine, shopping, artistic workshops, auctions, local and international musicians, games, fire dancers, DJs and A BIG PARTY after 10pm.<a href="" class="more">MORE</a></p>
-                                        <div class="clear"></div>
-                                    </div>
-                                </div>
-                                <div id="new-article">
-                                    <div id="corner">
-                                        <h2><a href="">DJ Soda sẽ sang biểu diễn tại Hà Nội</a></h2>
-                                        <div class="f-left article-img"><img src="images/event_3.jpg" alt="" />
-                                            <div></div>
-                                        </div>
-                                        <p class="f-left"> Ngày 28/5, DJ Soda - "phù thủy âm thanh" nổi tiếng xứ Hàn - sang Việt Nam biểu diễn tại một quán bar trên phố Lý Thường Kiệt, Hà Nội. Thông tin này nhanh chóng được lan truyền và khiến không ít bạn trẻ Việt háo hức chờ đợi.<a href="" class="more">MORE</a></p>
-                                        <div class="clear"></div>
-                                    </div>
-                                </div>
-                            </div>
-
+                            <table style="border: 1px;">
+                                <tr>
+                                    <td>Event</td>
+                                    <td>Type</td>
+                                    <td>Location</td>
+                                    <td>Date</td>
+                                </tr>
+                                <c:forEach items="#{eventListBean.list}" var="event">
+                                    <tr>
+                                        <td>${event.eventname}</td>
+                                        <td>${event.typeName}</td>
+                                        <td>${event.locationCity}</td>
+                                        <td>${event.startdate}</td>
+                                    </tr>
+                                </c:forEach>
+                            </table>
                         </div>
 
                     </div>                                

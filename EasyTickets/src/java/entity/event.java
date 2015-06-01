@@ -12,12 +12,12 @@ package entity;
 public class event {
     
     private int id;
-    private int typeid;
+    private String typeName;
     private String startdate;
     private String enddate;
     private String eventname;
     private String content;
-    private int location;
+    private String locationCity;
     private String created;   
 
     public int getId() {
@@ -28,13 +28,7 @@ public class event {
         this.id = id;
     }
 
-    public int getTypeid() {
-        return typeid;
-    }
 
-    public void setTypeid(int typeid) {
-        this.typeid = typeid;
-    }
 
     public String getStartdate() {
         return startdate;
@@ -68,32 +62,28 @@ public class event {
         this.content = content;
     }
 
-    public int getLocation() {
-        return location;
-    }
-
-    public void setLocation(int location) {
-        this.location = location;
-    }
-
-    public String getCreated() {
-        return created;
-    }
 
     public void setCreated(String created) {
         this.created = created;
     }
 
-    public event(int id, int typeid, String startdate, String enddate, String eventname, String content, int location, String created) {
-        this.id = id;
-        this.typeid = typeid;
-        this.startdate = startdate;
-        this.enddate = enddate;
-        this.eventname = eventname;
-        this.content = content;
-        this.location = location;
-        this.created = created;
+    public String getTypeName() {
+        return typeName;
     }
+
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
+    }
+
+    public String getLocationCity() {
+        return locationCity;
+    }
+
+    public void setLocationCity(String locationCity) {
+        this.locationCity = locationCity;
+    }
+
+    
     
     
 }
