@@ -92,6 +92,7 @@
                                         <td>${event.typeName}</td>
                                         <td>${event.locationCity}</td>
                                         <td>${event.startdate}</td>
+                                        <td><input value="DETAIL" /></td>
                                     </tr>
                                 </c:forEach>
                             </table>
