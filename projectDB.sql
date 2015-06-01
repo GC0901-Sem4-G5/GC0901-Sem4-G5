@@ -13,7 +13,7 @@ create table [user](
 	email varchar(50) not null,
 	[address] varchar(100),
 	backAccount varchar(200),
-	created timestamp not null,
+	created varchar(20) not null,
 	birthdate datetime,
 	[password] varchar(30) not null
 )
@@ -32,7 +32,7 @@ create table [ContactUs](
 	customerid int foreign key references [User](id),
 	caption varchar(200) not null,
 	content text not null,
-	created timestamp not null
+	created varchar(20) not null
 )
 
 -- end ---
@@ -59,7 +59,7 @@ create table [Event](
 	eventname varchar(100) not null,
 	content text not null,
 	location int foreign key references location(id),
-	created timestamp not null
+	created varchar(20) not null
 ) --- thong tin chi tiet su kien --- 
 
 create table Arena(
@@ -82,13 +82,13 @@ create table [Ticket](
 	useid int foreign key references [User](id),
 	eventid int foreign key references [Event](id),
 	Arena int foreign key references Arena(id),
-	created timestamp not null,
+	created varchar(20) not null,
 	[status] varchar(10)
 ) --- thong tin ve da ban---
 
 create table [order](
 id int identity primary key,
-created timestamp,
+created varchar(20),
 usedOrder int foreign key references [user](id),
 totalPay float not null,
 ) --- hoa don ---
