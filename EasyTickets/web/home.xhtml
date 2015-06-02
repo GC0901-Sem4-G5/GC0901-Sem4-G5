@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+        <title>EASY TICKETS</title>
+    </h:head>
+
+    <h:body>
+
+        <div id="gkTopShadow">
+            <div id="gkTopWrap" class="gkWrap">
+                <div id="gkTopInterface">
+                    <h1 id="gkLogo"> <a href="http://www.easytickets.eu/ " class="cssLogo"></a></h1>
+                    <div id="gkButtons">
+                        <a href="http://www.easytickets.eu/index.php?option=com_users&amp;view=login" id="btnLogin">LOGIN</a>
+                    </div>
+                </div>
+
+                <div id="gkMainNav" class="gkWrap">
+                    <div id="gkMenu">
+                        <div class="gk-menu">
+                            <ul class="gkmenu level0">
+                                <li class="first active">
+                                    <a href="index.xhtml" class=" first active" id="menu764" title="Home" onmouseover="">
+                                        <span class="menu-title" onmouseover="">Home</span></a></li>
+                                <li class="first active">
+                                    <a href="http://www.easytickets.eu/" class=" first active" id="menu764" title="Home" onmouseover="">
+                                        <span class="menu-title" onmouseover="">Event</span></a></li>
+                                <li class="first active">
+                                    <a href="http://www.easytickets.eu/" class=" first active" id="menu764" title="Home" onmouseover="">
+                                        <span class="menu-title" onmouseover="">About Us</span></a></li>
+                                <li class="first active">
+                                    <a href="http://www.easytickets.eu/" class=" first active" id="menu764" title="Home" onmouseover="">
+                                        <span class="menu-title" onmouseover="">Contacts Us</span></a></li>
+                                <li class="first active">
+                                    <a href="http://www.easytickets.eu/" class=" first active" id="menu764" title="Home" onmouseover="">
+                                        <span class="menu-title" onmouseover="">FAQ</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="mainPage" class="gkWrap">
+            <div id="gkHeader" class="gkMain">
+                <figure id="slide">
+                    <img src="resources/images/images (1).jpg" alt="Image 1" />
+                    <img src="resources/images/images (2).jpg" alt="Image 2" />
+                    <img src="resources/images/images (3).jpg" alt="Image 3" />
+                </figure> 
+                <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        $("#slide img:eq(0)").addClass("active").show();
+                        var text = $(".active").attr("alt");
+                        $("#slide").prepend("<p>" + text + "</p>");
+                        setInterval(slide, 3000);
+
+                        function slide() {
+                            if ($(".active").next().size()) {
+                                $(".active").fadeOut().removeClass("active").next().fadeIn().addClass("active");
+                            } else {
+                                $(".active").fadeOut().removeClass("active");
+                                $("#slide img:eq(0)").fadeIn().addClass("active");
+                            }
+
+                            var text = $(".active").attr("alt");
+                            $("#slide p").hide().html(text).delay(500).fadeIn();
+                        }
+                    });
+                </script>
+            </div>
+        </div>
+
+        <div id="gkBottomWrap">
+            <div>
+                <div id="gkBottom1" class="gkMain gkWrap ">
+                    <div id="gkbottombottom2" class="gkCol gkColLeft">
+                        <h3 class="header"><span id="module197">EASY TICKETS CENTER</span></h3>
+                        <div>
+                            <p>
+                                <img style="width: 15px;height: 15px;" src="resources/images/location.png" />   No 8, Ton That Thuyet <br/>
+                                &nbsp;&nbsp;&nbsp;&nbsp;  Nam Tu Liem, Ha Noi
+                            </p>
+                            <p>
+                                <img style="width: 15px;height: 15px;" src="resources/images/email.png" /> contact@easytickets.com
+                            </p>
+                            <p>
+                                <img style="width: 15px;height: 15px;" src="resources/images/phone.png" /> 04.113
+                            </p>
+                        </div>
+                    </div>
+                    <div id="gkbottombottom3" class="gkCol gkColCenter">
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <center>Copyright ©2015 easytickets.com</center>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </h:body>
+
+</html>

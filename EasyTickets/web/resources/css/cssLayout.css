@@ -1,0 +1,275 @@
+
+#top {
+    position: relative;
+    background-color: #036fab;
+    color: white;
+    padding: 5px;
+    margin: 0px 0px 10px 0px;
+}
+
+#bottom {
+    position: relative;
+    background-color: #c2dfef;
+    padding: 5px;
+    margin: 10px 0px 0px 0px;
+}
+
+#left {
+    float: left;
+    background-color: #ece3a5;
+    padding: 5px;
+    width: 150px;
+}
+
+#right {
+    float: right;
+    background-color: #ece3a5;
+    padding: 5px;
+    width: 150px;
+}
+
+.center_content {
+    position: relative;
+    background-color: #dddddd;
+    padding: 5px;
+}
+
+.left_content {
+    background-color: #dddddd;
+    padding: 5px;
+    margin-left: 170px;
+}
+
+.right_content {
+    background-color: #dddddd;
+    padding: 5px;
+    margin: 0px 170px 0px 170px;
+}
+
+#top a:link, #top a:visited {
+    color: white;
+    font-weight : bold;
+    text-decoration: none;
+}
+
+#top a:link:hover, #top a:visited:hover  {
+    color: black;
+    font-weight : bold;
+    text-decoration : underline;
+}
+
+#gkTopShadow{
+    box-shadow: 0 0 5px #000;
+    background: #000 url(../images/header.png) repeat-x 0 top;
+}
+
+.gkWrap{
+    width: 980px!important;
+    margin: 0 auto;
+}
+
+#gkTopInterface {
+    overflow: hidden;
+}
+
+h1, .welcome {
+    font: Verdana;
+    margin-top: 0px;
+    margin-bottom: 20px;
+    font-size: 32px;
+    font-weight: normal;
+    text-shadow: 0 0 1px rgba(0,0,0,.01);
+}
+
+#gkLogo a.cssLogo {
+    background: url(../images/logo.png) round 0 0;
+    display: block;
+    height: 88px;
+    margin-top: 10px;
+    text-indent: -999em;
+    width: 250px;
+    top: 0;
+    left: 0;
+    z-index: 1001;
+    float: left;
+}
+
+#gkTop a {
+    color: #fff;
+}
+
+a, a:visited, a b {
+    cursor: pointer;
+}
+
+#gkMainNav {
+    min-height: 42px;
+    line-height: 42px;
+    background: transparent url(../images/horizontal_line.png) repeat-x 0 0;
+}
+
+#gkMenu {
+    min-height: 42px;
+    line-height: 42px;
+    background: transparent url(../images/horizontal_line.png) repeat-x 0 41px;
+}
+
+ul {
+    list-style: none;
+}
+
+div.gk-menu>ul.level0>li {
+    float: left;
+    width: auto;
+}
+
+div.gk-menu ul>li, div#gkDropMain ul>li {
+    background: url(../images/vertical_line.png) repeat-y right center;
+    min-height: 28px;
+    line-height: 28px;
+    margin: 7px 0;
+    text-transform: uppercase;
+}
+
+div.gk-menu>ul.level0>li>a {
+    display: block;
+}
+
+div.gk-menu ul>li a, div#gkDropMain ul>li a {
+    color: #9f9f9f;
+    display: block;
+    min-height: 28px;
+    line-height: 28px;
+    padding: 0 20px;
+    font-size: 17px;
+}
+
+div.gk-menu>ul.level0>li>a>span.menu-title {
+    display: block;
+    color: #fff;
+}
+
+#gkButtons {
+    background: transparent url(../images/userarea_bg.png) repeat 0 0;
+    border: 1px solid #1a1a1a;
+    float: right;
+    height: 30px;
+    line-height: 30px;
+    margin: 45px 18px 0 0;
+    padding: 0 12px;
+}
+
+#gkButtons a:first-child {
+    color: #7b7259;
+}
+
+#gkButtons a {
+    font-size: 11px;
+    text-transform: uppercase;
+    margin-left: 5px;
+}
+
+#gkBottomWrap {
+    width: 100%;
+    background: #ED4B24 url(/templates/gk_musicity/images/footer.jpg) no-repeat 50% 0;
+    overflow: hidden;
+}
+
+#gkBottom1, #gkBottom2, #gkFooter {
+    padding: 18px 0;
+    color: #FFF;
+}
+
+#gkBottom1, #gkBottom2 {
+    margin: 18px auto 0 !important;
+}
+
+.gkWrap {
+    width: 980px!important;
+}
+
+#gkRight .gkMain:first-child, #gkLeft .gkMain:first-child, .gkMain:first-child, #gkHeader {
+    margin-top: 0;
+    overflow: inherit !important;
+}
+
+#gkBottom1 .gkCol, #gkBottom2 .gkCol {
+    display: block;
+    float: left;
+}
+
+#gkbottombottom2 {
+    width: 24.99%;
+}
+
+#gkBottomWrap .box div>h3 {
+    text-transform: uppercase;
+    color: #000;
+    margin-bottom: 9px;
+}
+
+#gkBottom1 .gkCol, #gkBottom2 .gkCol {
+    display: block;
+    float: left;
+}
+
+#gkbottombottom3 {
+    width: 70%;
+}
+
+.gkWrap {
+    width: 980px!important;
+}
+
+.gkWrap {
+    margin: 0 auto;
+}
+
+#gkTop1, #gkTop2, #gkUser1, #gkUser2, #gkMainBlock, #gkLeftMiddle, #gkRightMiddle, #gkHeader {
+    border-collapse: collapse;
+    display: table;
+    width: 100%;
+}
+
+gkRight .gkMain:first-child, #gkLeft .gkMain:first-child, .gkMain:first-child, #gkHeader {
+    margin-top: 0;
+    overflow: inherit !important;
+}
+
+.gkMain {
+    padding: 18px;
+}
+
+/* ----- slide produc ----------*/
+#slide {
+    width: 980px;
+    overflow: hidden;
+    height: 500px;
+    box-shadow: 0 0 8px #000;
+    position: relative;
+}
+#slide img {
+    width: 980px;
+     height: 500px;
+    position: absolute;
+    z-index: 1;
+    display: none;
+    left: 0;
+}
+
+#slide p {
+    z-index: 2;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    font-family: Arial;
+    font-size: 14px;
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+}
+
+/*---End slide products --*/  
+
+
