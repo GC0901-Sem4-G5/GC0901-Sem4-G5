@@ -7,12 +7,15 @@ package connection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 /**
  *
  * @author Hoang Ha Nguyen
  */
 public class manager {
+
     private Connection conn;
 
     public Connection getConn() {
@@ -22,8 +25,8 @@ public class manager {
     public void setConn(Connection conn) {
         this.conn = conn;
     }
-    
-    public Connection getConnection(){
+
+    public Connection getConnection() {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             String url = "jdbc:sqlserver://INSPIRON-5520\\HUNGVM:1433;databaseName=EasyTicket";
