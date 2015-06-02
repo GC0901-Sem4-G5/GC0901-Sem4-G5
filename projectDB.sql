@@ -1,7 +1,6 @@
 ﻿create database EasyTicket
 use EasyTicket
 go
-
 -- Start Data Not Change -- 
 create table [user](
 	id int not null identity primary key,
@@ -29,8 +28,9 @@ staffid nvarchar(20) not null
 
 create table [ContactUs](
 	id int not null identity primary key,
-	customerid int foreign key references [User](id),
-	caption varchar(200) not null,
+	name nvarchar(100),
+	email nvarchar(100),
+	phone nvarchar(100),
 	content text not null,
 	created varchar(30) not null
 )
@@ -58,7 +58,7 @@ create table [Event](
 	enddate datetime not null,
 	eventname varchar(100) not null,
 	content text not null,
-	enventImg varchar(100),
+	enventImg varchar(500),
 	location int foreign key references location(id),
 	created varchar(30) not null
 ) --- thong tin chi tiet su kien --- 

@@ -3,19 +3,41 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package entity;
+package bean;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+import model.ContactUs;
 
 /**
  *
- * @author win pc
+ * @author dattr_000
  */
-public class contactus {
+@ManagedBean
+@RequestScoped
+public class ContactUsBean {
+
+    /**
+     * Creates a new instance of ContactUsBean
+     */
     private int id;
-    private int name;
+    private String name;
     private String email;
-   private String phone;
-    private String content;     
+    private String phone;
+    private String content;
     private String created;
+    private String messages;
+
+    public String getMessages() {
+        return messages;
+    }
+
+    public void setMessages(String messages) {
+        this.messages = messages;
+    }
 
     public int getId() {
         return id;
@@ -25,11 +47,11 @@ public class contactus {
         this.id = id;
     }
 
-    public int getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(int name) {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -65,14 +87,16 @@ public class contactus {
         this.created = created;
     }
 
-    public contactus(int name, String email, String phone, String content, String created) {
-        this.name = name;
-        this.email = email;
-        this.phone = phone;
-        this.content = content;
-        this.created = created;
+    public String FeedBack() {
+        ContactUs contact = new ContactUs();
+
+        if (contact.createContact(name, email, phone, content)) {
+            messages = "Send Feedback Success !";
+            return "";
+        } else {
+            messages = "Send Feedback Error !";
+            return "";
+        }
     }
 
-    
-    
 }

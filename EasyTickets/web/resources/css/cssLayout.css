@@ -136,12 +136,16 @@ div.gk-menu>ul.level0>li>a {
 }
 
 div.gk-menu ul>li a, div#gkDropMain ul>li a {
-    color: #9f9f9f;
+    color: #fff;
     display: block;
     min-height: 28px;
     line-height: 28px;
     padding: 0 20px;
     font-size: 17px;
+}
+
+h:link {
+    color: #fff;
 }
 
 div.gk-menu>ul.level0>li>a>span.menu-title {
@@ -240,6 +244,56 @@ gkRight .gkMain:first-child, #gkLeft .gkMain:first-child, .gkMain:first-child, #
     padding: 18px;
 }
 
+#gkLeft {
+    width: 100%;
+}
+
+#mainPage .box.grunge4, #mainPage .box.grunge5, #mainPage .box.grunge6 {
+    background: #fff url(../images/module_bg1.jpg) no-repeat right top;
+}
+
+#tdcontact{
+    color: #384047;
+    font-size: 20px;
+    width: 20px;
+    padding: 20px;
+    font-style: italic;
+}
+
+.tdinput{
+    color: #384047;
+    width: 300px;
+    padding: 10px;
+    font-style: italic;
+    border-radius: 15px;
+}
+
+.command{
+    background-color:#ffcc33;
+    width: 100px;
+    height: 50px;
+    border-radius: 25px;
+}
+
+
+#gkMainbodyWrap {
+  background: #fff;
+  padding: 18px;
+}
+
+.gkCol {
+  display: block;
+  float: left;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+#gkContent {
+  width: 75%;
+}
 /* ----- slide produc ----------*/
 #slide {
     width: 980px;
@@ -250,7 +304,7 @@ gkRight .gkMain:first-child, #gkLeft .gkMain:first-child, .gkMain:first-child, #
 }
 #slide img {
     width: 980px;
-     height: 500px;
+    height: 500px;
     position: absolute;
     z-index: 1;
     display: none;
