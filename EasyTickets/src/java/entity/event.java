@@ -12,12 +12,13 @@ package entity;
 public class event {
     
     private int id;
-    private String typeName;
+    private int typeid;
     private String startdate;
     private String enddate;
     private String eventname;
     private String content;
-    private String locationCity;
+    private int location;
+    private String enventImg;
     private String created;   
 
     public int getId() {
@@ -28,7 +29,13 @@ public class event {
         this.id = id;
     }
 
+    public int getTypeid() {
+        return typeid;
+    }
 
+    public void setTypeid(int typeid) {
+        this.typeid = typeid;
+    }
 
     public String getStartdate() {
         return startdate;
@@ -62,28 +69,42 @@ public class event {
         this.content = content;
     }
 
+    public int getLocation() {
+        return location;
+    }
+
+    public void setLocation(int location) {
+        this.location = location;
+    }
+
+    public String getEnventImg() {
+        return enventImg;
+    }
+
+    public void setEnventImg(String enventImg) {
+        this.enventImg = enventImg;
+    }
+
+    public String getCreated() {
+        return created;
+    }
 
     public void setCreated(String created) {
         this.created = created;
     }
 
-    public String getTypeName() {
-        return typeName;
+    public event(int id, int typeid, String startdate, String enddate, String eventname, String content, int location, String enventImg, String created) {
+        this.id = id;
+        this.typeid = typeid;
+        this.startdate = startdate;
+        this.enddate = enddate;
+        this.eventname = eventname;
+        this.content = content;
+        this.location = location;
+        this.enventImg = enventImg;
+        this.created = created;
     }
 
-    public void setTypeName(String typeName) {
-        this.typeName = typeName;
-    }
-
-    public String getLocationCity() {
-        return locationCity;
-    }
-
-    public void setLocationCity(String locationCity) {
-        this.locationCity = locationCity;
-    }
-
-    
-    
+ 
     
 }

@@ -12,8 +12,8 @@ package entity;
 public class arena {
     private int id;
     private int eventid;
-    private int area;
-    private String quantity;   
+    private String area;
+    private int quantity;   
 
     public int getId() {
         return id;
@@ -31,27 +31,28 @@ public class arena {
         this.eventid = eventid;
     }
 
-    public int getArea() {
+    public String getArea() {
         return area;
     }
 
-    public void setArea(int area) {
+    public void setArea(String area) {
         this.area = area;
     }
 
-    public String getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(String quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
-    public arena(int id, int eventid, int area, String quantity) {
+    public arena(int id, int eventid, String area, int quantity) {
         this.id = id;
         this.eventid = eventid;
         this.area = area;
         this.quantity = quantity;
     }
-    
+
+
 }
