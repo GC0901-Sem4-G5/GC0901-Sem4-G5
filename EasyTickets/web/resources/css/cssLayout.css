@@ -250,6 +250,7 @@ gkRight .gkMain:first-child, #gkLeft .gkMain:first-child, .gkMain:first-child, #
 
 #mainPage .box.grunge4, #mainPage .box.grunge5, #mainPage .box.grunge6 {
     background: #fff url(../images/module_bg1.jpg) no-repeat right top;
+    padding-top: 10px;
 }
 
 #tdcontact{

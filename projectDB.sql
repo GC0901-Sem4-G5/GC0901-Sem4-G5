@@ -35,6 +35,13 @@ create table [ContactUs](
 	created varchar(30) not null
 )
 
+
+create table FAQ(
+id int identity primary key,
+question nvarchar(500),
+answer nvarchar(500)
+)
+
 -- end ---
 
 

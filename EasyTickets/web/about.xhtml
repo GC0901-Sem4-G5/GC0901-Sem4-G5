@@ -1,8 +1,9 @@
-﻿<?xml version='1.0' encoding='UTF-8' ?> 
+<?xml version='1.0' encoding='UTF-8' ?> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -27,19 +28,19 @@
                         <div class="gk-menu">
                             <ul class="gkmenu level0">
                                 <li class="menu-title">
-                                        <span class="menu-title" onmouseover=""><h:link value="HOME" outcome="home" /></span>
-                                </li>
-                                 <li class="menu-title">
-                                        <span class="menu-title" onmouseover=""><h:link value="EVENT" outcome="home" /></span>
-                                </li>
-                                 <li class="menu-title">
-                                        <span class="menu-title" onmouseover=""><h:link value="ABOUT US" outcome="about" /></span>
+                                    <span class="menu-title" onmouseover=""><h:link value="HOME" outcome="home" /></span>
                                 </li>
                                 <li class="menu-title">
-                                        <span class="menu-title" onmouseover=""><h:link value="CONTACT US" outcome="contact" /></span>
+                                    <span class="menu-title" onmouseover=""><h:link value="EVENT" outcome="home" /></span>
                                 </li>
-                                 <li class="menu-title">
-                                        <span class="menu-title" onmouseover=""><h:link value="faq" outcome="home" /></span>
+                                <li class="menu-title">
+                                    <span class="menu-title" onmouseover=""><h:link value="ABOUT US" outcome="about" /></span>
+                                </li>
+                                <li class="menu-title">
+                                    <span class="menu-title" onmouseover=""><h:link value="CONTACT US" outcome="contact" /></span>
+                                </li>
+                                <li class="menu-title">
+                                    <span class="menu-title" onmouseover=""><h:link value="faq" outcome="home" /></span>
                                 </li>
                             </ul>
                         </div>
@@ -49,33 +50,25 @@
         </div>
 
         <div id="mainPage" class="gkWrap">
-            <div id="gkHeader" class="gkMain">
-                <figure id="slide">
-                    <img src="resources/images/images (1).jpg" alt="Image 1" />
-                    <img src="resources/images/images (2).jpg" alt="Image 2" />
-                    <img src="resources/images/images (3).jpg" alt="Image 3" />
-                </figure> 
-                <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-                <script type="text/javascript">
-                    $(document).ready(function () {
-                        $("#slide img:eq(0)").addClass("active").show();
-                        var text = $(".active").attr("alt");
-                        $("#slide").prepend("<p>" + text + "</p>");
-                        setInterval(slide, 3000);
+            <div id="gkMain">
+                <div id="gkMainBlock" class="gkMain">
+                    <div id="gkLeft" class="gkMain gkCol gkPaddingTBLR">
+                        <div class="box grunge6">
+                            <center><h1>WELLCOME TO EASY TICKET CENTER</h1></center>
+                            <div style="width: 90%;display: block;word-wrap: break-word;font-size: 20px; line-height: 30px;margin-left: auto;margin-right: auto;padding-bottom: 20px;">
+                                &nbsp;&nbsp;&nbsp;&nbsp;EasyTicket is an Online Movie Ticketing portal developed and serviced by <span style="font-weight: bold;color: #ED4B24;">Team 2 FPT</span>, established in Vietnam. During our existence, we have developed expertise in various technologies on the platforms of Client-Server Technologies, Internet Technologies, IVR Technologies and Cloud Computing...
+                                <br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;EasyTicket is based at 8, Ton That Thuyet, Ha Noi and sponsored by FPT EDUCATION.<br/>
+                                <img style="width: 800px;height: 300px;margin-top: 20px;margin-bottom: 20px;" src="resources/images/detech.jpg" />
+                                <h3> The member of <span style="font-weight: bold;color: #ED4B24;">Team 2 FPT</span>:</h3>
+                                <h4><img style="width: 30px;height: 30px" src="resources/images/bul_li.png" /> Hoang Ha</h4>
+                                <h4><img style="width: 30px;height: 30px" src="resources/images/bul_li.png" /> Manh Hung</h4>
+                                <h4><img style="width: 30px;height: 30px" src="resources/images/bul_li.png" /> Quoc Cuong</h4>
+                                <h4><img style="width: 30px;height: 30px" src="resources/images/bul_li.png" /> Tien Dat</h4>
+                            </div>
+                        </div>
 
-                        function slide() {
-                            if ($(".active").next().size()) {
-                                $(".active").fadeOut().removeClass("active").next().fadeIn().addClass("active");
-                            } else {
-                                $(".active").fadeOut().removeClass("active");
-                                $("#slide img:eq(0)").fadeIn().addClass("active");
-                            }
-
-                            var text = $(".active").attr("alt");
-                            $("#slide p").hide().html(text).delay(500).fadeIn();
-                        }
-                    });
-                </script>
+                    </div> 
+                </div>
             </div>
         </div>
 
