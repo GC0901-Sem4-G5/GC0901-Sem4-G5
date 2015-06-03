@@ -3,13 +3,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <h:outputStylesheet name="./css/default.css"/>
         <h:outputStylesheet name="./css/cssLayout.css"/>
         <title>EASY TICKETS</title>
+
     </h:head>
 
     <h:body>
@@ -48,29 +50,46 @@
                 </div>
             </div>
         </div>
-
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+        <script type="text/javascript">
+            jQuery(document).ready(function () {
+                jQuery("#showLinkId").click(function () {
+                    jQuery("#success").hide('slow', function () {
+                        alert('Hide Done');
+                    });
+                });
+            });
+        </script>
         <div id="mainPage" class="gkWrap">
             <div id="gkMain">
                 <div id="gkMainBlock" class="gkMain">
                     <div id="gkLeft" class="gkMain gkCol gkPaddingTBLR">
                         <div class="box grunge6">
-                            <center><h1>WELLCOME TO EASY TICKET CENTER</h1></center>
-                            <div style="width: 90%;display: block;word-wrap: break-word;font-size: 20px; line-height: 30px;margin-left: auto;margin-right: auto;padding-bottom: 20px;">
-                                &nbsp;&nbsp;&nbsp;&nbsp;EasyTicket is an Online Movie Ticketing portal developed and serviced by <span style="font-weight: bold;color: #ED4B24;">Team 2 FPT</span>, established in Vietnam. During our existence, we have developed expertise in various technologies on the platforms of Client-Server Technologies, Internet Technologies, IVR Technologies and Cloud Computing...
-                                <br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;EasyTicket is based at 8, Ton That Thuyet, Ha Noi and sponsored by FPT EDUCATION.<br/>
-                                <img style="width: 800px;height: 300px;margin-top: 20px;margin-bottom: 20px;" src="resources/images/detech.jpg" />
-                                <h3> The member of <span style="font-weight: bold;color: #ED4B24;">Team 2 FPT</span>:</h3>
-                                <h4><img style="width: 30px;height: 30px" src="resources/images/bul_li.png" /> Hoang Ha</h4>
-                                <h4><img style="width: 30px;height: 30px" src="resources/images/bul_li.png" /> Manh Hung</h4>
-                                <h4><img style="width: 30px;height: 30px" src="resources/images/bul_li.png" /> Quoc Cuong</h4>
-                                <h4><img style="width: 30px;height: 30px" src="resources/images/bul_li.png" /> Tien Dat</h4>
-                            </div>
+                            <center><h1>FAQ - QUESTION &amp; ANSWER</h1></center>
+                            <h:form>
+                                <ul style="padding-bottom: 10px;">
+                                    <c:forEach var="item" items="#{faqBean.list}">
+                                        <li id="li" class="q">#{item.question}</li>
+                                        <li class="a" id="li2" >#{item.answer}</li>
+                                    </c:forEach>
+                                </ul>
+                            </h:form>
+                            <script type="text/javascript">
+                                $('li.a:not(".q")').hide();
+
+                                $('li.q').click(
+                                        function () {
+                                            $('li.a:not(".q")').slideUp();
+                                            $(this).nextUntil('.q').slideDown();
+                                        });
+                            </script>
                         </div>
 
                     </div> 
                 </div>
             </div>
         </div>
+
 
         <div id="gkBottomWrap">
             <div>

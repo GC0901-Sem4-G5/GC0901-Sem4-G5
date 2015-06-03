@@ -102,6 +102,31 @@ a, a:visited, a b {
     cursor: pointer;
 }
 
+#li {
+    background-color: #DE3A3B;
+    border-bottom: 3px solid #A72525;
+    text-align: left;
+    text-indent: 30px;
+    margin-top: 20px;
+    cursor: pointer;
+    margin: 10px 0;
+    margin-left: -29px;
+    margin-right: 10px;
+    height: 49px;
+    line-height: 49px;
+    font-size: 16px;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+#li2 {
+    background-color: #ED4B24;
+    text-align: left;
+    margin: 10px;
+    font-size: 16px;
+    color: #FFF;
+}
+
 #gkMainNav {
     min-height: 42px;
     line-height: 42px;
@@ -278,22 +303,22 @@ gkRight .gkMain:first-child, #gkLeft .gkMain:first-child, .gkMain:first-child, #
 
 
 #gkMainbodyWrap {
-  background: #fff;
-  padding: 18px;
+    background: #fff;
+    padding: 18px;
 }
 
 .gkCol {
-  display: block;
-  float: left;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -ms-box-sizing: border-box;
-  box-sizing: border-box;
-  width: 100%;
+    display: block;
+    float: left;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
 }
 
 #gkContent {
-  width: 75%;
+    width: 75%;
 }
 /* ----- slide produc ----------*/
 #slide {
