@@ -31,7 +31,7 @@ create table [ContactUs](
 	name nvarchar(100),
 	email nvarchar(100),
 	phone nvarchar(100),
-	content text not null,
+	content nvarchar(1000) not null,
 	created varchar(30) not null
 )
 

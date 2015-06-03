@@ -5,7 +5,7 @@
  */
 package model;
 
-import connection.manager;
+import connection.GetConnect;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.text.DateFormat;
@@ -16,7 +16,7 @@ import java.util.Date;
  *
  * @author dattr_000
  */
-public class ContactUs {
+public class ContactUsModel {
 
     public boolean createContact(String name, String email, String phone, String content) {
         boolean status = false;
@@ -24,7 +24,7 @@ public class ContactUs {
         Date date = new Date();
         String created = dateFormat.format(date);
         int result = 0;
-        manager conn = new manager();
+        GetConnect conn = new GetConnect();
         Connection con = conn.getConnection();
         try {
             PreparedStatement ps = con.prepareStatement("Insert into ContactUs values(?,?,?,?,?)");

@@ -14,7 +14,7 @@ import java.sql.ResultSet;
  *
  * @author Hoang Ha Nguyen
  */
-public class manager {
+public class GetConnect {
 
     private Connection conn;
 
@@ -29,7 +29,7 @@ public class manager {
     public Connection getConnection() {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            String url = "jdbc:sqlserver://INSPIRON-5520\\HUNGVM:1433;databaseName=EasyTicket";
+            String url = "jdbc:sqlserver://TIENDAT;databaseName=EasyTicket";
             String id = "sa";
             String pass = "123456";
             conn = DriverManager.getConnection(url, id, pass);

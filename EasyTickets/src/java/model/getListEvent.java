@@ -5,7 +5,7 @@
  */
 package model;
 
-import connection.manager;
+import connection.GetConnect;
 import entity.event;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -23,18 +23,12 @@ public class getListEvent {
    
    public List<event> getEventList() {
         try {
-            manager conn = new manager();
+            GetConnect conn = new GetConnect();
             Connection con = conn.getConnection();
             PreparedStatement ps = con.prepareStatement("select [Type].typeName , [Event].id,[Event].eventname,location.city,[Event].startdate from [Event] INNER JOIN [Type] on [Type].id = [Event].typeid INNER JOIN location on location.id = [Event].location");
             rs = ps.executeQuery();
             while (rs.next()) {
-               event e = new event();
-               e.setId(rs.getInt("id"));
-               e.setTypeName(rs.getString("typeName"));
-               e.setEventname(rs.getString("eventname"));
-               e.setLocationCity(rs.getString("city"));
-               e.setStartdate(rs.getString("startdate"));
-               listevent.add(e);
+              
             }
         } catch (Exception e) {
             e.printStackTrace();

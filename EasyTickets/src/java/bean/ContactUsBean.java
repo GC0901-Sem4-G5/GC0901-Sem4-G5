@@ -5,12 +5,9 @@
  */
 package bean;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import model.ContactUs;
+import model.ContactUsModel;
 
 /**
  *
@@ -30,6 +27,7 @@ public class ContactUsBean {
     private String content;
     private String created;
     private String messages;
+    private ContactUsModel contact;
 
     public String getMessages() {
         return messages;
@@ -86,13 +84,22 @@ public class ContactUsBean {
     public void setCreated(String created) {
         this.created = created;
     }
+    
+    public void black(){
+        name = "";
+        phone = "";
+        email = "";
+        content ="";
+    }
 
-    public String FeedBack() {
-        ContactUs contact = new ContactUs();
+    public String sendFeedBack() {
+        contact = new ContactUsModel();
 
         if (contact.createContact(name, email, phone, content)) {
             messages = "Send Feedback Success !";
+            black();
             return "";
+            
         } else {
             messages = "Send Feedback Error !";
             return "";
