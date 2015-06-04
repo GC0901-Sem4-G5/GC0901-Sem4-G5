@@ -92,17 +92,14 @@ public class ContactUsBean {
         content ="";
     }
 
-    public String sendFeedBack() {
+    public void sendFeedBack() {
         contact = new ContactUsModel();
 
         if (contact.createContact(name, email, phone, content)) {
             messages = "Send Feedback Success !";
-            black();
-            return "";
-            
+            black();   
         } else {
             messages = "Send Feedback Error !";
-            return "";
         }
     }
 

@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -56,23 +57,23 @@
                         <div class="box grunge6">
                             <h1><center>CONTACT US</center></h1>
                             <div>
-                            <div style="padding: 10px;float: left;">
-                                <div style="margin-top: 45px">
-                                    <p>
-                                        <span style="color: #43A9FF;">ADDRESS: </span> <h2>No 8, Ton That Thuyet,  Nam Tu Liem, Ha Noi</h2>
-                                    </p>
-                                    <p>
-                                        <span style="color: #43A9FF;">EMAIL: </span>  <h2> contact@easytickets.com</h2>
-                                    </p>
-                                    <p>
-                                        <span style="color: #43A9FF;">TELEPHONE: </span>  <h2> 04.113</h2>
-                                    </p>
+                                <div style="padding: 10px;float: left;">
+                                    <div style="margin-top: 45px">
+                                        <p>
+                                            <span style="color: #43A9FF;">ADDRESS: </span> <h2>No 8, Ton That Thuyet,  Nam Tu Liem, Ha Noi</h2>
+                                        </p>
+                                        <p>
+                                            <span style="color: #43A9FF;">EMAIL: </span>  <h2> contact@easytickets.com</h2>
+                                        </p>
+                                        <p>
+                                            <span style="color: #43A9FF;">TELEPHONE: </span>  <h2> 04.113</h2>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div style="padding: 10px;float: right;">
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3724.0953670377526!2d105.78173559999999!3d21.0288698!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313454b3260b1a8b%3A0x862052392e3f478e!2zRGV0ZWNoIFRvd2VyLCBUcsaw4budbmcgxJDhuqFpIGjhu41jIEZQVCwgOCBUw7RuIFRo4bqldCBUaHV54bq_dCwgTeG7uSDEkMOsbmggMiwgVOG7qyBMacOqbSwgSMOgIE7hu5lpIDEwMDAwLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1433261604806" width="400" height="270" frameborder="0" style="border:0"></iframe>
                                 </div>
                             </div>
-                            <div style="padding: 10px;float: right;">
-                                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3724.0953670377526!2d105.78173559999999!3d21.0288698!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313454b3260b1a8b%3A0x862052392e3f478e!2zRGV0ZWNoIFRvd2VyLCBUcsaw4budbmcgxJDhuqFpIGjhu41jIEZQVCwgOCBUw7RuIFRo4bqldCBUaHV54bq_dCwgTeG7uSDEkMOsbmggMiwgVOG7qyBMacOqbSwgSMOgIE7hu5lpIDEwMDAwLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1433261604806" width="400" height="270" frameborder="0" style="border:0"></iframe>
-                            </div>
-                                </div>
                             <div style="margin-top: 350px;">
                                 <h:form>
                                     <table style="margin-left: 50px;">
@@ -87,31 +88,36 @@
                                         <tr>
                                             <td id="tdcontact">Email:</td>
                                             <td><h:inputText value="#{contactUsBean.email}" required="true" requiredMessage="*" validatorMessage="Example: abc@gmail.com" id="email" class="tdinput">
-                                                <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
-                                                <f:validateLength maximum="100" />
+                                                    <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+                                                    <f:validateLength maximum="100" />
                                                 </h:inputText>
                                                 <h:message style="color: #ff0000;margin-left: 5px;" for="email"/></td>
                                         </tr>
                                         <tr>
                                             <td id="tdcontact">Phone:</td>
                                             <td><h:inputText value="#{contactUsBean.phone}" required="true" requiredMessage="*" validatorMessage="Maximum is 11 number !" id="phone" class="tdinput">
-                                                 <f:convertNumber integerOnly="true" type="number" />
-                                                <f:validateLength maximum="15" minimum="9" />
+                                                    <f:convertNumber integerOnly="true" type="number" />
+                                                    <f:validateLength maximum="15" minimum="9" />
                                                 </h:inputText>
                                                 <h:message style="color: #ff0000" for="phone"/></td>
                                         </tr>
                                         <tr>
                                             <td id="tdcontact">MESSAGE:</td>
                                             <td><h:inputTextarea value="#{contactUsBean.content}" validatorMessage="Maximum is 1000 chacter and minimum is 20 chacter."  required="true" requiredMessage="*" id="message" style="width: 500px;height: 100px" class="tdinput">
-                                                 <f:validateLength maximum="1000" minimum="20" />
+                                                    <f:validateLength maximum="1000" minimum="20" />
                                                 </h:inputTextarea>
                                                 <h:message style="color: #ff0000" for="message"/></td>
                                         </tr>
+                                        <tr>
+                                            <td id="tdcontact"></td>
+                                            <td style="margin-left:200px;"> <p:captcha id="captcha"></p:captcha>
+                                                <p:messages for="captcha" id="msg"/></td>
+                                        </tr>
                                     </table>
                                     <div style="padding:  40px;">
-                                        <h:commandButton onclick="alert('#{contactUsBean.messages}');"  type="submit" action="#{contactUsBean.sendFeedBack()}" class="command" style="margin-left: 150px;margin-right:100px;" value="SEND">
+                                        <h:commandButton  type="submit" action="#{contactUsBean.sendFeedBack()}" class="command" style="margin-left: 150px;margin-right:100px;" value="SEND">
                                         </h:commandButton>
-                                        <h:commandButton type="reset" action="#{contactUsBean.sendFeedBack()}" class="command" value="RESET" />
+                                        <h:commandButton type="reset" class="command" value="RESET" />
                                     </div>
                                 </h:form>
                             </div>
