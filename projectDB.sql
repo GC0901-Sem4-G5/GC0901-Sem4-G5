@@ -61,10 +61,9 @@ typeName nvarchar(50) not null
 create table [Event](
 	id int not null identity primary key,
 	typeid int foreign key references [Type](id),
-	startdate datetime not null,
-	enddate datetime not null,
+	DateStart datetime not null,
 	eventname varchar(100) not null,
-	content text not null,
+	content varchar(1000) not null,
 	enventImg varchar(500),
 	location int foreign key references location(id),
 	created varchar(30) not null
@@ -72,14 +71,14 @@ create table [Event](
 
 create table Arena(
 	id int not null identity primary key,
-	eventid int foreign key references [Event](id),
 	area varchar(50) not null, -- vip hay thuong ---
-	quantity int not null --co bao nhieu ve cho khu vuc do--
 ) -- khu vuc cho moi event --
-
+drop table Arena
 
 create table [Price](
 	id int not null identity primary key,
+	quantity int not null,
+	eventid int foreign key references [Event](id),
 	arenaId int foreign key references Arena(id),
 	[price] float
 )-- gia ve cho moi id khu vuc --

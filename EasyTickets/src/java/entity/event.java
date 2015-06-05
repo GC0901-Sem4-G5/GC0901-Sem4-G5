@@ -12,12 +12,13 @@ package entity;
 public class event {
     
     private int id;
-    private int typeid;
+    private String TypeName;
+    private int TypeID;
     private String startdate;
-    private String enddate;
     private String eventname;
     private String content;
-    private int location;
+    private String locationName;
+    private int locationID;
     private String enventImg;
     private String created;   
 
@@ -29,12 +30,20 @@ public class event {
         this.id = id;
     }
 
-    public int getTypeid() {
-        return typeid;
+    public String getTypeName() {
+        return TypeName;
     }
 
-    public void setTypeid(int typeid) {
-        this.typeid = typeid;
+    public void setTypeName(String TypeName) {
+        this.TypeName = TypeName;
+    }
+
+    public int getTypeID() {
+        return TypeID;
+    }
+
+    public void setTypeID(int TypeID) {
+        this.TypeID = TypeID;
     }
 
     public String getStartdate() {
@@ -43,14 +52,6 @@ public class event {
 
     public void setStartdate(String startdate) {
         this.startdate = startdate;
-    }
-
-    public String getEnddate() {
-        return enddate;
-    }
-
-    public void setEnddate(String enddate) {
-        this.enddate = enddate;
     }
 
     public String getEventname() {
@@ -69,12 +70,20 @@ public class event {
         this.content = content;
     }
 
-    public int getLocation() {
-        return location;
+    public String getLocationName() {
+        return locationName;
     }
 
-    public void setLocation(int location) {
-        this.location = location;
+    public void setLocationName(String locationName) {
+        this.locationName = locationName;
+    }
+
+    public int getLocationID() {
+        return locationID;
+    }
+
+    public void setLocationID(int locationID) {
+        this.locationID = locationID;
     }
 
     public String getEnventImg() {
@@ -93,17 +102,29 @@ public class event {
         this.created = created;
     }
 
-    public event(int id, int typeid, String startdate, String enddate, String eventname, String content, int location, String enventImg, String created) {
+    public event(int id, String TypeName, String startdate, String eventname, String content, String locationName, String enventImg, String created) {
         this.id = id;
-        this.typeid = typeid;
+        this.TypeName = TypeName;
         this.startdate = startdate;
-        this.enddate = enddate;
         this.eventname = eventname;
         this.content = content;
-        this.location = location;
+        this.locationName = locationName;
         this.enventImg = enventImg;
         this.created = created;
     }
+
+    public event(int id, int TypeID, String startdate, String eventname, String content, int locationID, String enventImg, String created) {
+        this.id = id;
+        this.TypeID = TypeID;
+        this.startdate = startdate;
+        this.eventname = eventname;
+        this.content = content;
+        this.locationID = locationID;
+        this.enventImg = enventImg;
+        this.created = created;
+    }
+
+   
 
  
     

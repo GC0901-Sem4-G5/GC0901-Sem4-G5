@@ -1,4 +1,4 @@
-use EasyTicket
+﻿use EasyTicket
 
 insert into [user] values('vumanhhung','Vu Manh','Hung','admin','01663254964','hungvmgc00672@fpt.edu.vn','Ha Noi','0123456789','22:09:00','1995-10-30 00:00:00','123456789')
 insert into [user] values('tranvandat','Tran Van','Dat','admin','01325496475','tranvandat@fpt.edu.vn','Ha Noi','0123789456','22:21:00','1994-12-12 00:00:00','123456789')
@@ -20,35 +20,23 @@ insert into location values('Da Nang','so 102 Le Loi')
 insert into location values('TP Ho Chi Minh','so 97 Nguyen Thi Minh Khai')
 insert into location values('TP Ho Chi Minh','so 77-89 phuong Ben Thanh - quan 1')
 
-insert into [Type] values ('music')
-insert into [Type] values ('movie')
-insert into [Type] values ('sport')
-insert into [Type] values ('meeting')
-insert into [Type] values ('sale off')
+insert into [Type] values ('Movie')
+insert into [Type] values ('Music')
+insert into [Type] values ('Drama')
+insert into [Type] values ('Sports')
 
-insert into [Event] values('3','2015-05-31 07:00:00','2015-07-13 09:00:00','Aptech Cup','giai bong da Approtrain Aptech','','1','23:09:00')
-insert into [Event] values('2','2015-06-12 07:00:00','2015-06-30 09:00:00','Phim moi','Fast and Furious 7','','3','23:28:00')
-insert into [Event] values('4','2015-02-11 07:00:00','2015-02-11 18:00:00','Fifa online 3','Giao luu cac CLB toan Viet Nam','','2','23:45:00')
-insert into [Event] values('5','2015-05-31 07:00:00','2015-06-03 00:00:00','Big Sale Off','giam gia nhan dip 1-6','','5','23:05:00')
-insert into [Event] values('3','2015-06-07 01:45:00','2015-06-07 03:45:00','Chung ket C1 2015','Juvetus - Barcelona','','4','23:10:00')
 
-insert into Arena values('2','VIP','10')
-insert into Arena values('2','thuong','20')
-insert into Arena values('1','VIP','4')
-insert into Arena values('1','thuong','100')
-insert into Arena values('4','VIP','100')
-insert into Arena values('4','thuong','2000')
-insert into Arena values('5','VIP','50')
-insert into Arena values('5','thuong','3950')
-select * from Arena
-insert into [Price] values('1','200.000')
-insert into [Price] values('2','80.000')
-insert into [Price] values('3','50.000')
-insert into [Price] values('4','25.000')
-insert into [Price] values('5','0.000')
-insert into [Price] values('6','30.000')
-insert into [Price] values('7','1000.000')
-insert into [Price] values('8','300.000')
+insert into [Event] values('1','2015-06-20 07:00:00','Good kill','Tom Egan một phi công lái máy bay chiến đấu tự động cho quân đội Mỹ có thành tích trong việc tiêu diệt những mục tiêu khó của Taliban. Tuy nhiên bỗng một ngày anh nhận được một đề nghị yêu cầu nghỉ nửa buổi trong ngày','1.jpg','1','2015-06-04 07:00:00')
+insert into [Event] values('1','2015-06-30 07:00:00','Spy','Susan Cooper-Nữ nhân viên phân tích của CIA không đẹp, không giỏi tiếp xúc với đàn ông và suốt ngày gắn bó với ...công việc bàn giấy nhưng lại là một người hùng thầm lặng đằng sau những chiến dịch nguy hiểm.','2.jpg','3','2015-06-04 07:00:00')
+insert into [Event] values('1','2015-06-21 07:00:00','Mad Max: fury road','Ngày tận thế ở vùng đất xa xôi của Trái Đất trong khung cảnh sa mạc khắc nghiệt, Thế giới chỉ còn lại hai người có khả năng khôi phục lại trật tự thế giới. Max- một người đàn ông kiệm lời, thích hành động và luôn bị ám ảnh bởi quá khứ bi thảm liên quan đến cái cái chết của những người thân và Furiosa- người phụ nữ của hành động với niềm tin rằng sẽ sống sót nếu vượt qua được sa mạc','3.jpg','4','2015-06-04 07:00:00')
+
+insert into [Price] values(100,2,1,15)
+insert into [Price] values(100,2,2,10)
+insert into [Price] values(50,4,1,35)
+insert into [Price] values(50,4,2,15)
+insert into [Price] values(30,5,1,15)
+insert into [Price] values(30,5,2,5)
+
 
 insert into [Ticket] values('4','1','4','07:00:00','da thanh toan')
 insert into [Ticket] values('4','4','5','08:30:00','khach moi')
