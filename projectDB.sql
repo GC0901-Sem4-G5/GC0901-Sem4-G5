@@ -115,3 +115,4 @@ eventId int foreign key references [Event](id), -- event order
 Arena int foreign key references [Event](id), -- ma khu vuc
 amount float not null -- so tien
 ) --
+select * from [user] where username= 'vumanhhung' and [password] = '123456789'
