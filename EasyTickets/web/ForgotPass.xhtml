@@ -7,8 +7,11 @@
     </h:head>
     <h:body>
         <h:form>
-            Email: <h:inputText value="#{accountManager.email}"/><br/>
-            New Password: <h:inputSecret value="#{accountManager.newPassword}"/><br/>
+            <h2>Change Password</h2>
+            Email: <h:inputText value="#{accountManager.email}"/><br/><br/>
+            New Password: <h:inputSecret value="#{accountManager.newPassword}"/><br/><br/>
+            <h:commandButton value="Success" action="#{accountManager.editPassWeb(email)}"/>
+            <h:commandButton value="Cancel" action=""
         </h:form>
     </h:body>
 </html>

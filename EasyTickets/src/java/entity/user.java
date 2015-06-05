@@ -18,10 +18,14 @@ public class user {
     private String telephone;       
     private String email;       
     private String address;       
-    private String backAccount;       
+    private String bankAccount;       
     private String created;       
     private String birthdate;       
     private String password;  
+
+    public user() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     public int getId() {
         return id;
@@ -87,12 +91,12 @@ public class user {
         this.address = address;
     }
 
-    public String getBackAccount() {
-        return backAccount;
+    public String getBankAccount() {
+        return bankAccount;
     }
 
-    public void setBackAccount(String backAccount) {
-        this.backAccount = backAccount;
+    public void setBankAccount(String bankAccount) {
+        this.bankAccount = bankAccount;
     }
 
     public String getCreated() {
@@ -119,7 +123,7 @@ public class user {
         this.password = password;
     }
 
-    public user(int id, String username, String firstname, String lastname, String type, String telephone, String email, String address, String backAccount, String created, String birthdate, String password) {
+    public user(int id, String username, String firstname, String lastname, String type, String telephone, String email, String address, String bankAccount, String created, String birthdate, String password) {
         this.id = id;
         this.username = username;
         this.firstname = firstname;
@@ -128,7 +132,7 @@ public class user {
         this.telephone = telephone;
         this.email = email;
         this.address = address;
-        this.backAccount = backAccount;
+        this.bankAccount = bankAccount;
         this.created = created;
         this.birthdate = birthdate;
         this.password = password;
