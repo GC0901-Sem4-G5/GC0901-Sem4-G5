@@ -19,7 +19,9 @@
             Address: <h:inputText value="#{accountManager.address}" /><br/><br/>
             Bank Account: <h:inputText value="#{accountManager.bankAccount}" /><br/><br/>
             Birthday: <p:calendar value="#{accountManager.birthdate}" yearRange="c-30:c" navigator="true"/><br/><br/>
-            <h:commandButton action="#{accountManager.signUp()}" value="Sign up" style="margin-left: 100px;"/>
+            <h:commandButton action="#{accountManager.signUpAccount(username, firstname, lastname, type, email, address, 
+                                       telephone, bankAccount, created, birthdate, password)}" 
+                             value="Sign up" style="margin-left: 100px;"/>
         </h:form>
     </h:body>
 </html>

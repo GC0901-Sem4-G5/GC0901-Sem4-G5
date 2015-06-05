@@ -5,21 +5,17 @@ go
 create table [user](
 	id int not null identity primary key,
 	username varchar(30) not null,
-	[password] varchar(30) not null,
 	firstname varchar(30) not null,
 	lastname varchar(30) not null,
+	[type] varchar(30) not null,
 	telephone varchar(15),
 	email varchar(50) not null,
 	[address] varchar(100),
 	bankAccount varchar(200),
-<<<<<<< HEAD
-	birthdate nvarchar(30),
-	created datetime  DEFAULT GETDATE()
-=======
 	created varchar(30) not null,
 	birthdate datetime,
 	[password] varchar(30) not null
->>>>>>> đạt kiểm tra xong fix xem hộ e phát
+
 )
 
 create table Adminmaster(

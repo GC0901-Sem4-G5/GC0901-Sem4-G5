@@ -10,8 +10,8 @@
             <h2>Change Password</h2>
             Email: <h:inputText value="#{accountManager.email}"/><br/><br/>
             New Password: <h:inputSecret value="#{accountManager.newPassword}"/><br/><br/>
-            <h:commandButton value="Success" action="#{accountManager.editPassWeb(email)}"/>
-            <h:commandButton value="Cancel" action=""
+            <h:commandButton value="Success" action="#{accountManager.editPassWeb(email)}" style="margin-right: 35px;"/>
+            <h:commandButton value="Cancel" action="#{accountManager.cancel()}"/>
         </h:form>
     </h:body>
 </html>
