@@ -5,16 +5,15 @@ go
 create table [user](
 	id int not null identity primary key,
 	username varchar(30) not null,
+	[password] varchar(30) not null,
 	firstname varchar(30) not null,
 	lastname varchar(30) not null,
-	[type] varchar(30) not null,
 	telephone varchar(15),
 	email varchar(50) not null,
 	[address] varchar(100),
-	backAccount varchar(200),
-	created varchar(30) not null,
-	birthdate datetime,
-	[password] varchar(30) not null
+	bankAccount varchar(200),
+	birthdate nvarchar(30),
+	created datetime  DEFAULT GETDATE()
 )
 
 create table Adminmaster(
@@ -32,7 +31,7 @@ create table [ContactUs](
 	email nvarchar(100),
 	phone nvarchar(100),
 	content nvarchar(1000) not null,
-	created varchar(30) not null
+	created datetime  DEFAULT GETDATE()
 )
 
 
@@ -66,8 +65,11 @@ create table [Event](
 	content varchar(1000) not null,
 	enventImg varchar(500),
 	location int foreign key references location(id),
-	created varchar(30) not null
+	created datetime  DEFAULT GETDATE()
 ) --- thong tin chi tiet su kien --- 
+
+insert into [Event](typeid,DateStart,eventname,content,enventImg,location) values()
+select * from [Event]
 
 create table Arena(
 	id int not null identity primary key,

@@ -20,19 +20,15 @@ public class ContactUsModel {
 
     public boolean createContact(String name, String email, String phone, String content) {
         boolean status = false;
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        Date date = new Date();
-        String created = dateFormat.format(date);
         int result = 0;
         GetConnect conn = new GetConnect();
         Connection con = conn.getConnection();
         try {
-            PreparedStatement ps = con.prepareStatement("Insert into ContactUs values(?,?,?,?,?)");
+            PreparedStatement ps = con.prepareStatement("INSERT INTO [ContactUs] (name, email,phone,content ) VALUES (?,?,?,?)");
             ps.setString(1, name);
             ps.setString(2, email);
             ps.setString(3, phone);
             ps.setString(4, content);
-            ps.setString(5, created);
             result = ps.executeUpdate();
             if (result > 0) {
                 status = true;

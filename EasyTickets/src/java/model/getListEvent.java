@@ -18,17 +18,23 @@ import java.util.List;
  * @author dattr_000
  */
 public class getListEvent {
-   private ResultSet rs;
-   private List<event> listevent = new ArrayList<>();
-   
-   public List<event> getEventList() {
+
+    private ResultSet rs;
+    private List<event> listevent = new ArrayList<>();
+
+    public List<event> getEventList() {
         try {
             GetConnect conn = new GetConnect();
             Connection con = conn.getConnection();
-            PreparedStatement ps = con.prepareStatement("select [Type].typeName , [Event].id,[Event].eventname,location.city,[Event].startdate from [Event] INNER JOIN [Type] on [Type].id = [Event].typeid INNER JOIN location on location.id = [Event].location");
+            PreparedStatement ps = con.prepareStatement("select [Event].id,[Event].eventname,[Event].DateStart,[Event].enventImg from [Event]");
             rs = ps.executeQuery();
             while (rs.next()) {
-              
+                event e = new event();
+                e.setId(rs.getInt("id"));
+                e.setEventname(rs.getString("eventname"));
+                e.setStartdate(rs.getTimestamp("DateStart").toString());
+                e.setEnventImg(rs.getString("enventImg"));
+                listevent.add(e);
             }
         } catch (Exception e) {
             e.printStackTrace();

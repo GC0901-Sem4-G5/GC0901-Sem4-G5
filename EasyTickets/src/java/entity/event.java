@@ -124,6 +124,11 @@ public class event {
         this.created = created;
     }
 
+    public event() {
+    }
+    
+    
+
    
 
  
