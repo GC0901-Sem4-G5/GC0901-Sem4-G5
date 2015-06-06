@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"  >
+      xmlns:p="http://primefaces.org/ui"  
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -48,35 +49,59 @@
                 </div>
             </div>
         </div>
-
         <div id="mainPage" class="gkWrap">
             <div style="margin-bottom: 20px;margin-top: 20px;margin-left: auto; margin-right: auto;background-color: #FFF;text-align: -webkit-center;" id="gkHeader" class="gkMain">
-                <h:form style="width: 96%; padding-bottom: 10px;padding-top: 10px;">
-                    <p:dataTable rows="10" paginator="true"
-                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                 rowsPerPageTemplate="5,10,15"
-                                 paginatorPosition="bottom"
-                                 var="events" value="#{eventListBean.list}">
-                        <p:column >
-                            <img style="width: 234px;height: 200px" src="poster/#{events.enventImg}" />
-                        </p:column>
+                <div style=" padding-bottom: 10px;padding-top: 10px;">
+                    <p:commandButton update="formdata" class="selectTypesEvent" action="#{eventListBean.getMovieEvent}" value="MOVIE" />
+                    <p:commandButton update="formdata" class="selectTypesEvent" action="#{eventListBean.getMusicEvent}" value="MUSIC" />
+                    <p:commandButton update="formdata" class="selectTypesEvent" action="#{eventListBean.getDramaEvent}" value="DRAMA" />
+                    <p:commandButton update="formdata" class="selectTypesEvent" action="#{eventListBean.getSportEvent}" value="SPORT" />
+                </div>
+                <div style=" padding-bottom: 10px;display: inline-flex;">
+                    <h:form style="display:inherit;">
+                        <div>
+                            <p:inputText value="#{eventListBean.searchString}" type="search" style="width: 400px;height: 50px;font-size: 24px;border-radius: 50px;
+                                         background: white url(resources/images/Search.png) left no-repeat;padding-left: 45px;background-size: contain;" 
+                                         placeholder="Search Event Name"/>
+                        </div>
+                        <div style="margin-left: 10px;">
+                            <p:commandButton update="formdata" action="#{eventListBean.searchEvent()}" value="" type="submit" style="background-image: url(resources/images/Ampeross-Qetto-2-Search.png);background-size: contain;width: 45px;height: 45px;background-color: #fff;border-radius: 30px;" />
+                        </div>
+                    </h:form>
+                </div>
 
-                        <p:column >
-                            <h:outputText value="#{events.eventname}" />
-                            <h3> Date: #{events.startdate.substring(0,10)}</h3>
-                            <h3>Time: #{events.startdate.substring(12,16)}</h3>
-                        </p:column>
-
-                        <p:column >
-                            #{events.id}
-                        </p:column>
-
-                        <p:column >
-                            <p:button value="Detail" />
-                        </p:column>
-                    </p:dataTable>
+                <h:form id="formdata" style="width: 96%; padding-bottom: 10px;padding-top: 10px;">
+                    <p:dataList id="datalist" value="#{eventListBean.listevent}"  var="event" 
+                                type="unordered" itemType="none" 
+                                paginator="true" rows="10" styleClass="paginated"
+                                paginatorPosition="bottom" rowsPerPageTemplate="5,10,15"
+                                paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                currentPageReportTemplate="{startRecord} - {endRecord} of {totalRecords}">
+                        <f:facet  name="header">
+                            Event List
+                        </f:facet>
+                        <div style="text-align: left;border-top: 1px solid black;border-bottom: 1px solid black;display: -webkit-box;padding-bottom: 10px;height: 100px;width: 99%;">
+                            <div style="width: 20%;border: 1px solid black;">
+                                <img style="width: 170px;height: 95px;padding-bottom: 2px;padding-left: 4px;" src="poster/#{event.enventImg}" />
+                            </div>
+                            <div style="width: 45%;margin-left: 20px;color: #CF1F18;">
+                                <h3 style="margin-top: 5px;"><p:outputLabel value="#{event.eventname}" /></h3>
+                                <h4><span style="color:#000;">Date:</span> #{event.startdate.substring(0,11)}</h4>
+                                <h4><span style="color:#000;">Time:</span> #{event.startdate.substring(12,16)}</h4>
+                            </div>
+                            <div style="width: 20%;color: #CF1F18;">
+                                <h4 style="margin-top: 45px;"><span style="color:#000;">From $</span>#{eventListBean.getPrice(event.id)}</h4>
+                            </div>
+                            <div style="width: 15%">
+                                <p:commandButton actionListener="#{eventListBean.detail()}" style="margin-top: 35px;background-image: url(resources/images/dark_bg.png);color: #FFF;border-radius: 30px;height: 40px;width: 100px;" value="Detail" >
+                                    <f:param name="id" value="#{event.id}" />
+                                </p:commandButton>
+                            </div>
+                        </div>
+                    </p:dataList>
                 </h:form>
             </div>
+
         </div>
 
         <div id="gkBottomWrap">

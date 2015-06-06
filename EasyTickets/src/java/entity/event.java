@@ -18,6 +18,7 @@ public class event {
     private String eventname;
     private String content;
     private String locationName;
+    private String locationAddress;
     private int locationID;
     private String enventImg;
     private String created;   
@@ -61,6 +62,16 @@ public class event {
     public void setEventname(String eventname) {
         this.eventname = eventname;
     }
+
+    public String getLocationAddress() {
+        return locationAddress;
+    }
+
+    public void setLocationAddress(String locationAddress) {
+        this.locationAddress = locationAddress;
+    }
+    
+    
 
     public String getContent() {
         return content;
