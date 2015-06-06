@@ -5,15 +5,17 @@ go
 create table [user](
 	id int not null identity primary key,
 	username varchar(30) not null,
-	[password] varchar(30) not null,
 	firstname varchar(30) not null,
 	lastname varchar(30) not null,
+	[type] varchar(30) not null,
 	telephone varchar(15),
 	email varchar(50) not null,
 	[address] varchar(100),
 	bankAccount varchar(200),
-	birthdate nvarchar(30),
-	created datetime  DEFAULT GETDATE()
+	created varchar(30) not null,
+	birthdate datetime,
+	[password] varchar(30) not null
+
 )
 
 create table Adminmaster(
@@ -109,3 +111,4 @@ eventId int foreign key references [Event](id), -- event order
 Arena int foreign key references [Event](id), -- ma khu vuc
 amount float not null -- so tien
 ) --
+select * from [user] where username= 'vumanhhung' and [password] = '123456789'

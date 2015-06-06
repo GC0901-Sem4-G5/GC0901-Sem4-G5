@@ -7,13 +7,13 @@
     </h:head>
     <h:body>
         <h:form>
-            <h2>Login form</h2>
-            Username: <h:inputText value="#{accountManager.username}" required="true" requiredMessage="Wrong username!"/><br/>
-            Password: <h:inputSecret value="#{accountManager.password}" required="true" maxlength="25" requiredMessage="Wrong Password!"/><br/>
-            <h:commandButton value="Login" action="#{accountManager.login()}"/> 
+            <h2>Login</h2>
+            Username: <h:inputText value="#{accountManager.username}" required="true" requiredMessage="Wrong username!"/><br/><br/>
+            Password: <h:inputSecret value="#{accountManager.password}" required="true" maxlength="25" requiredMessage="Wrong Password!"/><br/><br/>
+            <h:commandButton value="Login" action="#{accountManager.login(username, password, url)}" style="margin-left: 80px; margin-bottom: 10px;"/>
         </h:form>
-        <h:form>
-            <h:commandButton value="Sign in" action="#{accountManager.signIn()}"/><br/>
+        <h:form styleClass="loginForm">
+            <h:commandLink value="Sign Up Account" action="#{accountManager.signUp()}" style="margin-right: 50px;"/>
             <h:commandLink value="Forgot password" action="#{accountManager.forgotPass()}"/>
         </h:form>
     </h:body>
