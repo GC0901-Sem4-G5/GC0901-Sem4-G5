@@ -70,14 +70,11 @@ create table [Event](
 	created datetime  DEFAULT GETDATE()
 ) --- thong tin chi tiet su kien --- 
 
-insert into [Event](typeid,DateStart,eventname,content,enventImg,location) values()
-select * from [Event]
-
 create table Arena(
 	id int not null identity primary key,
 	area varchar(50) not null, -- vip hay thuong ---
 ) -- khu vuc cho moi event --
-drop table Arena
+
 
 create table [Price](
 	id int not null identity primary key,
