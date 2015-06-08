@@ -13,6 +13,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import connection.GetConnect;
+import java.sql.DriverManager;
 
 /**
  *
@@ -21,7 +23,8 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean
 @SessionScoped
 public class AccountManager {
-    private Connection conn;
+    GetConnect gc = new GetConnect();
+    Connection conn = gc.getConnection();
     private String username;
     private String password;
     private String email;
@@ -34,7 +37,17 @@ public class AccountManager {
     private String created;       
     private String birthdate;
     private String newPassword;
+    String resultCheck;
+    private String url;
 
+    public String getResultCheck() {
+        return resultCheck;
+    }
+
+    public void setResultCheck(String resultCheck) {
+        this.resultCheck = resultCheck;
+    }
+   
     public String getNewPassword() {
         return newPassword;
     }
@@ -140,13 +153,14 @@ public class AccountManager {
     public AccountManager() {
     }
     
-    public String login(String username, String password, String url) {
+    public String login() {
         try {
             PreparedStatement ps = conn.prepareStatement("select * from [user] where username=? and [password] = ?");
-            ps.execute(username, 2);
-            ps.execute(password, 12);
+            ps.setString(1, username);
+            ps.setString(2, password);
             rs = ps.executeQuery();
-            if(username.equals(rs.getString("username")) && password.equals(rs.getString("[password]"))){
+            rs.next();
+            if(username.equals(rs.getString("username")) && password.equals(rs.getString("password"))){
                 return url;
             }
         } catch (Exception e) {
@@ -157,30 +171,46 @@ public class AccountManager {
     }
     
     public String forgotPass(){
-        return "NewPass";
+        return "ForgotPass";
     }
     
     public String signUp(){
         return "SignUp";
     }
     
-    public void editPassSQL(String password, String newPassword){
+    public void editPassSQL(){
         try {
             PreparedStatement ps = conn.prepareStatement("update [user] set password=? where password=?");
-            ps.execute(password, 2);
+            ps.setString(1, newPassword);
+            ps.setString(2, password);
             rs = ps.executeQuery();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
     
-    public String editPassWeb(String email){
-        try {
-            PreparedStatement ps = conn.prepareStatement("select * from [user] where email = ?");
-            ps.execute(email, 1);
+    public boolean checkEmail(){
+        try {        
+            PreparedStatement ps = gc.getConnection().prepareStatement("select * from [user] where email = ?");
+            ps.setString(1,email);
             rs = ps.executeQuery();
+            rs.next();
             if(email.equals(rs.getString("email"))){
-                editPassSQL(password,newPassword);
+                resultCheck = "Check email success";
+                return true;    
+            }else{
+                resultCheck = "Wrong email";
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
+    public String editPassWeb(String email){
+        try {  
+            if(checkEmail() == true){
+                editPassSQL();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -188,22 +218,21 @@ public class AccountManager {
         return "Login";
     }
 
-    public String signUpAccount(String username, String firstname, String lastname, String type, String email, String address,
-            String telephone, String bankAccount, String created, String birthdate, String password){
+    public String signUpAccount(){
         try {
             PreparedStatement ps = conn.prepareStatement("insert into [user] values(?,?,?,?,?,?,?,?,?,?,?)");
             Date date = new Date();
-            ps.setString(2, username);
-            ps.setString(3, firstname);
-            ps.setString(4, lastname);
-            ps.setString(5, "Custom");
-            ps.setString(6, telephone);
-            ps.setString(7, email);
-            ps.setString(8, address);
-            ps.setString(9, bankAccount);
-            ps.setString(10, df.format(date));
-            ps.setString(11, birthdate);
-            ps.setString(12, password);
+            ps.setString(1, username);
+            ps.setString(2, firstname);
+            ps.setString(3, lastname);
+            ps.setString(4, type = "custom");
+            ps.setString(5, telephone);
+            ps.setString(6, email);
+            ps.setString(7, address);
+            ps.setString(8, bankAccount);
+            ps.setString(9, df.format(date));
+            ps.setString(10, birthdate);
+            ps.setString(11, password);
         } catch (Exception e) {
             e.printStackTrace();
         }

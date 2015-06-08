@@ -80,3 +80,5 @@ select * from [orderDetail]
 select * from [Price]
 select * from [Ticket]
 select * from [Type]
+
+select * from [user] where username='abc' and [password] = '123456789'

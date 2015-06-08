@@ -3,19 +3,91 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
         <title>Login</title>
     </h:head>
     <h:body>
-        <h:form>
+        <div id="gkTopShadow">
+            <div id="gkTopWrap" class="gkWrap">
+                <div id="gkTopInterface">
+                    <h1 id="gkLogo"> <a href="http://www.easytickets.eu/ " class="cssLogo"></a></h1>
+                    <div id="gkButtons">
+                        <a href="http://www.easytickets.eu/index.php?option=com_users&amp;view=login" id="btnLogin">LOGIN</a>
+                    </div>
+                </div>
+
+                <div id="gkMainNav" class="gkWrap">
+                    <div id="gkMenu">
+                        <div class="gk-menu">
+                            <ul class="gkmenu level0">
+                                <li class="menu-title">
+                                    <span class="menu-title" onmouseover=""><h:link value="HOME" outcome="home" /></span>
+                                </li>
+                                <li class="menu-title">
+                                    <span class="menu-title" onmouseover=""><h:link value="EVENT" outcome="home" /></span>
+                                </li>
+                                <li class="menu-title">
+                                    <span class="menu-title" onmouseover=""><h:link value="ABOUT US" outcome="about" /></span>
+                                </li>
+                                <li class="menu-title">
+                                    <span class="menu-title" onmouseover=""><h:link value="CONTACT US" outcome="contact" /></span>
+                                </li>
+                                <li class="menu-title">
+                                    <span class="menu-title" onmouseover=""><h:link value="FAQ" outcome="faq" /></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="account">
+            <h:form>
             <h2>Login</h2>
             Username: <h:inputText value="#{accountManager.username}" required="true" requiredMessage="Wrong username!"/><br/><br/>
             Password: <h:inputSecret value="#{accountManager.password}" required="true" maxlength="25" requiredMessage="Wrong Password!"/><br/><br/>
-            <h:commandButton value="Login" action="#{accountManager.login(username, password, url)}" style="margin-left: 80px; margin-bottom: 10px;"/>
+            <h:commandButton value="Login" action="#{accountManager.login()}" style="margin-left: 80px; margin-bottom: 10px;"/>
         </h:form>
         <h:form styleClass="loginForm">
             <h:commandLink value="Sign Up Account" action="#{accountManager.signUp()}" style="margin-right: 50px;"/>
             <h:commandLink value="Forgot password" action="#{accountManager.forgotPass()}"/>
         </h:form>
+        </div>
+        
+        <div id="gkBottomWrap">
+            <div>
+                <div id="gkBottom1" class="gkMain gkWrap ">
+                    <div id="gkbottombottom2" class="gkCol gkColLeft">
+                        <h3 class="header"><span id="module197">EASY TICKETS CENTER</span></h3>
+                        <div>
+                            <p>
+                                <img style="width: 15px;height: 15px;" src="resources/images/location.png" />   No 8, Ton That Thuyet <br/>
+                                &nbsp;&nbsp;&nbsp;&nbsp;  Nam Tu Liem, Ha Noi
+                            </p>
+                            <p>
+                                <img style="width: 15px;height: 15px;" src="resources/images/email.png" /> contact@easytickets.com
+                            </p>
+                            <p>
+                                <img style="width: 15px;height: 15px;" src="resources/images/phone.png" /> 04.113
+                            </p>
+                        </div>
+                    </div>
+                    <div id="gkbottombottom3" class="gkCol gkColCenter">
+                        <br/>
+                        <center>Powered by Showbiz Company</center>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <center>Copyright ©2015 easytickets.com</center>
+                    </div>
+                </div>
+            </div>
+        </div>
     </h:body>
 </html>
 
