@@ -7,6 +7,7 @@ package model;
 
 import connection.GetConnect;
 import entity.event;
+import entity.location;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,6 +22,7 @@ public class getListEvent {
     
     private ResultSet rs;
     private List<event> listevent = new ArrayList<>();
+     private List<location> listlocation = new ArrayList<>();
     
     public List<event> getEventList() {
         try {
@@ -87,6 +89,48 @@ public class getListEvent {
             Connection con = conn.getConnection();
             PreparedStatement ps = con.prepareStatement("select [Event].id,[Event].eventname,[Event].DateStart,[Event].enventImg from [Event] where [Event].eventname like ?");
             ps.setString(1, query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                event e = new event();
+                e.setId(rs.getInt("id"));
+                e.setEventname(rs.getString("eventname"));
+                e.setStartdate(rs.getTimestamp("DateStart").toString());
+                e.setEnventImg(rs.getString("enventImg"));
+                listevent.add(e);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listevent;
+    }
+    
+        public List<location> getLocation(){
+        try {
+            GetConnect conn = new GetConnect();
+            Connection con = conn.getConnection();
+            PreparedStatement ps = con.prepareStatement("select * from location group by city");
+            rs = ps.executeQuery();
+            while (rs.next()) {
+               location lo = new location();
+               lo.setId(rs.getInt("id"));
+               lo.setCity(rs.getString("city"));
+               lo.setAddress(rs.getString("address"));
+               listlocation.add(lo);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listlocation;
+    }
+        
+        
+            public List<event> getEventListByLocation(String city) {
+                String cityString = "%"+city+"%";
+        try {
+            GetConnect conn = new GetConnect();
+            Connection con = conn.getConnection();
+            PreparedStatement ps = con.prepareStatement("select [Event].id,[Event].eventname,[Event].DateStart,[Event].enventImg from [Event] INNER JOIN location on location.id = [Event].location where location.city like ?");
+            ps.setString(1, cityString);
             rs = ps.executeQuery();
             while (rs.next()) {
                 event e = new event();

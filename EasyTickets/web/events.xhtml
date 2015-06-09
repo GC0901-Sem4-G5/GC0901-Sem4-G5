@@ -32,7 +32,7 @@
                                     <span class="menu-title" onmouseover=""><h:link value="HOME" outcome="home" /></span>
                                 </li>
                                 <li class="menu-title">
-                                    <span class="menu-title" onmouseover=""><h:link value="EVENT" outcome="home" /></span>
+                                    <span class="menu-title" onmouseover=""><h:link value="EVENT" outcome="events" /></span>
                                 </li>
                                 <li class="menu-title">
                                     <span class="menu-title" onmouseover=""><h:link value="ABOUT US" outcome="about" /></span>
@@ -69,6 +69,16 @@
                         </div>
                     </h:form>
                 </div>
+                <div>
+                    Location:
+                    <p:selectOneMenu id="country" value="#{eventListBean.cityget}" style="width:150px">
+                        <p:ajax update="formdata" />
+                        <f:selectItem itemLabel="Select City" itemValue="" noSelectionOption="true" />
+                        <f:selectItems value="#{eventListBean.listlocation}" var="locatioon">
+                            <f:selectItem value="#{locatioon.city}" />
+                        </f:selectItems>
+                    </p:selectOneMenu>
+                </div>
 
                 <h:form id="formdata" style="width: 96%; padding-bottom: 10px;padding-top: 10px;">
                     <p:dataList id="datalist" value="#{eventListBean.listevent}"  var="event" 
@@ -93,7 +103,7 @@
                                 <h4 style="margin-top: 45px;"><span style="color:#000;">From $</span>#{eventListBean.getPrice(event.id)}</h4>
                             </div>
                             <div style="width: 15%">
-                                <p:commandButton actionListener="#{eventListBean.detail()}" style="margin-top: 35px;background-image: url(resources/images/dark_bg.png);color: #FFF;border-radius: 30px;height: 40px;width: 100px;" value="Detail" >
+                                <p:commandButton action="#{eventListBean.detail()}" style="margin-top: 35px;background-image: url(resources/images/dark_bg.png);color: #FFF;border-radius: 30px;height: 40px;width: 100px;" value="Detail" >
                                     <f:param name="id" value="#{event.id}" />
                                 </p:commandButton>
                             </div>

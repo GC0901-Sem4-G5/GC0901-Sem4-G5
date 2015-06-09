@@ -7,6 +7,7 @@ package bean;
 
 import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import entity.event;
+import entity.location;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -28,17 +29,40 @@ public class EventListBean {
 
     private List<event> listevent = new ArrayList<>();
     private String searchString;
+    private event ev;
     @ManagedProperty("#{param.id}")
     private String id;
+    private String stadiumimg;
+    private List<location> listlocation = new ArrayList<>();
+    private String cityget;
 
     @PostConstruct
     public void init() {
         getFullList();
+        getLocation();
     }
 
     public String getSearchString() {
         return searchString;
     }
+
+    public List<location> getListlocation() {
+        return listlocation;
+    }
+
+    public void setListlocation(List<location> listlocation) {
+        this.listlocation = listlocation;
+    }
+
+    public String getCityget() {
+        return cityget;
+    }
+
+    public void setCityget(String cityget) {
+        this.cityget = cityget;
+    }
+    
+    
 
     public void setSearchString(String searchString) {
         this.searchString = searchString;
@@ -50,6 +74,22 @@ public class EventListBean {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public event getEv() {
+        return ev;
+    }
+
+    public void setEv(event ev) {
+        this.ev = ev;
+    }
+
+    public String getStadiumimg() {
+        return stadiumimg;
+    }
+
+    public void setStadiumimg(String stadiumimg) {
+        this.stadiumimg = stadiumimg;
     }
 
     public List<event> getListevent() {
@@ -102,7 +142,14 @@ public class EventListBean {
     }
 
     public String detail() {
-        return "";
+        getEventDetail gete = new getEventDetail();
+        ev = gete.getEvent(Integer.parseInt(id));
+        return "eventdetail";
+    }
+    
+    public void getLocation(){
+         getListEvent list = new getListEvent();
+         listlocation = list.getLocation();
     }
 
     /**

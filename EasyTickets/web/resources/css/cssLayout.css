@@ -350,6 +350,8 @@ gkRight .gkMain:first-child, #gkLeft .gkMain:first-child, .gkMain:first-child, #
     color: #fff;
 }
 
+/*---End slide products --*/  
+
 .selectTypesEvent {
     width: 24%;
     height: 90px;
@@ -360,6 +362,104 @@ gkRight .gkMain:first-child, #gkLeft .gkMain:first-child, .gkMain:first-child, #
     font-weight: bolder;
 }
 
-/*---End slide products --*/  
+#content .box-heading {
+    -webkit-border-radius: 7px 7px 0px 0px;
+    -moz-border-radius: 7px 7px 0px 0px;
+    -khtml-border-radius: 7px 7px 0px 0px;
+    border-radius: 7px 7px 0px 0px;
+    border: 1px solid #DBDEE1;
+    background: url(../images/background.png) repeat-x;
+    padding: 8px 10px 7px 10px;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 14px;
+    color: #333;
+}
+
+.mijoshop_heading_h1 {
+    border: 0px !important;
+    color: #333 !important;
+    font-family: Arial,Helvetica,sans-serif!important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    line-height: 14px !important;
+    margin: 0px !important;
+    padding: 0px !important;
+    text-transform: none !important;
+}
+
+.box-content {
+    -webkit-border-radius: 0px 0px 7px 7px;
+    -moz-border-radius: 0px 0px 7px 7px;
+    -khtml-border-radius: 0px 0px 7px 7px;
+    border-radius: 0px 0px 7px 7px;
+    border-left: 1px solid #DBDEE1;
+    border-right: 1px solid #DBDEE1;
+    border-bottom: 1px solid #DBDEE1;
+    padding: 10px;
+    margin: 0px;
+}
+
+.product-info {
+    overflow: auto;
+    margin-bottom: 20px;
+}
+
+.product-info>.left {
+    float: left;
+    width: 32% !important;
+}
+
+.product-info .image {
+    border: 1px solid #E7E7E7;
+    float: left;
+    margin-bottom: 20px;
+    padding: 10px;
+    text-align: center;
+    margin-left: 65px;
+}
+
+.product-info .image-additional {
+    width: 200px;
+    margin-left: -10px;
+    clear: both;
+    overflow: hidden;
+}
+
+.product-info>.right {
+    text-align: left;
+    width: 60%!important;
+    float: left;
+}
+
+.product-info .price {
+    overflow: auto;
+    color: #fff;
+    font-size: 24px;
+    border-bottom: 1px solid #E7E7E7;
+    padding: 15px 5px 0px 5px;
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #FF4500;
+}
+
+.mijodescription {
+    padding: 0 5px;
+}
+
+.product-info .options {
+    border-bottom: 1px solid #E7E7E7;
+    padding: 0px 5px 10px 5px;
+    margin-bottom: 10px;
+}
+
+.product-info .cart {
+    border-bottom: 1px solid #E7E7E7;
+    padding: 0px 5px 10px 5px;
+    margin-bottom: 20px;
+    overflow: auto;
+}
 
 

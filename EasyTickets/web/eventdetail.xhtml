@@ -1,17 +1,17 @@
-<?xml version='1.0' encoding='UTF-8' ?> 
+﻿<?xml version='1.0' encoding='UTF-8' ?> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"  
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
-
+    <f:param name="id" value="#{eventDetailBean.id}" />
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <h:outputStylesheet name="./css/default.css"/>
         <h:outputStylesheet name="./css/cssLayout.css"/>
         <title>EASY TICKETS</title>
-
     </h:head>
 
     <h:body>
@@ -50,46 +50,63 @@
                 </div>
             </div>
         </div>
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-        <script type="text/javascript">
-            jQuery(document).ready(function () {
-                jQuery("#showLinkId").click(function () {
-                    jQuery("#success").hide('slow', function () {
-                        alert('Hide Done');
-                    });
-                });
-            });
-        </script>
+
         <div id="mainPage" class="gkWrap">
-            <div id="gkMain">
-                <div id="gkMainBlock" class="gkMain">
-                    <div id="gkLeft" class="gkMain gkCol gkPaddingTBLR">
-                        <div class="box grunge6">
-                            <center><h1>FAQ - QUESTION &amp; ANSWER</h1></center>
-                            <h:form>
-                                <ul style="padding-bottom: 10px;">
-                                    <c:forEach var="item" items="#{faqBean.list}">
-                                        <li id="li" class="q">#{item.question}</li>
-                                        <li class="a" id="li2" >#{item.answer}</li>
-                                    </c:forEach>
-                                </ul>
-                            </h:form>
-                            <script type="text/javascript">
-                                $('li.a:not(".q")').hide();
-
-                                $('li.q').click(
-                                        function () {
-                                            $('li.a:not(".q")').slideUp();
-                                            $(this).nextUntil('.q').slideDown();
-                                        });
-                            </script>
+            <div style="margin-bottom: 20px;margin-top: 20px;margin-left: auto; margin-right: auto;background-color: #FFF;text-align: -webkit-center;" id="gkHeader" class="gkMain">
+                <div id="content">
+                    <div class="box-heading">
+                        <h1 class="mijoshop_heading_h1">#{eventDetailBean.eventname}</h1>
+                    </div>
+                    <div class="box-content">
+                        <div class="product-info">
+                            <div class="left">
+                                <div class="image">
+                                    <img style="height: 180px;width: 180px;" src="poster/#{eventDetailBean.eventImg}" />
+                                </div>
+                                <div class="image-additional">
+                                    <h3>Plattegrond / Locatie</h3>
+                                    <img style="width: 162px;height: 162px" src="resources/images/#{eventDetailBean.stadiumimg}" />
+                                </div>
+                            </div>
+                            <div class="right">
+                                <div class="price">
+                                    <center>From $#{eventListBean.getPrice(eventDetailBean.id)}</center>   
+                                    <br/>
+                                </div>
+                                <div>
+                                    <h3> Type: <span style="color: #FF4500;">#{eventDetailBean.typeName}</span></h3> 
+                                    <h3>City: <span style="color: #FF4500;">#{eventDetailBean.locationName}</span></h3>  
+                                    <h3>Address: <span style="color: #FF4500;">#{eventDetailBean.locationAddress}</span></h3>  
+                                    <br/>
+                                </div>
+                                <div class="mijodescription">
+                                    <p>#{eventDetailBean.content}</p>
+                                </div>
+                                <br/>
+                                <br/>
+                                <h:form>
+                                    <div class="options">
+                                        <div id="option-1615" class="option">
+                                            <p style="  padding-left: 20px; font-size: 15pt;margin-bottom: 0px;border-bottom: 1px solid #E7E7E7;border-top: 1px solid #E7E7E7;background-color: #FF4500;color: #fff;">Arena - Stand</p>
+                                            <p style="  padding-left: 30px;">Available Options:</p>
+                                            <p:selectOneListbox style="margin-left: 30px;" id="basic" value="#{eventDetailBean.selectedOptions}">
+                                                <c:forEach var="arena" items="#{eventDetailBean.listprice}">
+                                                    <f:selectItem itemLabel="#{arena.arenaName} - $#{arena.price}" itemValue="#{arena.id}" />
+                                                </c:forEach>
+                                            </p:selectOneListbox>
+                                            <div style="float: right;margin-top: -60px;margin-right: 70px;">
+                                                Quantity: <p:inputText value="#{eventDetailBean.quantity}" style="height: 24px;width: 49px;" type="number" /> 
+                                                <p:commandButton action="#{eventDetailBean.addtoCart()}"  value="ORDER" style="background-image: url(resources/images/dark_bg.png);color: #fff;margin-left: 10px; border-radius: 15px" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </h:form>
+                            </div>
                         </div>
-
-                    </div> 
-                </div>
+                    </div>
+                </div>  
             </div>
         </div>
-
 
         <div id="gkBottomWrap">
             <div>

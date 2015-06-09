@@ -43,5 +43,10 @@ public class location {
         this.city = city;
         this.address = address;
     }
+
+    public location() {
+    }
+    
+    
     
 }
