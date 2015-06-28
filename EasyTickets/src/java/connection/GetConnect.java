@@ -26,10 +26,23 @@ public class GetConnect {
         this.conn = conn;
     }
 
+//    public Connection getConnection() {
+//        try {
+//            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+//            String url = "jdbc:sqlserver://TIENDAT;databaseName=EasyTicket";
+//            String id = "sa";
+//            String pass = "123456";
+//            conn = DriverManager.getConnection(url, id, pass);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return conn;
+//    }
+    
     public Connection getConnection() {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            String url = "jdbc:sqlserver://TIENDAT;databaseName=EasyTicket";
+            String url = "jdbc:sqlserver://INSPIRON-5520\\HUNGVM:1433;databaseName=EasyTicket";
             String id = "sa";
             String pass = "123456";
             conn = DriverManager.getConnection(url, id, pass);

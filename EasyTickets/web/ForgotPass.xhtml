@@ -4,15 +4,89 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
         <title>Forget Password</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
     </h:head>
     <h:body>
-        <h:form>
-            <h2>Change Password</h2>
-            Email: <h:inputText value="#{accountManager.email}"/><br/><br/>
-            New Password: <h:inputSecret value="#{accountManager.newPassword}"/><br/><br/>
-            <h:commandButton value="Success" action="#{accountManager.editPassWeb(email)}" style="margin-right: 35px;"/>
-            <h:commandButton value="Cancel" action="#{accountManager.cancel()}"/>
-        </h:form>
+        <div id="gkTopShadow">
+            <div id="gkTopWrap" class="gkWrap">
+                <div id="gkTopInterface">
+                    <h1 id="gkLogo"> <a href="http://www.easytickets.eu/ " class="cssLogo"></a></h1>
+                    <div id="gkButtons">
+                        <a href="http://www.easytickets.eu/index.php?option=com_users&amp;view=login" id="btnLogin">LOGIN</a>
+                    </div>
+                </div>
+
+                <div id="gkMainNav" class="gkWrap">
+                    <div id="gkMenu">
+                        <div class="gk-menu">
+                            <ul class="gkmenu level0">
+                                <li class="menu-title">
+                                    <span class="menu-title" onmouseover=""><h:link value="HOME" outcome="home" /></span>
+                                </li>
+                                <li class="menu-title">
+                                    <span class="menu-title" onmouseover=""><h:link value="EVENT" outcome="home" /></span>
+                                </li>
+                                <li class="menu-title">
+                                    <span class="menu-title" onmouseover=""><h:link value="ABOUT US" outcome="about" /></span>
+                                </li>
+                                <li class="menu-title">
+                                    <span class="menu-title" onmouseover=""><h:link value="CONTACT US" outcome="contact" /></span>
+                                </li>
+                                <li class="menu-title">
+                                    <span class="menu-title" onmouseover=""><h:link value="FAQ" outcome="faq" /></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="account">
+            <h:form>
+                <h2>Change Password</h2><br/><br/>
+                Email: <h:inputText value="#{accountManager.email}" style="margin-right: 50px;"/>
+                <h:commandButton value="Check email" action="#{accountManager.checkEmail()}" style="margin-right: 50px;"/>
+                <h:outputText value="#{accountManager.resultCheck}" style="color: red; font-style: italic"/><br/><br/>
+                New Password: <h:inputSecret value="#{accountManager.newPassword}"/><br/><br/>
+                <h:commandButton value="Success" action="#{accountManager.editPassWeb(email)}" style="margin-right: 35px;"/>
+                <h:commandButton value="Cancel" action="#{accountManager.cancel()}"/>
+            </h:form>
+        </div>
+
+        <div id="gkBottomWrap">
+            <div>
+                <div id="gkBottom1" class="gkMain gkWrap ">
+                    <div id="gkbottombottom2" class="gkCol gkColLeft">
+                        <h3 class="header"><span id="module197">EASY TICKETS CENTER</span></h3>
+                        <div>
+                            <p>
+                                <img style="width: 15px;height: 15px;" src="resources/images/location.png" />   No 8, Ton That Thuyet <br/>
+                                &nbsp;&nbsp;&nbsp;&nbsp;  Nam Tu Liem, Ha Noi
+                            </p>
+                            <p>
+                                <img style="width: 15px;height: 15px;" src="resources/images/email.png" /> contact@easytickets.com
+                            </p>
+                            <p>
+                                <img style="width: 15px;height: 15px;" src="resources/images/phone.png" /> 04.113
+                            </p>
+                        </div>
+                    </div>
+                    <div id="gkbottombottom3" class="gkCol gkColCenter">
+                        <br/>
+                        <center>Powered by Showbiz Company</center>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <center>Copyright ©2015 easytickets.com</center>
+                    </div>
+                </div>
+            </div>
+        </div>
     </h:body>
 </html>
 
