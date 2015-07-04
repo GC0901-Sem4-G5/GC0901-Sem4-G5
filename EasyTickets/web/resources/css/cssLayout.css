@@ -1,3 +1,4 @@
+gkButtons
 
 #top {
     position: relative;
@@ -94,6 +95,14 @@ h1, .welcome {
     float: left;
 }
 
+.btnLogin{
+    width: 81px;
+    height: 32px;
+    color: #7b7259;
+    background-color: transparent;
+    border: 0;
+}
+
 #gkTop a {
     color: #fff;
 }
@@ -182,21 +191,22 @@ div.gk-menu>ul.level0>li>a>span.menu-title {
     background: transparent url(../images/userarea_bg.png) repeat 0 0;
     border: 1px solid #1a1a1a;
     float: right;
+    border-radius: 5px;
     height: 30px;
     line-height: 30px;
     margin: 45px 18px 0 0;
     padding: 0 12px;
 }
 
-#gkButtons a:first-child {
-    color: #7b7259;
+#gkButtons:hover {
+    background: #fff;
+    border: 1px solid #fff;
 }
 
-#gkButtons a {
-    font-size: 11px;
-    text-transform: uppercase;
-    margin-left: 5px;
+#gkButtons:hover  .btnLogin{
+    color: #000000;
 }
+
 
 #gkBottomWrap {
     width: 100%;
@@ -464,7 +474,232 @@ gkRight .gkMain:first-child, #gkLeft .gkMain:first-child, .gkMain:first-child, #
 
 
 #account{
-    margin-bottom: 95px; 
     margin-left: 200px; 
     font-size: 16px;
 }
+
+.input-group-addon {
+    display: block;
+    vertical-align: middle;
+    white-space: nowrap;
+    background-color: #ED4B24;
+    border-top-left-radius: 20px;
+    border-radius: 2px 0 0 2px;
+    padding: 0;
+    text-align: center;
+    height: 38px;
+    line-height: 38px;
+    width: 15%;
+    float: left;
+    color: #fff;
+}
+
+.input-group {
+    border-collapse: separate;
+    display: flex;
+    width: 100%;
+    margin: 0 0 15px;
+}
+
+.input-login {
+    height: 32px;
+    width: 300px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.button_login button{
+    background: url(../images/login-button.png) repeat-x;
+    background-size: cover;
+    width: 70px;
+    height: 70px;
+    border-radius: 45px;
+    color: #fff;
+}
+
+.button_login{
+    float: right;
+    margin-left: 25px;
+    margin-top: -45px;
+    height: 30px;
+}
+
+#formdata{
+    margin-top: 55px;
+    margin-left: 25px;
+}
+
+.loginForm{
+    margin-left: 65px;
+}
+
+.box_oc .box-heading {
+    -webkit-border-radius: 7px 7px 0px 0px;
+    -moz-border-radius: 7px 7px 0px 0px;
+    -khtml-border-radius: 7px 7px 0px 0px;
+    border-radius: 7px 7px 0px 0px;
+    border: 1px solid #DBDEE1;
+    background: url(../images/background.png) repeat-x;
+    padding: 8px 10px 7px 10px;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 14px;
+    color: #333;
+}
+
+.mijoshop_heading_h1 {
+    border: 0px !important;
+    color: #333 !important;
+    font-family: Arial,Helvetica,sans-serif!important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    line-height: 14px !important;
+    margin: 0px !important;
+    padding: 0px !important;
+    text-transform: none !important;
+}
+
+.box_oc .box-content {
+    -webkit-border-radius: 0px 0px 7px 7px;
+    -moz-border-radius: 0px 0px 7px 7px;
+    -khtml-border-radius: 0px 0px 7px 7px;
+    border-radius: 0px 0px 7px 7px;
+    border-left: 1px solid #DBDEE1;
+    border-right: 1px solid #DBDEE1;
+    border-bottom: 1px solid #DBDEE1;
+    padding: 10px;
+    margin: 0px;
+}
+
+.content_oc {
+    padding: 10px;
+    overflow: auto;
+    margin-bottom: 20px;
+    border: 1px solid #EEE;
+}
+
+table.form {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.buttons {
+    background: #FFF;
+    border: 1px solid #EEE;
+    overflow: auto;
+    padding: 6px;
+    margin-bottom: 20px;
+}
+
+.buttons .left {
+    float: left;
+    text-align: left;
+}
+
+.buttons .right {
+    float: right;
+    text-align: right;
+}
+
+.buttons .right button{
+    height: 30px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font: bold 11px/23px Arial,Helvetica,sans-serif;
+    padding: 0 8px;
+    background: transparent url(../images/dark_bg.png) no-repeat 0 0;
+    border: none;
+    color: #fff !important;
+    cursor: pointer;
+    border-radius: 7px;
+}
+
+a.button_oc, input.button_oc {
+    cursor: pointer !important;
+    color: #FFF !important;
+    line-height: 18px;
+    font-size: 12px;
+    font-weight: bold;
+    background: url(../images/button.png) top left;
+    -webkit-border-radius: 7px 7px 7px 7px;
+    -moz-border-radius: 7px 7px 7px 7px;
+    -khtml-border-radius: 7px 7px 7px 7px;
+    border-radius: 7px 7px 7px 7px;
+    -webkit-box-shadow: 0px 2px 2px #DDD;
+    -moz-box-shadow: 0px 2px 2px #DDD;
+    box-shadow: 0px 2px 2px #DDD;
+}
+
+a.button_oc {
+    display: inline-block;
+    text-decoration: none !important;
+    padding: 6px 12px 6px 12px;
+}
+
+.button_orange_continue {
+    height: 30px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font: bold 11px/23px Arial,Helvetica,sans-serif;
+    padding: 0 8px;
+    background: transparent url(../images/dark_bg.png) no-repeat 0 0;
+    border: none;
+    color: #fff !important;
+    cursor: pointer;
+}
+
+
+#createuser .btnLogin {
+    color: #fff;
+    background-color: transparent;
+    border:0;
+}
+
+#createuser #gkButtons:hover{
+    background: #fff;
+}
+
+#createuser #gkButtons:hover .btnLogin{
+    color:#000;
+}
+
+#createuser  .tdlabel{
+    width: 200px;
+    padding: 4px;
+    border-collapse: collapse;
+}
+
+#createuser .input-create{
+    background: #F8F8F8;
+    border: 1px solid #CCC;
+    padding: 3px;
+    width: 200px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+#createuser .td-input{
+    width: 150px;
+}
+
+#forminfo   .tdlabel{
+    width: 200px;
+    padding: 4px;
+    border-collapse: collapse;
+}
+
+#forminfo  .input-create{
+    background: #F8F8F8;
+    border: 1px solid #CCC;
+    padding: 3px;
+    width: 200px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+#forminfo  .td-input{
+    width: 150px;
+}
+

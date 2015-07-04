@@ -11,6 +11,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -59,17 +61,35 @@ public class AccountModel {
             PreparedStatement ps = con.prepareStatement("SELECT * from [user] where email = ?");
             ps.setString(1, email);
             rs = ps.executeQuery();
-           if(rs.next()){
-               status = true;
-           }else{
-               status = false;
-           }
+            if (rs.next()) {
+                status = true;
+            } else {
+                status = false;
+            }
 
         } catch (SQLException ex) {
             Logger.getLogger(AccountModel.class.getName()).log(Level.SEVERE, null, ex);
             status = false;
         }
         return status;
+    }
+
+    public String getFirstnamebyUsername(String username) {
+        String firstname = "";
+        try {
+            GetConnect conn = new GetConnect();
+            Connection con = conn.getConnection();
+            PreparedStatement ps = con.prepareStatement("SELECT * from [user] where username = ?");
+            ps.setString(1, username);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                firstname = rs.getString("firstname");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return firstname;
     }
 
     public String getPasswordbyEmail(String email) {
@@ -123,22 +143,22 @@ public class AccountModel {
         transport.close();
     }
 
-    public boolean createAccount(user u) {
+    public boolean createAccount(String username, String firstname, String lastname, String type, String telephone, String email, String birthday, String address, String password) {
         boolean status;
         int i = 0;
         try {
             GetConnect conn = new GetConnect();
             Connection con = conn.getConnection();
             PreparedStatement ps = con.prepareStatement("insert into [user](username,firstname,lastname,[type],telephone,email,[address],birthdate,[password]) values(?,?,?,?,?,?,?,?,?)");
-            ps.setString(1, u.getUsername());
-            ps.setString(2, u.getFirstname());
-            ps.setString(3, u.getLastname());
-            ps.setString(4, u.getType());
-            ps.setString(5, u.getTelephone());
-            ps.setString(6, u.getEmail());
-            ps.setString(7, u.getEmail());
-            ps.setString(8, u.getBirthdate());
-            ps.setString(9, u.getPassword());
+            ps.setString(1, username);
+            ps.setString(2, firstname);
+            ps.setString(3, lastname);
+            ps.setString(4, type);
+            ps.setString(5, telephone);
+            ps.setString(6, email);
+            ps.setString(7, address);
+            ps.setString(8, birthday);
+            ps.setString(9, password);
             i = ps.executeUpdate();
             if (i > 0) {
                 status = true;
@@ -152,8 +172,7 @@ public class AccountModel {
         return status;
     }
 
-    
-       public boolean checkUsernameExist(String username) {
+    public boolean checkUsernameExist(String username) {
         boolean status;
         try {
 
@@ -168,5 +187,29 @@ public class AccountModel {
             status = false;
         }
         return status;
+    }
+    user u;
+
+    public user getInfobyusername(String username) {
+        u = new user();
+        try {
+
+            GetConnect conn = new GetConnect();
+            Connection con = conn.getConnection();
+            PreparedStatement ps = con.prepareStatement("select * from [user] where username = ?");
+            ps.setString(1, username);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                u.setFirstname(rs.getString("firstname"));
+                u.setLastname(rs.getString("lastname"));
+                u.setAddress(rs.getString("address"));
+                u.setBirthdate(rs.getString("birthdate"));
+                u.setEmail(rs.getString("email"));
+                u.setTelephone(rs.getString("telephone"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return u;
     }
 }

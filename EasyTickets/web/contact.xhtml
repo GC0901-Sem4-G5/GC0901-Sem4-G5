@@ -10,7 +10,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <h:outputStylesheet name="./css/default.css"/>
         <h:outputStylesheet name="./css/cssLayout.css"/>
-        <title>EASY TICKETS</title>
+        <link rel="icon" type="image/x-icon" href="resources/images/icon.ico"/>
+        <title>Contact Us - Easy Tickets G5</title>
     </h:head>
 
     <h:body>
@@ -18,10 +19,15 @@
         <div id="gkTopShadow">
             <div id="gkTopWrap" class="gkWrap">
                 <div id="gkTopInterface">
-                    <h1 id="gkLogo"> <a href="http://www.easytickets.eu/ " class="cssLogo"></a></h1>
-                    <div id="gkButtons">
-                        <a href="http://www.easytickets.eu/index.php?option=com_users&amp;view=login" id="btnLogin">LOGIN</a>
-                    </div>
+                    <h1 id="gkLogo"> <a href="" class="cssLogo"></a></h1>
+                    <h:form>
+                        <div style=" float: left;margin-left: 500px;margin-top: 54px;">
+                            Hello <h:link value="#{accountBean.firstName}" outcome="#{accountBean.linkmanager}" />
+                        </div>
+                        <div id="gkButtons">
+                            <h:commandButton class="btnLogin" value="#{accountBean.button}" action="#{accountBean.eventAcc()}" />  
+                        </div>
+                    </h:form>
                 </div>
 
                 <div id="gkMainNav" class="gkWrap">

@@ -8,13 +8,19 @@ package bean;
 import entity.user;
 import java.io.IOException;
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import model.AccountModel;
 
 /**
@@ -24,8 +30,6 @@ import model.AccountModel;
 @ManagedBean
 @SessionScoped
 public class AccountBean implements Serializable {
-
-
 
     private String username;
     private String password;
@@ -43,7 +47,24 @@ public class AccountBean implements Serializable {
     private Date birthdaycreate;
     private String emailcreate;
     private String passwordcreate;
+    private user u;
+    private Date birthdayinfo;
 
+    public Date getBirthdayinfo() {
+        return birthdayinfo;
+    }
+
+    public void setBirthdayinfo(Date birthdayinfo) {
+        this.birthdayinfo = birthdayinfo;
+    }
+
+    public user getU() {
+        return u;
+    }
+
+    public void setU(user u) {
+        this.u = u;
+    }
 
     public String getUsername() {
         return username;
@@ -52,7 +73,6 @@ public class AccountBean implements Serializable {
     public void setUsername(String username) {
         this.username = username;
     }
-
 
     public String getPasswordcreate() {
         return passwordcreate;
@@ -173,9 +193,7 @@ public class AccountBean implements Serializable {
     public void setEmailcreate(String emailcreate) {
         this.emailcreate = emailcreate;
     }
-    
-    
-    
+
     private static final long serialVersionUID = 1L;
 
     public String eventAcc() throws IOException {
@@ -183,12 +201,19 @@ public class AccountBean implements Serializable {
             System.out.println(button);
             return "login";
         } else {
+            FirstName = "Guest";
+            linkmanager = "login";
             button = "LOGIN";
+            FacesContext context = FacesContext.getCurrentInstance();
+            HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+            HttpSession appsession = request.getSession(true);
+            appsession.removeAttribute("username");
+            System.out.println("Success Logout");
             return "home";
         }
     }
 
-    public String findpassword() {
+    public String findpassword() throws InterruptedException {
         AccountModel acc = new AccountModel();
         String passwordget;
         if (acc.checkEmail(email)) {
@@ -196,6 +221,8 @@ public class AccountBean implements Serializable {
             try {
                 acc.generateAndSendEmai(email, passwordget);
                 messageforgotpass = "Your password will be sent to your email. Please check your email";
+                passwordget = "";
+                email = "";
             } catch (MessagingException ex) {
                 Logger.getLogger(AccountBean.class.getName()).log(Level.SEVERE, null, ex);
                 messageforgotpass = "ERROR !!!";
@@ -206,8 +233,8 @@ public class AccountBean implements Serializable {
         }
         return "";
     }
-    
-    public void BlackField(){
+
+    public void BlackField() {
         usernamecreate = null;
         passwordcreate = null;
         firstnamecreate = null;
@@ -216,40 +243,91 @@ public class AccountBean implements Serializable {
         telephonecreate = null;
         addresscreate = null;
         birthdaycreate = null;
-        
-        
+
+    }
+
+    public void redirect() {
+        String url = "login.xhtml";
+        FacesContext fc = FacesContext.getCurrentInstance();
+        ExternalContext ec = fc.getExternalContext();
+        try {
+            ec.redirect(url);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     public String createAccount() {
-          SimpleDateFormat year = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat year = new SimpleDateFormat("dd-MM-yyyy");
         String birthday = year.format(birthdaycreate);
         AccountModel acc = new AccountModel();
-        if(acc.checkEmail(getEmailcreate())){
-            if(acc.checkUsernameExist(usernamecreate)){
-                user u = new user();
-                u.setAddress(addresscreate);
-                u.setBirthdate(birthday);
-                u.setEmail(emailcreate);
-                u.setFirstname(firstnamecreate);
-                u.setLastname(lastnamecreate);
-                u.setPassword(passwordcreate);
-                u.setTelephone(telephonecreate);
-                u.setType("Customer");
-                u.setUsername(usernamecreate);
-                if(acc.createAccount(u)){
-                    messageforgotpass = "Create Success !!!";
-                    return "login";
-                }else{
-                     messageforgotpass = "Create Error !!!";
-                     return "";
-                }
-            }else{
-                messageforgotpass = "Username Already Registered.";
-                return "";
-            }
-        }else{
-            messageforgotpass = "Email Already Registered.";
+        boolean createAccount = acc.createAccount(usernamecreate, firstnamecreate, lastnamecreate, "Custommer", telephonecreate, emailcreate, birthday, addresscreate, passwordcreate);
+        if (createAccount) {
+            messageforgotpass = "Create Success !";
             return "";
+        } else {
+            messageforgotpass = "Create Error !";
+            return "";
+        }
+//        if (acc.checkEmail(getEmailcreate())) {
+//            if (acc.checkUsernameExist(usernamecreate)) {
+//                
+//                if (acc.createAccount(u)) {
+//                    messageforgotpass = "Create Success !!!";
+//                    return "login";
+//                } else {
+//                    messageforgotpass = "Create Error !!!";
+//                    return "";
+//                }
+//            } else {
+//                messageforgotpass = "Username Already Registered.";
+//                return "";
+//            }
+//        } else {
+//            messageforgotpass = "Email Already Registered.";
+//            return "";
+//        }
+    }
+
+    public void loginaction() {
+        AccountModel acc = new AccountModel();
+        if (acc.checklogin(username, password)) {
+            FirstName = acc.getFirstnamebyUsername(username);
+            linkmanager = "managecustomer";
+            button = "LOGOUT";
+            FacesContext context = FacesContext.getCurrentInstance();
+            HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+            HttpSession appsession = request.getSession(true);
+            appsession.setAttribute("username", username);
+            System.out.println("Success Login");
+            ExternalContext extContext = context.getExternalContext();
+            String url = extContext.encodeActionURL(context.getApplication().
+                    getViewHandler().getActionURL(context, "/home.xhtml"));
+
+            try {
+                extContext.redirect(url);
+            } catch (IOException ex) {
+                Logger.getLogger(AccountBean.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            System.out.println("false");
+        }
+    }
+
+    public void getInformation() {
+        u = new user();
+        AccountModel acc = new AccountModel();
+        FacesContext context = FacesContext.getCurrentInstance();
+        HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+        HttpSession appsession = request.getSession(true);
+        String usernamess = (String) appsession.getAttribute("username");
+        u = acc.getInfobyusername(usernamess);
+        DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        Date date;
+        try {
+            birthdayinfo = formatter.parse(u.getBirthdate());
+        } catch (ParseException ex) {
+            Logger.getLogger(AccountBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

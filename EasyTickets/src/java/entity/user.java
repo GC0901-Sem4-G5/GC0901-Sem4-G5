@@ -10,22 +10,20 @@ package entity;
  * @author win pc
  */
 public class user {
+
     private int id;
     private String username;
     private String firstname;
     private String lastname;
     private String type;
-    private String telephone;       
-    private String email;       
-    private String address;       
-    private String bankAccount;       
-    private String created;       
-    private String birthdate;       
-    private String password;  
+    private String telephone;
+    private String email;
+    private String address;
+    private String bankAccount;
+    private String created;
+    private String birthdate;
+    private String password;
 
-    public user() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     public int getId() {
         return id;
@@ -137,6 +135,8 @@ public class user {
         this.birthdate = birthdate;
         this.password = password;
     }
-    
-    
+
+    public user() {
+    }
+
 }

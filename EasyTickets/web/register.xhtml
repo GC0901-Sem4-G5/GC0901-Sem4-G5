@@ -1,0 +1,194 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+                <link rel="icon" type="image/x-icon" href="resources/images/icon.ico"/>
+        <title>Sign Up - Easy Tickets G5</title>
+    </h:head>
+    <h:body>
+        <div id="gkTopShadow">
+            <div id="gkTopWrap" class="gkWrap">
+                <div id="gkTopInterface">
+                    <h1 id="gkLogo"> <a href="" class="cssLogo"></a></h1>
+                    <h:form>
+                        <div style=" float: left;margin-left: 500px;margin-top: 54px;">
+                            Hello <h:link value="#{accountBean.firstName}" outcome="#{accountBean.linkmanager}" />
+                        </div>
+                        <div id="gkButtons">
+                            <h:commandButton class="btnLogin" value="#{accountBean.button}" action="#{accountBean.eventAcc()}" />  
+                        </div>
+                    </h:form>
+                </div>
+
+                <div id="gkMainNav" class="gkWrap">
+                    <div id="gkMenu">
+                        <div class="gk-menu">
+                            <ul class="gkmenu level0">
+                                <li class="menu-title">
+                                    <span class="menu-title" onmouseover=""><h:link value="HOME" outcome="home" /></span>
+                                </li>
+                                <li class="menu-title">
+                                    <span class="menu-title" onmouseover=""><h:link value="EVENT" outcome="home" /></span>
+                                </li>
+                                <li class="menu-title">
+                                    <span class="menu-title" onmouseover=""><h:link value="ABOUT US" outcome="about" /></span>
+                                </li>
+                                <li class="menu-title">
+                                    <span class="menu-title" onmouseover=""><h:link value="CONTACT US" outcome="contact" /></span>
+                                </li>
+                                <li class="menu-title">
+                                    <span class="menu-title" onmouseover=""><h:link value="FAQ" outcome="faq" /></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="mainPage" class="gkWrap">
+            <div id="gkMain">
+                <div id="gkMainBlock" class="gkMain">
+                    <div id="gkLeft" class="gkMain gkCol gkPaddingTBLR" style="background-color: #fff;margin-bottom: 18px;margin-top: 18px;">
+                        <div class="box_oc">
+                            <div class="box-heading">
+                                <h1 class="mijoshop_heading_h1"><font><font class="">Register Account</font></font></h1>
+                            </div>
+                            <div class="box-content">
+                                <p>If you already have an account you can here <h:link value="login" outcome="login" /> .</p>
+                                <h2>Your personal information</h2>
+                                <h:form id="formforget">
+                                    <p:dialog header="Message" widgetVar="dlg1" minHeight="40">
+                                        <p><b> <h:outputText id="message_dlg" value="#{accountBean.messageforgotpass}" /></b></p>
+                                        <br/>
+                                        <center>
+                                            <h:link class="button_oc" value="OK" outcome="login" />
+                                        </center>
+                                    </p:dialog>
+                                    <div class="content_oc">
+                                        <table id="createuser">
+                                            <tr>
+                                                <td class="tdlabel"><span style="color: #ff0000;">*</span> First Name:</td>
+                                                <td class="td-input"><h:inputText class="input-create" id="firstname" value="#{accountBean.firstnamecreate}" required="true" requiredMessage="*" validatorMessage="Maximum 30 character">
+                                                        <f:validateLength maximum="30" />
+                                                    </h:inputText></td>
+                                                <td><h:message for="firstname" style="color: #ff0000;" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tdlabel"><span style="color: #ff0000;">*</span> Last Name:</td>
+                                                <td class="td-input"><h:inputText class="input-create" id="lastname" value="#{accountBean.lastnamecreate}" required="true" requiredMessage="*" validatorMessage="Maximum 30 character">
+                                                        <f:validateLength maximum="30" />
+                                                    </h:inputText></td>
+                                                <td><h:message for="lastname" style="color: #ff0000;" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tdlabel"><span style="color: #ff0000;">*</span> Username:</td>
+                                                <td class="td-input"><h:inputText class="input-create" id="username" value="#{accountBean.usernamecreate}" required="true" requiredMessage="*" validatorMessage="Maximum 30 character">
+                                                        <f:validateLength maximum="30" />
+                                                    </h:inputText></td>
+                                                <td><h:message for="username" style="color: #ff0000;" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tdlabel"><span style="color: #ff0000;">*</span> Password:</td>
+                                                <td class="td-input"><p:password class="input-create" match="repassword" id="password" value="#{accountBean.passwordcreate}" required="true" requiredMessage="*" validatorMessage="Passwords do not match!">
+                                                    </p:password></td>
+                                                <td><h:message for="password" style="color: #ff0000;" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tdlabel"><span style="color: #ff0000;">*</span> Re-enter Password:</td>
+                                                <td class="td-input"><p:password class="input-create" id="repassword" value="#{accountBean.passwordcreate}" required="true" requiredMessage="*" validatorMessage="Passwords do not match!">
+                                                        <f:validateLength maximum="30" />
+                                                    </p:password></td>
+                                                <td><h:message for="repassword" style="color: #ff0000;" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tdlabel"><span style="color: #ff0000;">&nbsp;</span> Telephone:</td>
+                                                <td class="td-input"><h:inputText class="input-create" id="phone" value="#{accountBean.telephonecreate}" required="true" requiredMessage="*" validatorMessage="Maximum 12 character and begin with 0****">
+                                                        <f:validateLength maximum="20" />
+                                                        <f:validateRegex pattern="[0-9]+" /> 
+                                                    </h:inputText></td>
+                                                <td><h:message for="phone" style="color: #ff0000;" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tdlabel"><span style="color: #ff0000;">*</span> Email:</td>
+                                                <td class="td-input"><h:inputText class="input-create" value="#{accountBean.emailcreate}" id="email" required="true" requiredMessage="*" validatorMessage="Is not valid" >
+                                                        <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+                                                        <f:validateLength maximum="50" />
+                                                    </h:inputText></td>
+                                                <td><h:message for="email" style="color: #ff0000;" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tdlabel"><span style="color: #ff0000;">&nbsp;</span> Address:</td>
+                                                <td class="td-input"><h:inputTextarea class="input-create" id="address" value="#{accountBean.addresscreate}" required="true" requiredMessage="*" validatorMessage="Maximum 100 character">
+                                                        <f:validateLength maximum="100" />
+                                                    </h:inputTextarea></td>
+                                                <td><h:message for="address" style="color: #ff0000;" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tdlabel"><span style="color: #ff0000;">*</span> Birthday:</td>
+                                                <td class="td-input">
+                                                    <p:calendar id="mask" class="input-create" value="#{accountBean.birthdaycreate}" pattern="dd-MM-yyyy" mask="true" /> 
+                                                </td>
+                                                <td><h:message for="mask" style="color: #ff0000;" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td id="tdcontact"></td>
+                                                <td class="td-input" style="margin-left:200px;"> 
+                                                    <p:captcha id="captcha"></p:captcha>
+                                                </td>
+                                                <td><p:messages for="captcha" id="msg"/></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="buttons">
+                                        <div class="right"> 
+                                            <p:commandButton oncomplete="PF('dlg1').show();" type="submit" actionListener="#{accountBean.createAccount()}" update="formforget,message_dlg" class="button_orange_continue" value="Continue" />
+                                        </div>
+                                    </div>
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="gkBottomWrap">
+            <div>
+                <div id="gkBottom1" class="gkMain gkWrap ">
+                    <div id="gkbottombottom2" class="gkCol gkColLeft">
+                        <h3 class="header"><span id="module197">EASY TICKETS CENTER</span></h3>
+                        <div>
+                            <p>
+                                <img style="width: 15px;height: 15px;" src="resources/images/location.png" />   No 8, Ton That Thuyet <br/>
+                                &nbsp;&nbsp;&nbsp;&nbsp;  Nam Tu Liem, Ha Noi
+                            </p>
+                            <p>
+                                <img style="width: 15px;height: 15px;" src="resources/images/email.png" /> contact@easytickets.com
+                            </p>
+                            <p>
+                                <img style="width: 15px;height: 15px;" src="resources/images/phone.png" /> 04.113
+                            </p>
+                        </div>
+                    </div>
+                    <div id="gkbottombottom3" class="gkCol gkColCenter">
+                        <br/>
+                        <center>Powered by Showbiz Company</center>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <center>Copyright ©2015 easytickets.com</center>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </h:body>
+</html>
+

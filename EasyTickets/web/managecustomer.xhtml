@@ -1,21 +1,30 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Forget Password</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="icon" type="image/x-icon" href="images/favicon.ico"/>   
         <h:outputStylesheet name="./css/default.css"/>
         <h:outputStylesheet name="./css/cssLayout.css"/>
+        <link rel="icon" type="image/x-icon" href="resources/images/icon.ico"/>
+        <title>Information - Easy Tickets G5</title>
     </h:head>
     <h:body>
         <div id="gkTopShadow">
             <div id="gkTopWrap" class="gkWrap">
                 <div id="gkTopInterface">
-                    <h1 id="gkLogo"> <a href="http://www.easytickets.eu/ " class="cssLogo"></a></h1>
-                    <div id="gkButtons">
-                        <a href="http://www.easytickets.eu/index.php?option=com_users&amp;view=login" id="btnLogin">LOGIN</a>
-                    </div>
+                    <h1 id="gkLogo"> <a href="" class="cssLogo"></a></h1>
+                    <h:form>
+                        <div style=" float: left;margin-left: 500px;margin-top: 54px;">
+                            Hello <h:link value="#{accountBean.firstName}" outcome="#{accountBean.linkmanager}" />
+                        </div>
+                        <div id="gkButtons">
+                            <h:commandButton class="btnLogin" value="#{accountBean.button}" action="#{accountBean.eventAcc()}" />  
+                        </div>
+                    </h:form>
                 </div>
 
                 <div id="gkMainNav" class="gkWrap">
@@ -43,17 +52,31 @@
                 </div>
             </div>
         </div>
-
-        <div id="account">
-            <h:form>
-                <h2>Change Password</h2><br/><br/>
-                Email: <h:inputText value="#{accountManager.email}" style="margin-right: 50px;"/>
-                <h:commandButton value="Check email" action="#{accountManager.checkEmail()}" style="margin-right: 50px;"/>
-                <h:outputText value="#{accountManager.resultCheck}" style="color: red; font-style: italic"/><br/><br/>
-                New Password: <h:inputSecret value="#{accountManager.newPassword}"/><br/><br/>
-                <h:commandButton value="Success" action="#{accountManager.editPassWeb(email)}" style="margin-right: 35px;"/>
-                <h:commandButton value="Cancel" action="#{accountManager.cancel()}"/>
-            </h:form>
+        <div id="mainPage" class="gkWrap">
+            <div id="gkMain">
+                <div id="gkMainBlock" class="gkMain">
+                    <div id="gkLeft" class="gkMain gkCol gkPaddingTBLR" style="background-color: #fff;margin-bottom: 18px;margin-top: 18px;">
+                        <div class="box_oc">
+                            <div class="box-heading">
+                                <h1 class="mijoshop_heading_h1"><font><font class="">Register Account</font></font></h1>
+                            </div>
+                            <div class="box-content">
+                                <h2>Personal Information</h2>
+                                <div class="content_oc">
+                                    <p><span style="  background: url('resources/images/sprite-left-bar.png') no-repeat scroll left -385px transparent;padding: 3px 13px;" />  <h:link style="color: #ED4B24;" value="Changing Information" outcome="cuschangedata" /> </p>
+                                    <p><span style="  background: url('resources/images/sprite-left-bar.png') no-repeat scroll left -644px transparent;padding: 3px 13px;" />  <h:link style="color: #ED4B24;" value="Changing Password" outcome="cuschangepass" /> </p>
+                                </div>
+                                <br/>
+                                <h2>My Order</h2>
+                                <div class="content_oc">
+                                    <p><span style="  background: url('resources/images/sprite-left-bar.png') no-repeat scroll left -333px transparent;padding: 3px 13px;" />   <h:link style="color: #ED4B24;" value="My Order History" outcome="cuschangedata" /> </p>
+                                    <p><span style="  background: url('resources/images/sprite-left-bar.png') no-repeat scroll left -356px transparent;padding: 3px 13px;" />  <h:link style="color: #ED4B24;" value="My Ticket" outcome="cuschangepass" /> </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div id="gkBottomWrap">

@@ -1,20 +1,18 @@
-<?xml version='1.0' encoding='UTF-8' ?> 
+<?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <h:outputStylesheet name="./css/default.css"/>
         <h:outputStylesheet name="./css/cssLayout.css"/>
                 <link rel="icon" type="image/x-icon" href="resources/images/icon.ico"/>
-        <title>About Us - Easy Tickets G5</title>
+        <title>Forgot your password - Easy Tickets G5</title>
     </h:head>
-
     <h:body>
-
         <div id="gkTopShadow">
             <div id="gkTopWrap" class="gkWrap">
                 <div id="gkTopInterface">
@@ -37,7 +35,7 @@
                                     <span class="menu-title" onmouseover=""><h:link value="HOME" outcome="home" /></span>
                                 </li>
                                 <li class="menu-title">
-                                    <span class="menu-title" onmouseover=""><h:link value="EVENT" outcome="events" /></span>
+                                    <span class="menu-title" onmouseover=""><h:link value="EVENT" outcome="home" /></span>
                                 </li>
                                 <li class="menu-title">
                                     <span class="menu-title" onmouseover=""><h:link value="ABOUT US" outcome="about" /></span>
@@ -54,26 +52,55 @@
                 </div>
             </div>
         </div>
-
         <div id="mainPage" class="gkWrap">
             <div id="gkMain">
                 <div id="gkMainBlock" class="gkMain">
-                    <div id="gkLeft" class="gkMain gkCol gkPaddingTBLR">
-                        <div class="box grunge6">
-                            <center><h1>WELLCOME TO EASY TICKET CENTER</h1></center>
-                            <div style="width: 90%;display: block;word-wrap: break-word;font-size: 20px; line-height: 30px;margin-left: auto;margin-right: auto;padding-bottom: 20px;">
-                                &nbsp;&nbsp;&nbsp;&nbsp;EasyTicket is an Online Movie Ticketing portal developed and serviced by <span style="font-weight: bold;color: #ED4B24;">Team 2 FPT</span>, established in Vietnam. During our existence, we have developed expertise in various technologies on the platforms of Client-Server Technologies, Internet Technologies, IVR Technologies and Cloud Computing...
-                                <br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;EasyTicket is based at 8, Ton That Thuyet, Ha Noi and sponsored by FPT EDUCATION.<br/>
-                                <img style="width: 800px;height: 300px;margin-top: 20px;margin-bottom: 20px;" src="resources/images/detech.jpg" />
-                                <h3> The member of <span style="font-weight: bold;color: #ED4B24;">Team 2 FPT</span>:</h3>
-                                <h4><img style="width: 30px;height: 30px" src="resources/images/bul_li.png" /> Hoang Ha</h4>
-                                <h4><img style="width: 30px;height: 30px" src="resources/images/bul_li.png" /> Manh Hung</h4>
-                                <h4><img style="width: 30px;height: 30px" src="resources/images/bul_li.png" /> Quoc Cuong</h4>
-                                <h4><img style="width: 30px;height: 30px" src="resources/images/bul_li.png" /> Tien Dat</h4>
+                    <div id="gkLeft" class="gkMain gkCol gkPaddingTBLR" style="background-color: #fff;margin-bottom: 18px;margin-top: 18px;">
+                        <div class="box_oc">
+                            <div class="box-heading">
+                                <h1 class="mijoshop_heading_h1"><font><font class="">Forgot your password?</font></font></h1>
+                            </div>
+                            <div class="box-content">
+                                <p>Did you forget your password? Fill in the email address below that is associated with your account. Then click Continue and you will receive a new password.</p>
+                                <h2>Your email address</h2>
+                                <h:form id="formforget">
+                                    <p:dialog header="Basic Dialog" widgetVar="dlg1" minHeight="40">
+                                        <p><b> <h:outputText id="message_dlg" value="#{accountBean.messageforgotpass}" /></b></p>
+                                        <br/>
+                                        <center>
+                                            <h:link class="button_oc" value="OK" outcome="login" />
+                                        </center>
+                                    </p:dialog>
+                                    <div class="content_oc">
+                                        <table id="table" class="form">
+                                            <tbody>
+                                                <tr>
+                                                    <td style="width: 120px;">
+                                                        <font><font>E-mail address:</font></font>
+                                                    </td>
+                                                    <td><h:inputText value="#{accountBean.email}" id="emailforget" style="width: 240px;" required="true" requiredMessage="*" validatorMessage="#{accountBean.email} is not valid" a:placeholder="Enter Email">
+                                                            <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+                                                            <f:validateLength maximum="50" />
+                                                        </h:inputText></td>
+                                                    <tr>
+                                                        <td></td>
+                                                    </tr>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="buttons">
+                                        <div class="left">
+                                            <h:link class="button_oc" value="Back" outcome="login" />
+                                        </div>
+                                        <div class="right"> 
+                                            <p:commandButton oncomplete="PF('dlg1').show();" update="formforget,message_dlg" class="button_orange_continue"  actionListener="#{accountBean.findpassword()}" value="Continue" />
+                                        </div>
+                                    </div>
+                                </h:form>
                             </div>
                         </div>
-
-                    </div> 
+                    </div>
                 </div>
             </div>
         </div>
@@ -92,7 +119,7 @@
                                 <img style="width: 15px;height: 15px;" src="resources/images/email.png" /> contact@easytickets.com
                             </p>
                             <p>
-                                <img style="width: 15px;height: 15px;" src="resources/images/phone.png" /> 04.7300888
+                                <img style="width: 15px;height: 15px;" src="resources/images/phone.png" /> 04.113
                             </p>
                         </div>
                     </div>
@@ -109,7 +136,6 @@
                 </div>
             </div>
         </div>
-
     </h:body>
-
 </html>
+
