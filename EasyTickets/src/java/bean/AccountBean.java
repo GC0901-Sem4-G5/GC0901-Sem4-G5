@@ -47,6 +47,8 @@ public class AccountBean implements Serializable {
     private String telephonecreate;
     private String addresscreate;
     private Date birthdaycreate;
+    private String oldPass;
+    private String newpass;
     private String emailcreate;
     private String passwordcreate;
     private user u;
@@ -62,6 +64,22 @@ public class AccountBean implements Serializable {
 
     public user getU() {
         return u;
+    }
+
+    public String getOldPass() {
+        return oldPass;
+    }
+
+    public void setOldPass(String oldPass) {
+        this.oldPass = oldPass;
+    }
+
+    public String getNewpass() {
+        return newpass;
+    }
+
+    public void setNewpass(String newpass) {
+        this.newpass = newpass;
     }
 
     public void setU(user u) {
@@ -350,5 +368,31 @@ public class AccountBean implements Serializable {
             getInformation();
             return "";
         }
+    }
+
+    public String CancelChangePass() {
+        oldPass = "";
+        newpass = "";
+        return "cuschangepass";
+    }
+
+    public String changepass() {
+        AccountModel acc = new AccountModel();
+        FacesContext context = FacesContext.getCurrentInstance();
+        HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+        HttpSession appsession = request.getSession(true);
+        String usernamess = (String) appsession.getAttribute("username");
+        String passByUsername = acc.getPassByUsername(usernamess);
+        if (passByUsername.equals(oldPass)) {
+            boolean changePassbyUsername = acc.changePassbyUsername(newpass, usernamess);
+            if (changePassbyUsername == true) {
+                messageforgotpass = "Change Password Success !";
+            } else {
+                messageforgotpass = "Change Password Error !";
+            }
+        } else {
+            messageforgotpass = "Old Passwod Wrong !";
+        }
+        return "cuschangepass";
     }
 }

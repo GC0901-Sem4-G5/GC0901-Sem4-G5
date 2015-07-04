@@ -240,4 +240,44 @@ public class AccountModel {
         return status;
     }
 
+    public String getPassByUsername(String username) {
+        String password = null;
+        try {
+            GetConnect conn = new GetConnect();
+            Connection con = conn.getConnection();
+            PreparedStatement ps = con.prepareStatement("select * from [user] where username = ?");
+            ps.setString(1, username);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                password = rs.getString("password");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountModel.class.getName()).log(Level.SEVERE, null, ex);
+            password = "";
+        }
+        return password;
+    }
+
+    public boolean changePassbyUsername(String newPassword, String username) {
+        boolean status;
+        int i = 0;
+        try {
+            GetConnect conn = new GetConnect();
+            Connection con = conn.getConnection();
+            PreparedStatement ps = con.prepareStatement("UPDATE [user] set password = ? where username = ?");
+            ps.setString(1, newPassword);
+            ps.setString(2, username);
+            i = ps.executeUpdate();
+            if (i > 0) {
+                status = true;
+            } else {
+                status = false;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountModel.class.getName()).log(Level.SEVERE, null, ex);
+            status = false;
+        }
+        return status;
+    }
+
 }

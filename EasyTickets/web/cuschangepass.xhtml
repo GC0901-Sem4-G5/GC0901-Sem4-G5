@@ -2,18 +2,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <f:metadata>
-        <f:event type="preRenderView" listener="#{accountBean.getInformation}"/>
-    </f:metadata>
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <h:outputStylesheet name="./css/default.css"/>
         <h:outputStylesheet name="./css/cssLayout.css"/>
         <link rel="icon" type="image/x-icon" href="resources/images/icon.ico"/>
-        <title>Change Information- Easy Tickets G5</title>
+        <title>Sign Up - Easy Tickets G5</title>
     </h:head>
     <h:body>
         <div id="gkTopShadow">
@@ -61,40 +57,51 @@
                     <div id="gkLeft" class="gkMain gkCol gkPaddingTBLR" style="background-color: #fff;margin-bottom: 18px;margin-top: 18px;">
                         <div class="box_oc">
                             <div class="box-heading">
-                                <h1 class="mijoshop_heading_h1"><font><font class="">My Information</font></font></h1>
+                                <h1 class="mijoshop_heading_h1"><font><font class="">Register Account</font></font></h1>
                             </div>
                             <div class="box-content">
-                                <h2>Change Password</h2>
-                                <h:form id="formchange">
+                                <h:form id="formpass">
+                                    <p:dialog header="Message" widgetVar="dlg1" minHeight="40">
+                                        <p><b> <h:outputText id="message_dlg" value="#{accountBean.messageforgotpass}" /></b></p>
+                                        <br/>
+                                        <center>
+                                            <h:link class="button_oc" value="OK" outcome="login" />
+                                        </center>
+                                    </p:dialog>
+                                    <p:dialog header="Message" widgetVar="dlg2" minHeight="40">
+                                        <p2>Are you sure?</p2><br/>
+                                        <p:commandButton style="margin-right: 20px;margin-top: 10px;margin-bottom: 10px;" value="OK" oncomplete="PF('dlg1').show();" actionListener="#{accountBean.changepass()}" update="formpass" />
+                                        <p:commandButton value="Cancel" actionListener="#{accountBean.cancelChangePass}" update="formpass" />
+                                    </p:dialog>
                                     <div class="content_oc">
                                         <table id="createuser">
                                             <tr>
                                                 <td class="tdlabel"><span style="color: #ff0000;">*</span>Old Password:</td>
-                                                <td class="td-input"><p:password class="input-create" match="repassword" id="password" value="#{accountBean.passwordcreate}" required="true" requiredMessage="*" validatorMessage="Password Vaild !">
+                                                <td class="td-input"><p:password class="input-create" id="oldpassword" value="#{accountBean.oldPass}" required="true" requiredMessage="*">
                                                     </p:password></td>
-                                                <td><h:message for="password" style="color: #ff0000;" /></td>
-                                            </tr>   
+                                                <td><h:message for="oldpassword" style="color: #ff0000;" /></td>
+                                            </tr>
                                             <tr>
                                                 <td class="tdlabel"><span style="color: #ff0000;">*</span>New Password:</td>
-                                                <td class="td-input"><p:password class="input-create" match="repassword" id="password" value="#{accountBean.passwordcreate}" required="true" requiredMessage="*" validatorMessage="Passwords do not match!">
+                                                <td class="td-input"><p:password class="input-create" match="repassword" id="password" value="#{accountBean.newpass}" required="true" requiredMessage="*" validatorMessage="Passwords do not match!">
                                                     </p:password></td>
                                                 <td><h:message for="password" style="color: #ff0000;" /></td>
                                             </tr>
                                             <tr>
-                                                <td class="tdlabel"><span style="color: #ff0000;">*</span> Re-enter New Password:</td>
-                                                <td class="td-input"><p:password class="input-create" id="repassword" value="#{accountBean.passwordcreate}" required="true" requiredMessage="*" validatorMessage="Passwords do not match!">
+                                                <td class="tdlabel"><span style="color: #ff0000;">*</span> Re-enter Password:</td>
+                                                <td class="td-input"><p:password class="input-create" id="repassword" value="#{accountBean.newpass}" required="true" requiredMessage="*" validatorMessage="Passwords do not match!">
                                                         <f:validateLength maximum="30" />
                                                     </p:password></td>
                                                 <td><h:message for="repassword" style="color: #ff0000;" /></td>
-                                            </tr>  
+                                            </tr>
                                         </table>
-                                    </div> 
+                                    </div>
                                     <div class="buttons">
                                         <div class="left">
-                                            <h:link class="button_oc" value="Back" outcome="managecustomer" />
+                                            <h:link class="button_oc" value="Back" outcome="login" />
                                         </div>
                                         <div class="right"> 
-                                            <p:commandButton onclick="PF('dlg2').show();" class="button_orange_continue" value="Update" />
+                                            <p:commandButton oncomplete="PF('dlg2').show();" class="button_orange_continue" value="Update" />
                                         </div>
                                     </div>
                                 </h:form>
