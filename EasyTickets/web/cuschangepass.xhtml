@@ -5,12 +5,15 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{accountBean.getInformation}"/>
+    </f:metadata>
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <h:outputStylesheet name="./css/default.css"/>
         <h:outputStylesheet name="./css/cssLayout.css"/>
         <link rel="icon" type="image/x-icon" href="resources/images/icon.ico"/>
-        <title>Change Password - Easy Tickets G5</title>
+        <title>Change Information- Easy Tickets G5</title>
     </h:head>
     <h:body>
         <div id="gkTopShadow">
@@ -58,43 +61,40 @@
                     <div id="gkLeft" class="gkMain gkCol gkPaddingTBLR" style="background-color: #fff;margin-bottom: 18px;margin-top: 18px;">
                         <div class="box_oc">
                             <div class="box-heading">
-                                <h1 class="mijoshop_heading_h1"><font><font class="">Forgot your password?</font></font></h1>
+                                <h1 class="mijoshop_heading_h1"><font><font class="">My Information</font></font></h1>
                             </div>
                             <div class="box-content">
-                                <p>Did you forget your password? Fill in the email address below that is associated with your account. Then click Continue and you will receive a new password.</p>
-                                <h2>Your email address</h2>
-                                <h:form id="formforget">
-                                    <p:dialog header="Basic Dialog" widgetVar="dlg1" minHeight="40">
-                                        <p><b> <h:outputText id="message_dlg" value="#{accountBean.messageforgotpass}" /></b></p>
-                                        <br/>
-                                        <center>
-                                            <h:link class="button_oc" value="OK" outcome="login" />
-                                        </center>
-                                    </p:dialog>
+                                <h2>Change Password</h2>
+                                <h:form id="formchange">
                                     <div class="content_oc">
-                                        <table id="table" class="form">
-                                            <tbody>
-                                                <tr>
-                                                    <td style="width: 120px;">
-                                                        <font><font>E-mail address:</font></font>
-                                                    </td>
-                                                    <td><h:inputText value="#{accountBean.email}" id="emailforget" style="width: 240px;" required="true" requiredMessage="*" validatorMessage="#{accountBean.email} is not valid" a:placeholder="Enter Email">
-                                                            <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
-                                                            <f:validateLength maximum="50" />
-                                                        </h:inputText></td>
-                                                    <tr>
-                                                        <td></td>
-                                                    </tr>
-                                                </tr>
-                                            </tbody>
+                                        <table id="createuser">
+                                            <tr>
+                                                <td class="tdlabel"><span style="color: #ff0000;">*</span>Old Password:</td>
+                                                <td class="td-input"><p:password class="input-create" match="repassword" id="password" value="#{accountBean.passwordcreate}" required="true" requiredMessage="*" validatorMessage="Password Vaild !">
+                                                    </p:password></td>
+                                                <td><h:message for="password" style="color: #ff0000;" /></td>
+                                            </tr>   
+                                            <tr>
+                                                <td class="tdlabel"><span style="color: #ff0000;">*</span>New Password:</td>
+                                                <td class="td-input"><p:password class="input-create" match="repassword" id="password" value="#{accountBean.passwordcreate}" required="true" requiredMessage="*" validatorMessage="Passwords do not match!">
+                                                    </p:password></td>
+                                                <td><h:message for="password" style="color: #ff0000;" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tdlabel"><span style="color: #ff0000;">*</span> Re-enter New Password:</td>
+                                                <td class="td-input"><p:password class="input-create" id="repassword" value="#{accountBean.passwordcreate}" required="true" requiredMessage="*" validatorMessage="Passwords do not match!">
+                                                        <f:validateLength maximum="30" />
+                                                    </p:password></td>
+                                                <td><h:message for="repassword" style="color: #ff0000;" /></td>
+                                            </tr>  
                                         </table>
-                                    </div>
+                                    </div> 
                                     <div class="buttons">
                                         <div class="left">
-                                            <h:link class="button_oc" value="Back" outcome="login" />
+                                            <h:link class="button_oc" value="Back" outcome="managecustomer" />
                                         </div>
                                         <div class="right"> 
-                                            <p:commandButton oncomplete="PF('dlg1').show();" update="formforget,message_dlg" class="button_orange_continue"  actionListener="#{accountBean.findpassword()}" value="Continue" />
+                                            <p:commandButton onclick="PF('dlg2').show();" class="button_orange_continue" value="Update" />
                                         </div>
                                     </div>
                                 </h:form>

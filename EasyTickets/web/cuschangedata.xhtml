@@ -5,9 +5,9 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-     <f:metadata>
-         <f:event type="preRenderView" listener="#{accountBean.getInformation}"/>
-      </f:metadata>
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{accountBean.getInformation}"/>
+    </f:metadata>
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <h:outputStylesheet name="./css/default.css"/>
@@ -74,6 +74,11 @@
                                                 <h:link class="button_oc" value="OK" outcome="cuschangedata" />
                                             </center>
                                         </p:dialog>
+                                        <p:dialog header="Message" widgetVar="dlg2" minHeight="40">
+                                            <p2>Are you sure?</p2><br/>
+                                            <p:commandButton style="margin-right: 20px;margin-top: 10px;margin-bottom: 10px;" value="OK" oncomplete="PF('dlg1').show();" actionListener="#{accountBean.updateCusInfo()}" update="forminfo" />
+                                            <p:commandButton value="Cancel" oncomplete="PF('dlg1').show();" actionListener="#{accountBean.getInformation}" update="forminfo" />
+                                        </p:dialog>
                                         <table>
                                             <tr>
                                                 <td class="tdlabel"><span style="color: #ff0000;">*</span> First Name:</td>
@@ -126,11 +131,10 @@
                                             <h:link class="button_oc" value="Back" outcome="managecustomer" />
                                         </div>
                                         <div class="right"> 
-                                            <p:commandButton oncomplete="PF('dlg1').show();" update="forminfo,message_dlg" class="button_orange_continue"   value="Update" />
+                                            <p:commandButton onclick="PF('dlg2').show();" class="button_orange_continue" value="Update" />
                                         </div>
                                     </div>
                                 </h:form>
-
                             </div>
                         </div>
                     </div>

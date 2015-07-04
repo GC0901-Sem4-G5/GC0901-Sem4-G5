@@ -19,7 +19,9 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.mail.MessagingException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.AccountModel;
 
@@ -299,6 +301,7 @@ public class AccountBean implements Serializable {
             HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
             HttpSession appsession = request.getSession(true);
             appsession.setAttribute("username", username);
+            appsession.setMaxInactiveInterval(86400);
             System.out.println("Success Login");
             ExternalContext extContext = context.getExternalContext();
             String url = extContext.encodeActionURL(context.getApplication().
@@ -331,4 +334,21 @@ public class AccountBean implements Serializable {
         }
     }
 
+    public String updateCusInfo() {
+        AccountModel acc = new AccountModel();
+        FacesContext context = FacesContext.getCurrentInstance();
+        HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+        HttpSession appsession = request.getSession(true);
+        String usernamess = (String) appsession.getAttribute("username");
+        SimpleDateFormat year = new SimpleDateFormat("dd-MM-yyyy");
+        String birthdayi = year.format(birthdayinfo);
+        if (acc.UpdateInfomationCustommer(usernamess, u.getFirstname(), u.getLastname(), u.getTelephone(), u.getEmail(), birthdayi, u.getAddress())) {
+            messageforgotpass = "Update Completed !";
+            return "";
+        } else {
+            messageforgotpass = "Update False !";
+            getInformation();
+            return "";
+        }
+    }
 }

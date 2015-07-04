@@ -212,4 +212,32 @@ public class AccountModel {
         }
         return u;
     }
+
+    public boolean UpdateInfomationCustommer(String username, String firstname, String lastname, String telephone, String email, String birthday, String address) {
+        boolean status;
+        int i = 0;
+        try {
+            GetConnect conn = new GetConnect();
+            Connection con = conn.getConnection();
+            PreparedStatement ps = con.prepareStatement("UPDATE [user] set firstname = ?,lastname = ?,telephone = ?,email = ?,[address] = ?,birthdate = ? where username = ?");
+            ps.setString(1, firstname);
+            ps.setString(2, lastname);
+            ps.setString(3, telephone);
+            ps.setString(4, email);
+            ps.setString(5, address);
+            ps.setString(6, birthday);
+            ps.setString(7, username);
+            i = ps.executeUpdate();
+            if (i > 0) {
+                status = true;
+            } else {
+                status = false;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountModel.class.getName()).log(Level.SEVERE, null, ex);
+            status = false;
+        }
+        return status;
+    }
+
 }
