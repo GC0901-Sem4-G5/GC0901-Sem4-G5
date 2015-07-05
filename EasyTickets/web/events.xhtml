@@ -10,8 +10,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <h:outputStylesheet name="./css/default.css"/>
         <h:outputStylesheet name="./css/cssLayout.css"/>
-                <link rel="icon" type="image/x-icon" href="resources/images/icon.ico"/>
-        <title>Events - Easy Tickets G5</title>
+        <title>EASY TICKETS</title>
     </h:head>
 
     <h:body>
@@ -19,15 +18,10 @@
         <div id="gkTopShadow">
             <div id="gkTopWrap" class="gkWrap">
                 <div id="gkTopInterface">
-                    <h1 id="gkLogo"> <a href="" class="cssLogo"></a></h1>
-                    <h:form>
-                        <div style=" float: left;margin-left: 500px;margin-top: 54px;">
-                            Hello <h:link value="#{accountBean.firstName}" outcome="#{accountBean.linkmanager}" />
-                        </div>
-                        <div id="gkButtons">
-                            <h:commandButton class="btnLogin" value="#{accountBean.button}" action="#{accountBean.eventAcc()}" />  
-                        </div>
-                    </h:form>
+                    <h1 id="gkLogo"> <a href="http://www.easytickets.eu/ " class="cssLogo"></a></h1>
+                    <div id="gkButtons">
+                        <a href="http://www.easytickets.eu/index.php?option=com_users&amp;view=login" id="btnLogin">LOGIN</a>
+                    </div>
                 </div>
 
                 <div id="gkMainNav" class="gkWrap">
@@ -75,16 +69,56 @@
                         </div>
                     </h:form>
                 </div>
-                <div>
-                    Location:
-                    <p:selectOneMenu id="country" value="#{eventListBean.cityget}" style="width:150px">
-                        <p:ajax update="formdata" />
-                        <f:selectItem itemLabel="Select City" itemValue="" noSelectionOption="true" />
-                        <f:selectItems value="#{eventListBean.listlocation}" var="locatioon">
-                            <f:selectItem value="#{locatioon.city}" />
-                        </f:selectItems>
-                    </p:selectOneMenu>
-                </div>
+                <h:form>
+                    <div id="filter">
+                        <table>
+                            <tr>
+                                <td class="label" style="font-weight: normal;width: 100px; font-style: initial;">Filler:</td>
+                                <td class="label">Select Location</td>
+                                <td class="label">Select type</td>
+                                <td class="label">Choose period</td>
+                                <td class="label">Time of day</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="label" style="font-weight: normal; font-style: initial;width: 100px;"></td>
+                                <td class="label">
+                                    <p:selectCheckboxMenu style="width:125px" value="#{eventListBean.cityget}" id="menu" label="Cities" 
+                                                          filter="true" filterMatchMode="startsWith" panelStyle="width:250px">
+                                        <f:selectItems value="#{eventListBean.location}" var="entry"
+                                                       itemValue="#{entry.city}" itemLabel="#{entry.city}" />
+                                    </p:selectCheckboxMenu>
+                                </td>
+                                <td class="label">
+                                    <p:selectCheckboxMenu style="width:125px" value="#{eventListBean.typeget}" id="typemenu" label="Type" 
+                                                          filter="true" filterMatchMode="startsWith" panelStyle="width:250px">
+                                        <f:selectItems value="#{eventListBean.type}" var="type"
+                                                       itemValue="#{type.id}" itemLabel="#{type.typename}" />
+                                    </p:selectCheckboxMenu>
+                                </td>
+                                <td class="label">
+                                    <p:selectOneMenu value="#{eventListBean.dateget}" id="menudate" style="width:125px">
+                                        <f:selectItem itemLabel="Select" itemValue="0" />
+                                        <f:selectItem itemLabel="Next 7 Days" itemValue="1" />
+                                        <f:selectItem itemLabel="This week" itemValue="2" />
+                                        <f:selectItem itemLabel="Next month" itemValue="3" />
+                                    </p:selectOneMenu>  
+                                </td>
+                                <td class="label">
+                                    <p:selectOneMenu value="#{eventListBean.timeget}" id="menutime" style="width:125px">
+                                        <f:selectItem itemLabel="Select" itemValue="0" />
+                                        <f:selectItem itemLabel="Morning" itemValue="1" />
+                                        <f:selectItem itemLabel="Afternoon" itemValue="2" />
+                                        <f:selectItem itemLabel="Evening" itemValue="3" />
+                                    </p:selectOneMenu>  
+                                </td>
+                                <td>
+                                    <p:commandButton style="margin-top: -10px;margin-right: 15px;" update="formdata" value="GET" actionListener="#{eventListBean.filter()}" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </h:form>
 
                 <h:form id="formdata" style="width: 96%; padding-bottom: 10px;padding-top: 10px;">
                     <p:dataList id="datalist" value="#{eventListBean.listevent}"  var="event" 
@@ -103,7 +137,7 @@
                             <div style="width: 45%;margin-left: 20px;color: #CF1F18;">
                                 <h3 style="margin-top: 5px;"><p:outputLabel value="#{event.eventname}" /></h3>
                                 <h4><span style="color:#000;">Date:</span> #{event.startdate.substring(0,11)}</h4>
-                                <h4><span style="color:#000;">Time:</span> #{event.startdate.substring(12,16)}</h4>
+                                <h4><span style="color:#000;">Time:</span> #{event.startdate.substring(11,16)}</h4>
                             </div>
                             <div style="width: 20%;color: #CF1F18;">
                                 <h4 style="margin-top: 45px;"><span style="color:#000;">From $</span>#{eventListBean.getPrice(event.id)}</h4>

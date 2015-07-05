@@ -2,8 +2,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{accountBean.autoLogin()}"/>
+    </f:metadata>
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <h:outputStylesheet name="./css/default.css"/>
@@ -68,7 +71,7 @@
                         var text = $(".active").attr("alt");
                         $("#slide").prepend("<p>" + text + "</p>");
                         setInterval(slide, 3000);
-
+                        
                         function slide() {
                             if ($(".active").next().size()) {
                                 $(".active").fadeOut().removeClass("active").next().fadeIn().addClass("active");
@@ -76,7 +79,7 @@
                                 $(".active").fadeOut().removeClass("active");
                                 $("#slide img:eq(0)").fadeIn().addClass("active");
                             }
-
+                            
                             var text = $(".active").attr("alt");
                             $("#slide p").hide().html(text).delay(500).fadeIn();
                         }

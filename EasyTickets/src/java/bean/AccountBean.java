@@ -395,4 +395,51 @@ public class AccountBean implements Serializable {
         }
         return "cuschangepass";
     }
+
+    public void checkSession() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+        HttpSession appsession = request.getSession(true);
+        String usernamess = (String) appsession.getAttribute("username");
+        if (usernamess.isEmpty()) {
+            ExternalContext extContext = context.getExternalContext();
+            String url = extContext.encodeActionURL(context.getApplication().
+                    getViewHandler().getActionURL(context, "/login.xhtml"));
+            try {
+                extContext.redirect(url);
+            } catch (IOException ex) {
+                Logger.getLogger(AccountBean.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
+    public void checkSessionnotAvai() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+        HttpSession appsession = request.getSession(true);
+        String usernamess = (String) appsession.getAttribute("username");
+        if (usernamess != null) {
+            ExternalContext extContext = context.getExternalContext();
+            String url = extContext.encodeActionURL(context.getApplication().
+                    getViewHandler().getActionURL(context, "/home.xhtml"));
+            try {
+                extContext.redirect(url);
+            } catch (IOException ex) {
+                Logger.getLogger(AccountBean.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
+    public void autoLogin() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+        HttpSession appsession = request.getSession(true);
+        String usernamess = (String) appsession.getAttribute("username");
+        AccountModel acc = new AccountModel();
+        if (usernamess != null) {
+            FirstName = acc.getFirstnamebyUsername(username);
+            linkmanager = "managecustomer";
+            button = "LOGOUT";
+        }
+    }
 }

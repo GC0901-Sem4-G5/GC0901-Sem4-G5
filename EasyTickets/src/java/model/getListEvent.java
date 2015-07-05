@@ -8,6 +8,7 @@ package model;
 import connection.GetConnect;
 import entity.event;
 import entity.location;
+import entity.type;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,11 +20,12 @@ import java.util.List;
  * @author dattr_000
  */
 public class getListEvent {
-    
+
     private ResultSet rs;
     private List<event> listevent = new ArrayList<>();
-     private List<location> listlocation = new ArrayList<>();
-    
+    private List<location> listlocation = new ArrayList<>();
+    private List<type> listtype = new ArrayList<type>();
+
     public List<event> getEventList() {
         try {
             GetConnect conn = new GetConnect();
@@ -43,7 +45,7 @@ public class getListEvent {
         }
         return listevent;
     }
-    
+
     public double getTop1Price(int eventid) {
         double priceget = 0;
         try {
@@ -60,7 +62,7 @@ public class getListEvent {
         }
         return priceget;
     }
-    
+
     public List<event> getType(int typeid) {
         try {
             GetConnect conn = new GetConnect();
@@ -81,9 +83,9 @@ public class getListEvent {
         }
         return listevent;
     }
-    
+
     public List<event> SearchEvent(String eventName) {
-        String query = "%"+eventName+"%";
+        String query = "%" + eventName + "%";
         try {
             GetConnect conn = new GetConnect();
             Connection con = conn.getConnection();
@@ -103,34 +105,45 @@ public class getListEvent {
         }
         return listevent;
     }
-    
-        public List<location> getLocation(){
+
+    public List<location> getLocation() {
         try {
             GetConnect conn = new GetConnect();
             Connection con = conn.getConnection();
-            PreparedStatement ps = con.prepareStatement("select * from location group by city");
+            PreparedStatement ps = con.prepareStatement("select city from location group by city");
             rs = ps.executeQuery();
             while (rs.next()) {
-               location lo = new location();
-               lo.setId(rs.getInt("id"));
-               lo.setCity(rs.getString("city"));
-               lo.setAddress(rs.getString("address"));
-               listlocation.add(lo);
+                location lo = new location();
+                lo.setCity(rs.getString("city"));
+                listlocation.add(lo);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return listlocation;
     }
-        
-        
-            public List<event> getEventListByLocation(String city) {
-                String cityString = "%"+city+"%";
+
+    public List<type> getType() {
         try {
             GetConnect conn = new GetConnect();
             Connection con = conn.getConnection();
-            PreparedStatement ps = con.prepareStatement("select [Event].id,[Event].eventname,[Event].DateStart,[Event].enventImg from [Event] INNER JOIN location on location.id = [Event].location where location.city like ?");
-            ps.setString(1, cityString);
+            PreparedStatement ps = con.prepareStatement("select * from type");
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                type ty = new type(rs.getInt("id"), rs.getString("typename"));
+                listtype.add(ty);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listtype;
+    }
+
+    public List<event> getEventListByCondition(String Condition) {
+        try {
+            GetConnect conn = new GetConnect();
+            Connection con = conn.getConnection();
+            PreparedStatement ps = con.prepareStatement("select [Event].id,[Event].eventname,[Event].DateStart,[Event].enventImg from [Event] INNER JOIN location on location.id = [Event].location where " + Condition);
             rs = ps.executeQuery();
             while (rs.next()) {
                 event e = new event();

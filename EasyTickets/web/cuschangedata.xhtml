@@ -8,6 +8,9 @@
     <f:metadata>
         <f:event type="preRenderView" listener="#{accountBean.getInformation}"/>
     </f:metadata>
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{accountBean.checkSession()}"/>
+    </f:metadata>
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <h:outputStylesheet name="./css/default.css"/>
