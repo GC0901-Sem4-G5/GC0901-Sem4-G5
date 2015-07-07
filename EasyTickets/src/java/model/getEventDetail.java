@@ -75,7 +75,7 @@ public class getEventDetail {
     }
 
     public List<price> getPricesbyEventID(int eventid) {
-                listprice = new ArrayList<price>();
+        listprice = new ArrayList<price>();
         try {
             GetConnect conn = new GetConnect();
             Connection con = conn.getConnection();
@@ -94,6 +94,57 @@ public class getEventDetail {
             e.printStackTrace();
         }
         return listprice;
+    }
+
+    public String getNamebyID(int eventid) {
+        String name = null;
+        try {
+            GetConnect conn = new GetConnect();
+            Connection con = conn.getConnection();
+            PreparedStatement ps = con.prepareStatement("select eventname from [Event] where id = ?");
+            ps.setInt(1, eventid);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                name = rs.getString("eventname");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return name;
+    }
+
+    public String getArenabyID(int priceid) {
+        String arena = null;
+        try {
+            GetConnect conn = new GetConnect();
+            Connection con = conn.getConnection();
+            PreparedStatement ps = con.prepareStatement("select Arena.area from Price inner join Arena on Arena.id = Price.arenaId where Price.id = ?");
+            ps.setInt(1, priceid);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                arena = rs.getString("area");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return arena;
+    }
+
+    public double getPricebyID(int priceid) {
+        double price = 0;
+        try {
+            GetConnect conn = new GetConnect();
+            Connection con = conn.getConnection();
+            PreparedStatement ps = con.prepareStatement("select price from Price where id = ?");
+            ps.setInt(1, priceid);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                price = rs.getFloat("price");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return price;
     }
 
 }

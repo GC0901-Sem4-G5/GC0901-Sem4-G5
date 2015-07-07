@@ -14,6 +14,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import model.getEventDetail;
 
 /**
@@ -21,17 +24,11 @@ import model.getEventDetail;
  * @author dattr_000
  */
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class eventDetailBean {
 
-    @PostConstruct
-    public void init() {
-        getDetail();
-        getPrice();
-    }
-
-    @ManagedProperty("#{param.id}")
     private String id;
+    private int idsave;
     private String TypeName;
     private String startdate;
     private String eventname;
@@ -41,9 +38,9 @@ public class eventDetailBean {
     private String eventImg;
     private event ev;
     private String stadiumimg;
-    private int quantity =5;
+    private int quantity = 5;
     private List<price> listprice;
-        private List<price> selectedOptions;
+    private List<price> selectedOptions;
 
     public String getStadiumimg() {
         return stadiumimg;
@@ -55,6 +52,14 @@ public class eventDetailBean {
 
     public void setListprice(List<price> listprice) {
         this.listprice = listprice;
+    }
+
+    public int getIdsave() {
+        return idsave;
+    }
+
+    public void setIdsave(int idsave) {
+        this.idsave = idsave;
     }
 
     public List<price> getSelectedOptions() {
@@ -72,8 +77,6 @@ public class eventDetailBean {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-    
-    
 
     public void setStadiumimg(String stadiumimg) {
         this.stadiumimg = stadiumimg;
@@ -160,8 +163,13 @@ public class eventDetailBean {
     }
 
     public void getDetail() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+        HttpSession appsession = request.getSession(true);
+        String attribute = (String) appsession.getAttribute("eventid");
+        idsave = Integer.parseInt(attribute);
         getEventDetail gete = new getEventDetail();
-        ev = gete.getEvent(Integer.parseInt(id));
+        ev = gete.getEvent(idsave);
         eventname = ev.getEventname();
         TypeName = ev.getTypeName();
         if (TypeName.contains("Movie")) {
@@ -186,13 +194,11 @@ public class eventDetailBean {
         locationName = ev.getLocationName();
     }
 
-    public void getPrice() {
+    public List<price> getPrice() {
         listprice = new ArrayList<price>();
         getEventDetail gete = new getEventDetail();
-        listprice = gete.getPricesbyEventID(Integer.parseInt(id));
+        listprice = gete.getPricesbyEventID(idsave);
+        return listprice;
     }
-    
-    public  void addtoCart(){
-        System.out.println(quantity);
-    }
+
 }

@@ -2,17 +2,19 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <f:metadata>
-        <f:event type="preRenderView" listener="#{accountBean.checkSession()}"/>
+        <f:event type="preRenderView" listener="#{accountBean.checkSessionnotAvai()}"/>
     </f:metadata>
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <h:outputStylesheet name="./css/default.css"/>
         <h:outputStylesheet name="./css/cssLayout.css"/>
         <link rel="icon" type="image/x-icon" href="resources/images/icon.ico"/>
-        <title>Cart - Easy Tickets G5</title>
+        <title>Forgot your password - Easy Tickets G5</title>
     </h:head>
     <h:body>
         <div id="gkTopShadow">
@@ -60,99 +62,43 @@
                     <div id="gkLeft" class="gkMain gkCol gkPaddingTBLR" style="background-color: #fff;margin-bottom: 18px;margin-top: 18px;">
                         <div class="box_oc">
                             <div class="box-heading">
-                                <h1 class="mijoshop_heading_h1"><font><font class="">Register Account</font></font></h1>
+                                <h1 class="mijoshop_heading_h1"><font><font class="">Shopping cart</font></font></h1>
                             </div>
                             <div class="box-content">
-                                <p>If you already have an account you can here <h:link value="login" outcome="login" /> .</p>
-                                <h2>Your personal information</h2>
-                                <h:form id="formforget">
-                                    <p:dialog header="Message" widgetVar="dlg1" minHeight="40">
-                                        <p><b> <h:outputText id="message_dlg" value="#{accountBean.messageforgotpass}" /></b></p>
-                                        <br/>
-                                        <center>
-                                            <h:link class="button_oc" value="OK" outcome="login" />
-                                        </center>
-                                    </p:dialog>
-                                    <div class="content_oc">
-                                        <table id="createuser">
-                                            <tr>
-                                                <td class="tdlabel"><span style="color: #ff0000;">*</span> First Name:</td>
-                                                <td class="td-input"><h:inputText class="input-create" id="firstname" value="#{accountBean.firstnamecreate}" required="true" requiredMessage="*" validatorMessage="Maximum 30 character">
-                                                        <f:validateLength maximum="30" />
-                                                    </h:inputText></td>
-                                                <td><h:message for="firstname" style="color: #ff0000;" /></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tdlabel"><span style="color: #ff0000;">*</span> Last Name:</td>
-                                                <td class="td-input"><h:inputText class="input-create" id="lastname" value="#{accountBean.lastnamecreate}" required="true" requiredMessage="*" validatorMessage="Maximum 30 character">
-                                                        <f:validateLength maximum="30" />
-                                                    </h:inputText></td>
-                                                <td><h:message for="lastname" style="color: #ff0000;" /></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tdlabel"><span style="color: #ff0000;">*</span> Username:</td>
-                                                <td class="td-input"><h:inputText class="input-create" id="username" value="#{accountBean.usernamecreate}" required="true" requiredMessage="*" validatorMessage="Maximum 30 character">
-                                                        <f:validateLength maximum="30" />
-                                                    </h:inputText></td>
-                                                <td><h:message for="username" style="color: #ff0000;" /></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tdlabel"><span style="color: #ff0000;">*</span> Password:</td>
-                                                <td class="td-input"><p:password class="input-create" match="repassword" id="password" value="#{accountBean.passwordcreate}" required="true" requiredMessage="*" validatorMessage="Passwords do not match!">
-                                                    </p:password></td>
-                                                <td><h:message for="password" style="color: #ff0000;" /></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tdlabel"><span style="color: #ff0000;">*</span> Re-enter Password:</td>
-                                                <td class="td-input"><p:password class="input-create" id="repassword" value="#{accountBean.passwordcreate}" required="true" requiredMessage="*" validatorMessage="Passwords do not match!">
-                                                        <f:validateLength maximum="30" />
-                                                    </p:password></td>
-                                                <td><h:message for="repassword" style="color: #ff0000;" /></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tdlabel"><span style="color: #ff0000;">&nbsp;</span> Telephone:</td>
-                                                <td class="td-input"><h:inputText class="input-create" id="phone" value="#{accountBean.telephonecreate}" required="true" requiredMessage="*" validatorMessage="Maximum 12 character and begin with 0****">
-                                                        <f:validateLength maximum="20" />
-                                                        <f:validateRegex pattern="[0-9]+" /> 
-                                                    </h:inputText></td>
-                                                <td><h:message for="phone" style="color: #ff0000;" /></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tdlabel"><span style="color: #ff0000;">*</span> Email:</td>
-                                                <td class="td-input"><h:inputText class="input-create" value="#{accountBean.emailcreate}" id="email" required="true" requiredMessage="*" validatorMessage="Is not valid" >
-                                                        <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
-                                                        <f:validateLength maximum="50" />
-                                                    </h:inputText></td>
-                                                <td><h:message for="email" style="color: #ff0000;" /></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tdlabel"><span style="color: #ff0000;">&nbsp;</span> Address:</td>
-                                                <td class="td-input"><h:inputTextarea class="input-create" id="address" value="#{accountBean.addresscreate}" required="true" requiredMessage="*" validatorMessage="Maximum 100 character">
-                                                        <f:validateLength maximum="100" />
-                                                    </h:inputTextarea></td>
-                                                <td><h:message for="address" style="color: #ff0000;" /></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tdlabel"><span style="color: #ff0000;">*</span> Birthday:</td>
-                                                <td class="td-input">
-                                                    <p:calendar id="mask" class="input-create" value="#{accountBean.birthdaycreate}" pattern="dd-MM-yyyy" mask="true" /> 
-                                                </td>
-                                                <td><h:message for="mask" style="color: #ff0000;" /></td>
-                                            </tr>
-                                            <tr>
-                                                <td id="tdcontact"></td>
-                                                <td class="td-input" style="margin-left:200px;"> 
-                                                    <p:captcha id="captcha"></p:captcha>
-                                                </td>
-                                                <td><p:messages for="captcha" id="msg"/></td>
-                                            </tr>
-                                        </table>
+                                <h:form>
+                                <p:dataTable rowIndexVar="rowIndex" var="car" value="#{cartBean.list}">
+                                    <p:column style="width: 50px;text-align: center;font-weight: bolder;" headerText="No">
+                                        <h:outputText value="#{rowIndex+1}" />
+                                    </p:column>
+
+                                    <p:column headerText="Event Name">
+                                        <h:outputText value="#{car.eventName}" />
+                                    </p:column>
+
+                                    <p:column style="width: 100px;font-weight: bolder;text-align:center; " headerText="Arena">
+                                        <h:outputText value="#{car.arena}" />
+                                    </p:column>
+
+                                    <p:column style="width: 100px;font-weight: bolder;text-align:center; " headerText="Price">
+                                        <h:outputText value="#{car.price}" />
+                                    </p:column>
+                                    <p:column headerText="Quantity">
+                                        <p:inputText style="width: 40px;height: 16px;margin-right: 5px;" type="number" value="#{cartBean.quantity}" />
+                                        <p:commandButton style="background-image: url(resources/images/reload.png);width: 20px;height: 20px;background-size: contain;top:5px;" value="" />
+                                        <p:commandButton style="margin-left: 5px;background-image: url(resources/images/reload.png);width: 20px;height: 20px;background-size: contain;top:5px;" value="" />
+                                    </p:column>
+                                    <p:column style="width: 100px;font-weight: bolder;text-align:center; " headerText="Total">
+                                        <h:outputText value="#{car.quantity*car.price}" />
+                                    </p:column>
+                                </p:dataTable>
+                                <div class="buttons">
+                                    <div class="left">
+                                        <h:link class="button_oc" value="Back" outcome="events" />
                                     </div>
-                                    <div class="buttons">
-                                        <div class="right"> 
-                                            <p:commandButton oncomplete="PF('dlg1').show();" type="submit" actionListener="#{accountBean.createAccount()}" update="formforget,message_dlg" class="button_orange_continue" value="Continue" />
-                                        </div>
+                                    <div class="right"> 
+                                        <p:commandButton class="button_orange_continue"   value="Continue" />
                                     </div>
+                                </div>
                                 </h:form>
                             </div>
                         </div>

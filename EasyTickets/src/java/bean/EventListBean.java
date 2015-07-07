@@ -17,6 +17,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import model.getEventDetail;
@@ -178,8 +179,10 @@ public class EventListBean {
     }
 
     public String detail() {
-        getEventDetail gete = new getEventDetail();
-        ev = gete.getEvent(Integer.parseInt(id));
+        FacesContext context = FacesContext.getCurrentInstance();
+        HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+        HttpSession appsession = request.getSession(true);
+        appsession.setAttribute("eventid", id);
         return "eventdetail";
     }
 

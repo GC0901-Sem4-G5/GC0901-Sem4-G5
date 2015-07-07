@@ -6,10 +6,10 @@
       xmlns:p="http://primefaces.org/ui"  
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <f:param name="id" value="#{eventDetailBean.id}" />
     <f:metadata>
         <f:event type="preRenderView" listener="#{eventDetailBean.getDetail}"/>
     </f:metadata>
-    <f:param name="id" value="#{eventDetailBean.id}" />
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <h:outputStylesheet name="./css/default.css"/>
@@ -98,15 +98,15 @@
                                         <div id="option-1615" class="option">
                                             <p style="  padding-left: 20px; font-size: 15pt;margin-bottom: 0px;border-bottom: 1px solid #E7E7E7;border-top: 1px solid #E7E7E7;background-color: #FF4500;color: #fff;">Arena - Stand</p>
                                             <p style="  padding-left: 30px;">Available Options:</p>
-                                            <p:selectOneListbox style="margin-left: 30px;" id="basic" value="#{eventDetailBean.selectedOptions}">
-                                                <f:selectItem itemLabel="Arena - Price" itemValue="0" />
-                                                <c:forEach var="arena" items="#{eventDetailBean.listprice}">
-                                                    <f:selectItem itemLabel="#{arena.arenaName} - $#{arena.price}" itemValue="#{arena.id}" />
-                                                </c:forEach>
+                                            <p:selectOneListbox style="margin-left: 30px;" id="basic" value="#{cartBean.idArena}">
+                                                <f:selectItems value="#{eventDetailBean.getPrice()}" var="price"
+                                                               itemValue="#{price.id}" itemLabel="#{price.arenaName} - $#{price.price}" />
                                             </p:selectOneListbox>
                                             <div style="float: right;margin-top: -60px;margin-right: 70px;">
-                                                Quantity: <p:inputText value="#{eventDetailBean.quantity}" style="height: 24px;width: 49px;" type="number" /> 
-                                                <p:commandButton action="#{eventDetailBean.addtoCart()}"  value="ORDER" style="background-image: url(resources/images/dark_bg.png);color: #fff;margin-left: 10px; border-radius: 15px" />
+                                                Quantity: <p:inputText value="#{cartBean.quantity}" style="height: 24px;width: 49px;" type="number" /> 
+                                                <p:commandButton actionListener="#{cartBean.AddToCart()}"  value="ORDER" style="background-image: url(resources/images/dark_bg.png);color: #fff;margin-left: 10px; border-radius: 15px">
+                                                    <f:setPropertyActionListener target="#{cartBean.idEvent}" value="1" />
+                                                </p:commandButton>
                                             </div>
                                         </div>
                                     </div>
