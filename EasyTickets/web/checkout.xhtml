@@ -62,48 +62,57 @@
                     <div id="gkLeft" class="gkMain gkCol gkPaddingTBLR" style="background-color: #fff;margin-bottom: 18px;margin-top: 18px;">
                         <div class="box_oc">
                             <div class="box-heading">
-                                <h1 class="mijoshop_heading_h1"><font><font class="">Shopping cart</font></font></h1>
+                                <h1 class="mijoshop_heading_h1"><font><font class="">Checkout</font></font></h1>
                             </div>
                             <div class="box-content">
+                                <h2>Customers Information</h2>
                                 <h:form id="cartform">
-                                    <p:dataTable rowIndexVar="rowIndex" var="car" value="#{cartBean.list}">
-                                        <p:column style="width: 50px;text-align: center;font-weight: bolder;" headerText="No">
-                                            <h:outputText value="#{rowIndex+1}" />
-                                        </p:column>
+                                    <div class="content_oc">
+                                        Fullname: #{cartBean.getuser().firstname + cartBean.getuser().lastname}
+                                        Address: #{cartBean.getuser().address}
+                                        Email: #{cartBean.getuser().email}
+                                    </div>
+                                    <br/>
+                                    <h2>Your Order List</h2>
+                                    <div class="content_oc">
+                                        <p:dataTable rowIndexVar="rowIndex" var="car" value="#{cartBean.list}">
+                                            <p:column style="width: 50px;text-align: center;font-weight: bolder;" headerText="No">
+                                                <h:outputText value="#{rowIndex+1}" />
+                                            </p:column>
 
-                                        <p:column headerText="Event Name">
-                                            <h:outputText value="#{car.eventName}" />
-                                        </p:column>
+                                            <p:column headerText="Event Name">
+                                                <h:outputText value="#{car.eventName}" />
+                                            </p:column>
 
-                                        <p:column style="width: 100px;font-weight: bolder;text-align:center; " headerText="Arena">
-                                            <h:outputText value="#{car.arena}" />
-                                        </p:column>
+                                            <p:column style="width: 100px;font-weight: bolder;text-align:center; " headerText="Arena">
+                                                <h:outputText value="#{car.arena}" />
+                                            </p:column>
 
-                                        <p:column style="width: 100px;font-weight: bolder;text-align:center; " headerText="Price">
-                                            <h:outputText value="#{car.price}" />
-                                        </p:column>
-                                        <p:column style="width: 100px;font-weight: bolder;text-align:center; " headerText="Quantity">
-                                            <h:outputText value="#{car.quantity}"  style="margin-right: 10px;"/>
-                                            <p:dialog header="Message" widgetVar="dlg2" minHeight="40">
-                                                <p2>Quantity Change:</p2><br/>
-                                                <p:inputText type="number" value="#{cartBean.quantityup}" />
-                                                <p:commandButton actionListener="#{cartBean.updateQuantity(car.eventName)}" style="margin-right: 20px;margin-top: 10px;margin-bottom: 10px;" value="OK"  update="cartform" />
-                                                <p:commandButton value="Cancel" update="cartform" />
-                                            </p:dialog>
-                                            <p:commandButton onclick="PF('dlg2').show();" style="background-image: url(resources/images/reload.png);width: 20px;height: 20px;background-size: contain;top:5px;" value="" />
-                                            <p:commandButton update="cartform" actionListener="#{cartBean.remote(car.eventName)}" style="margin-left: 5px;background-image: url(resources/images/delete.png);width: 20px;height: 20px;background-size: contain;top:5px;" value="" />
-                                        </p:column>
-                                        <p:column style="width: 100px;font-weight: bolder;text-align:center; " headerText="Total">
-                                            <h:outputText value="#{car.quantity*car.price}" />
-                                        </p:column>
-                                    </p:dataTable>
-                                    Total: #{cartBean.getTotal()}
-                                    <div class="buttons">
-                                        <div class="left">
-                                            <h:link class="button_oc" value="Back" outcome="events" />
-                                        </div>
-                                        <div class="right"> 
-                                            <p:commandButton actionListener="#{cartBean.redirect}" class="button_orange_continue"   value="Continue" />
+                                            <p:column style="width: 100px;font-weight: bolder;text-align:center; " headerText="Price">
+                                                <h:outputText value="#{car.price}" />
+                                            </p:column>
+                                            <p:column style="width: 100px;font-weight: bolder;text-align:center; " headerText="Quantity">
+                                                <h:outputText value="#{car.quantity}"  style="margin-right: 10px;"/>
+                                                <p:dialog header="Message" widgetVar="dlg2" minHeight="40">
+                                                    <p2>Quantity Change:</p2><br/>
+                                                    <p:inputText type="number" value="#{cartBean.quantityup}" />
+                                                    <p:commandButton actionListener="#{cartBean.updateQuantity(car.eventName)}" style="margin-right: 20px;margin-top: 10px;margin-bottom: 10px;" value="OK"  update="cartform" />
+                                                    <p:commandButton value="Cancel" update="cartform" />
+                                                </p:dialog>
+                                                <p:commandButton onclick="PF('dlg2').show();" style="background-image: url(resources/images/reload.png);width: 20px;height: 20px;background-size: contain;top:5px;" value="" />
+                                                <p:commandButton update="cartform" actionListener="#{cartBean.remote(car.eventName)}" style="margin-left: 5px;background-image: url(resources/images/delete.png);width: 20px;height: 20px;background-size: contain;top:5px;" value="" />
+                                            </p:column>
+                                            <p:column style="width: 100px;font-weight: bolder;text-align:center; " headerText="Total">
+                                                <h:outputText value="#{car.quantity*car.price}" />
+                                            </p:column>
+                                        </p:dataTable>
+                                        <div class="buttons">
+                                            <div class="left">
+                                                <h:link class="button_oc" value="Back" outcome="events" />
+                                            </div>
+                                            <div class="right"> 
+                                                <p:commandButton class="button_orange_continue"   value="Continue" />
+                                            </div>
                                         </div>
                                     </div>
                                 </h:form>
