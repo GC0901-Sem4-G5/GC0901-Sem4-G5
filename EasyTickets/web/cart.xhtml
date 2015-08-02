@@ -9,6 +9,9 @@
     <f:metadata>
         <f:event type="preRenderView" listener="#{accountBean.checkSession()}"/>
     </f:metadata>
+        <f:metadata>
+            <f:event type="preRenderView" listener="#{cartBean.getuser()}"/>
+    </f:metadata>
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <h:outputStylesheet name="./css/default.css"/>
@@ -97,13 +100,16 @@
                                             <h:outputText value="#{car.quantity*car.price}" />
                                         </p:column>
                                     </p:dataTable>
-                                    Total: #{cartBean.getTotal()}
+                                    <div style="width: 100%;background-color: #CCC;margin-top: 10px;height: 30px;font-size: 24px;color: #fff;text-align: right;">
+                                        <span style="margin-right: 20px;"> Total: $ #{cartBean.getTotal()}  </span>
+                                    </div>
+                                 
                                     <div class="buttons">
                                         <div class="left">
                                             <h:link class="button_oc" value="Back" outcome="events" />
                                         </div>
                                         <div class="right"> 
-                                            <p:commandButton actionListener="#{cartBean.redirect}" class="button_orange_continue"   value="Continue" />
+                                            <h:link class="button_orange_continue" style="display: inline-block;text-decoration: none !important;padding: 3px 12px 3px 12px;height: auto;border-radius: 6px;" value="Continue" outcome="checkout" />
                                         </div>
                                     </div>
                                 </h:form>

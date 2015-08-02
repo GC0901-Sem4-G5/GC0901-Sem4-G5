@@ -30,7 +30,7 @@ public class getListEvent {
         try {
             GetConnect conn = new GetConnect();
             Connection con = conn.getConnection();
-            PreparedStatement ps = con.prepareStatement("select [Event].id,[Event].eventname,[Event].DateStart,[Event].enventImg from [Event]");
+            PreparedStatement ps = con.prepareStatement("select [Event].id,[Event].eventname,[Event].DateStart,[Event].enventImg from [Event] where [Event].DateStart >= GETDATE()");
             rs = ps.executeQuery();
             while (rs.next()) {
                 event e = new event();
@@ -67,7 +67,7 @@ public class getListEvent {
         try {
             GetConnect conn = new GetConnect();
             Connection con = conn.getConnection();
-            PreparedStatement ps = con.prepareStatement("select [Event].id,[Event].eventname,[Event].DateStart,[Event].enventImg from [Event] where [Event].typeid= ?");
+            PreparedStatement ps = con.prepareStatement("select [Event].id,[Event].eventname,[Event].DateStart,[Event].enventImg from [Event] where [Event].DateStart >= GETDATE() AND [Event].typeid= ?");
             ps.setInt(1, typeid);
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -89,7 +89,7 @@ public class getListEvent {
         try {
             GetConnect conn = new GetConnect();
             Connection con = conn.getConnection();
-            PreparedStatement ps = con.prepareStatement("select [Event].id,[Event].eventname,[Event].DateStart,[Event].enventImg from [Event] where [Event].eventname like ?");
+            PreparedStatement ps = con.prepareStatement("select [Event].id,[Event].eventname,[Event].DateStart,[Event].enventImg from [Event] where [Event].DateStart >= GETDATE() AND [Event].eventname like ?");
             ps.setString(1, query);
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -143,7 +143,7 @@ public class getListEvent {
         try {
             GetConnect conn = new GetConnect();
             Connection con = conn.getConnection();
-            PreparedStatement ps = con.prepareStatement("select [Event].id,[Event].eventname,[Event].DateStart,[Event].enventImg from [Event] INNER JOIN location on location.id = [Event].location where " + Condition);
+            PreparedStatement ps = con.prepareStatement("select [Event].id,[Event].eventname,[Event].DateStart,[Event].enventImg from [Event] INNER JOIN location on location.id = [Event].location where [Event].DateStart >= GETDATE() AND " + Condition);
             rs = ps.executeQuery();
             while (rs.next()) {
                 event e = new event();

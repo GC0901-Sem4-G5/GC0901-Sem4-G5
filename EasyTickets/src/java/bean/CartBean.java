@@ -10,8 +10,12 @@ import entity.event;
 import entity.user;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,6 +28,7 @@ import javax.servlet.http.HttpSession;
 import model.AccountModel;
 import model.CartModel;
 import model.getEventDetail;
+import org.omg.CORBA.Current;
 
 /**
  *
@@ -41,9 +46,72 @@ public class CartBean {
     private int idArena;
     private event e = new event();
     private int quantityup;
+    private String checkedpayment = "1";
+    private String visanumber;
+    private String fistnamepaypal;
+    private String lastnamepaypal;
+    private int monthvisa;
+    private int yearvisa;
+    private String typecard;
+
+    public String getTypecard() {
+        return typecard;
+    }
+
+    public void setTypecard(String typecard) {
+        this.typecard = typecard;
+    }
+
+    public String getVisanumber() {
+        return visanumber;
+    }
+
+    public void setVisanumber(String visanumber) {
+        this.visanumber = visanumber;
+    }
+
+    public String getFistnamepaypal() {
+        return fistnamepaypal;
+    }
+
+    public void setFistnamepaypal(String fistnamepaypal) {
+        this.fistnamepaypal = fistnamepaypal;
+    }
+
+    public String getLastnamepaypal() {
+        return lastnamepaypal;
+    }
+
+    public void setLastnamepaypal(String lastnamepaypal) {
+        this.lastnamepaypal = lastnamepaypal;
+    }
+
+    public int getMonthvisa() {
+        return monthvisa;
+    }
+
+    public void setMonthvisa(int monthvisa) {
+        this.monthvisa = monthvisa;
+    }
+
+    public int getYearvisa() {
+        return yearvisa;
+    }
+
+    public void setYearvisa(int yearvisa) {
+        this.yearvisa = yearvisa;
+    }
 
     public int getQuantityup() {
         return quantityup;
+    }
+
+    public String getCheckedpayment() {
+        return checkedpayment;
+    }
+
+    public void setCheckedpayment(String checkedpayment) {
+        this.checkedpayment = checkedpayment;
     }
 
     public void setQuantityup(int quantityup) {
@@ -158,8 +226,9 @@ public class CartBean {
             c.setPrice(ed.getPricebyID(idArena));
             if (getexist(c.getEventName(), c.getPrice()) < 0) {
                 list.add(c);
-                Quantity = 1;
             }
+            Quantity = 1;
+            quantityup = 1;
             ExternalContext extContext = context.getExternalContext();
             String url = extContext.encodeActionURL(context.getApplication().
                     getViewHandler().getActionURL(context, "/cart.xhtml"));
@@ -179,6 +248,14 @@ public class CartBean {
         return total;
     }
 
+    public int getTotalofTicket() {
+        int total = 0;
+        for (int i = 0; i < list.size(); i++) {
+            total = total + list.get(i).getQuantity();
+        }
+        return total;
+    }
+
     public user getuser() {
         AccountModel acc = new AccountModel();
         FacesContext context = FacesContext.getCurrentInstance();
@@ -188,8 +265,25 @@ public class CartBean {
         return acc.getInfobyusername((String) appsession.getAttribute("username"));
     }
 
-    public String redirect() {
-        return "checkout";
+    public String checkoutcompleted() {
+        if (checkedpayment.contains("1")) {
+            System.out.println(visanumber);
+            System.out.println(fistnamepaypal);
+            System.out.println(lastnamepaypal);
+            System.out.println(monthvisa);
+            System.out.println(yearvisa);
+            CartModel cart = new CartModel();
+            Double total = getTotal();
+            DecimalFormat formatter = (DecimalFormat) NumberFormat.getCurrencyInstance(Locale.US);
+            DecimalFormatSymbols symbols = formatter.getDecimalFormatSymbols();
+            symbols.setCurrencySymbol(""); // Don't use null.
+            formatter.setDecimalFormatSymbols(symbols);
+            formatter.setMinimumFractionDigits(2);
+            String totalString = formatter.format(total);
+            String payment = cart.payment(typecard, visanumber, monthvisa, yearvisa, fistnamepaypal, lastnamepaypal, totalString);
+            System.out.println(payment);
+        }
+        return null;
     }
 
 }

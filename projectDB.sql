@@ -85,27 +85,34 @@ create table [Price](
 )-- gia ve cho moi id khu vuc --
 
 
-create table [Ticket](
-	id int not null identity primary key,
-	userid int foreign key references [User](id),
-	eventid int foreign key references [Event](id),
-	Arena int foreign key references Arena(id),
-	created varchar(30) not null,
-	[status] varchar(10)
-) --- thong tin ve da ban---
-
 create table [order](
 id int identity primary key,
-created varchar(30),
+created datetime  DEFAULT GETDATE(),
 userOrder int foreign key references [user](id),
-totalPay float not null,
-) --- hoa don ---
+statuspay nvarchar(20) not null
+)
+ --- hoa don ---
 
 create table orderDetail(
 id int identity primary key,
 orderId int foreign key references [order](id), -- ma order 
-eventId int foreign key references [Event](id), -- event order
-Arena int foreign key references [Event](id), -- ma khu vuc
-amount float not null -- so tien
+PriceId int foreign key references [Price](id),
+quantity int, -- ma khu vuc
+total float not null -- so tien
 ) --
-select * from [user] where username= 'vumanhhung' and [password] = '123456789'
+
+create table [Ticket](
+	id int not null identity primary key,
+	userid int foreign key references [User](id),
+	Priceid int foreign key references [Price](id),
+	codeticket nvarchar(50) not null,
+	created datetime  DEFAULT GETDATE(),
+	[status] varchar(10)
+)
+ --- thong tin ve da ban---
+
+ select * from [Event] where DateStart >= GETDATE()
+
+
+ insert into [orderDetail](orderId,PriceId,quantity,total) values(1,1,10,500)
+ select * from orderDetail where orderId =1
