@@ -65,27 +65,40 @@
                     <h:panelGrid columns="2" cellpadding="5">
                         <p:outputLabel for="username" value="Username:" />
                         <p:inputMask id="username" mask=""/>
-                        
+
                         <p:outputLabel for="firstname" value="First name:" />
                         <p:inputMask id="firstname" mask=""/>
 
-                        <p:outputLabel for="lastname" value="Lastname: " />
-                        <p:inputMask id="date" mask="99/99/9999"/>
+                        <p:outputLabel for="lastname" value="Last name: " />
+                        <p:inputMask id="lastname" mask=""/>
 
-                        <p:outputLabel for="content" value="Content:" />
-                        <p:inputMask id="content" mask=""/>
-                        
-
-                        <p:outputLabel for="location" value="Location:" />
-                        <p:selectOneMenu id="location" style="width: 125px">
+                        <p:outputLabel for="usertype" value="Type:" />
+                        <p:selectOneMenu id="usertype" style="width: 125px">
                             <f:selectItem itemLabel="Select One" itemValue=""/>
-                            <f:selectItem itemLabel="Ha Noi" itemValue="Ha Noi"/>
-                            <f:selectItem itemLabel="Da Nang" itemValue="Da Nang"/>
-                            <f:selectItem itemLabel="Ho Chi Minh" itemValue="Ho Chi Minh"/>
+                            <f:selectItem itemLabel="Administator" itemValue="Administrator"/>
+                            <f:selectItem itemLabel="Customer" itemValue="Customer"/>
                         </p:selectOneMenu>
-                        
+
+                        <p:outputLabel for="phone" value="Phone:" />
+                        <p:inputMask id="phone" mask="(999) 9999999999"/>
+
+                        <p:outputLabel for="email" value="Email:" />
+                        <p:inputMask id="email" mask=""/>
+
+                        <p:outputLabel for="address" value="Address:" />
+                        <p:inputMask id="address" mask=""/>
+
+                        <p:outputLabel for="bank" value="Bank account:" />
+                        <p:inputMask id="bank" mask=""/>
+
                         <p:outputLabel value="Date created: " />
                         <p:inputMask id="datecreated" mask="99/99/9999"/>
+                        
+                        <p:outputLabel value="Birth date: " />
+                        <p:inputMask id="birthdate" mask="99/99/9999"/>
+                        
+                        <p:outputLabel value="Password:"/>
+                        <p:password id="password" feedback="true"/>
 
 
                         <p:commandButton value="Reset" type="reset" />
@@ -94,23 +107,38 @@
 
                     <p:dialog widgetVar="dlg" modal="true" resizable="false" header="Values" showEffect="fade"> 
                         <p:panelGrid id="display" columns="2" columnClasses="label,value">
-                            <h:outputText value="Event type: " />
-                            <h:outputText id="etype" />
+                            <h:outputText value="Username: " />
+                            <h:outputText id="cusername" />
 
-                            <h:outputText value="Date: " />
-                            <h:outputText id="eventdate" />
+                            <h:outputText value="First name: " />
+                            <h:outputText id="cfirstname" />
 
-                            <h:outputText value="Event name: " />
-                            <h:outputText id="name"/>
+                            <h:outputText value="Last name: " />
+                            <h:outputText id="clastname"/>
 
-                            <h:outputText value="Content: " />
-                            <h:outputText id="econtent" />
+                            <h:outputText value="Type: " />
+                            <h:outputText id="ctype" />
 
-                            <h:outputText value="Location: " />
-                            <h:outputText id="elocation" />
-
+                            <h:outputText value="Phone: " />
+                            <h:outputText id="cphone" />
+                            
+                            <h:outputText value="Email: " />
+                            <h:outputText id="cemail" />
+                            
+                            <h:outputText value="Address: " />
+                            <h:outputText id="caddress" />
+                            
+                            <h:outputText value="Bank account: " />
+                            <h:outputText id="cbank" />
+                            
                             <h:outputText value="Date created: " />
-                            <h:outputText id="edatecreated" />
+                            <h:outputText id="cdate" />
+                            
+                            <h:outputText value="Birthdate: " />
+                            <h:outputText id="birthday" />
+                            
+                            <h:outputText value="Password: " />
+                            <h:outputText id="cpass" />
                         </p:panelGrid>
                     </p:dialog>
                 </h:form>
