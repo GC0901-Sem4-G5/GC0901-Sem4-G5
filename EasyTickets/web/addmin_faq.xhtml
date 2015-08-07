@@ -13,7 +13,7 @@
         <h:outputStylesheet name="./css/default.css"/>
         <h:outputStylesheet name="./css/cssLayout.css"/>
         <link rel="icon" type="image/x-icon" href="resources/images/icon.ico"/>
-        <title>Admin - Add Event</title>
+        <title>Admin - FAQ</title>
     </h:head>
     <h:body>
         <div id="gkTopShadow">
@@ -63,62 +63,16 @@
             <div style="margin-bottom: 20px;margin-top: 20px;margin-left: auto; margin-right: auto;background-color: #FFF;text-align: -webkit-center;" id="gkHeader" class="gkMain">
                 <h:form>
                     <h:panelGrid columns="2" cellpadding="5">
-                        <p:outputLabel for="type" value="Event type:" />
-                        <p:selectOneMenu id="type" style="width:125px">
-                            <f:selectItem itemLabel="Select One" itemValue=""/>
-                            <f:selectItem itemLabel="Movie" itemValue="Movie"/>
-                            <f:selectItem itemLabel="Music" itemValue="Music"/>
-                            <f:selectItem itemLabel="Drama" itemValue="Drama"/>
-                            <f:selectItem itemLabel="Sport" itemValue="Sport"/>
-                        </p:selectOneMenu>
-
-                        <p:outputLabel for="date" value="Date: " />
-                        <p:inputMask id="date" mask="99/99/9999"/>
-
-                        <p:outputLabel for="eventname" value="Event name:" />
-                        <p:inputMask id="eventname" mask=""/>
-
-                        <p:outputLabel for="content" value="Content:" />
-                        <p:inputMask id="content" mask=""/>
+                        <p:outputLabel value="Question" style=""/>
+                        <p:inputTextarea rows="10" cols="50"/>
                         
-
-                        <p:outputLabel for="location" value="Location:" />
-                        <p:selectOneMenu id="location" style="width: 125px">
-                            <f:selectItem itemLabel="Select One" itemValue=""/>
-                            <f:selectItem itemLabel="Ha Noi" itemValue="Ha Noi"/>
-                            <f:selectItem itemLabel="Da Nang" itemValue="Da Nang"/>
-                            <f:selectItem itemLabel="Ho Chi Minh" itemValue="Ho Chi Minh"/>
-                        </p:selectOneMenu>
-                        
-                        <p:outputLabel value="Date created: " />
-                        <p:inputMask id="datecreated" mask="99/99/9999"/>
-
+                        <p:outputLabel value="Answer" style=""/>
+                        <p:inputTextarea rows="10" cols="50"/>
 
                         <p:commandButton value="Reset" type="reset" />
-                        <p:commandButton value="Submit" update="display" oncomplete="PF('dlg').show()"/>
+                        <p:commandButton value="Submit" oncomplete="PF('dlg').show()"/>
                     </h:panelGrid>
 
-                    <p:dialog widgetVar="dlg" modal="true" resizable="false" header="Values" showEffect="fade"> 
-                        <p:panelGrid id="display" columns="2" columnClasses="label,value">
-                            <h:outputText value="Event type: " />
-                            <h:outputText id="etype" />
-
-                            <h:outputText value="Date: " />
-                            <h:outputText id="eventdate" />
-
-                            <h:outputText value="Event name: " />
-                            <h:outputText id="name"/>
-
-                            <h:outputText value="Content: " />
-                            <h:outputText id="econtent" />
-
-                            <h:outputText value="Location: " />
-                            <h:outputText id="elocation" />
-
-                            <h:outputText value="Date created: " />
-                            <h:outputText id="edatecreated" />
-                        </p:panelGrid>
-                    </p:dialog>
                 </h:form>
             </div>
         </div>
