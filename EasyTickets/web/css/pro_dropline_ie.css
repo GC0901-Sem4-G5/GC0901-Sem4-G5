@@ -1,0 +1,16 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Aug 7, 2015, 12:13:15 AM
+    Author     : Hoang Ha Nguyen
+*/
+
+.nav ul {display:inline-block;}
+.nav ul {display:inline;}
+.nav ul li {float:left;}
+.nav {text-align:center;}
+.nav .select a:hover b, 
+.nav .select li:hover a b {float:none;} 
