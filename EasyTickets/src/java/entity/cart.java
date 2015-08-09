@@ -12,13 +12,33 @@ package entity;
 public class cart {
 
     private String eventName;
+    private int eventid;
     private String arena;
+    private int arenaId;
     private double price;
     private int quantity = 0;
 
     public String getEventName() {
         return eventName;
     }
+
+    public int getEventid() {
+        return eventid;
+    }
+
+    public void setEventid(int eventid) {
+        this.eventid = eventid;
+    }
+
+    public int getArenaId() {
+        return arenaId;
+    }
+
+    public void setArenaId(int arenaId) {
+        this.arenaId = arenaId;
+    }
+    
+    
 
     public void setEventName(String eventName) {
         this.eventName = eventName;
@@ -47,7 +67,5 @@ public class cart {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-    
-    
 
 }

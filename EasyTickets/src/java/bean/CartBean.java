@@ -43,6 +43,7 @@ public class CartBean {
     private List<cart> list = new ArrayList<cart>();
     private int Quantity = 1;
     private int idEvent;
+    private int idUser;
     private int idArena;
     private event e = new event();
     private int quantityup;
@@ -53,6 +54,23 @@ public class CartBean {
     private int monthvisa;
     private int yearvisa;
     private String typecard;
+    private String messageError;
+
+    public String getMessageError() {
+        return messageError;
+    }
+
+    public void setMessageError(String messageError) {
+        this.messageError = messageError;
+    }
+
+    public int getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
+    }
 
     public String getTypecard() {
         return typecard;
@@ -221,6 +239,8 @@ public class CartBean {
             System.out.println(idArena);
             cart c = new cart();
             c.setQuantity(Quantity);
+            c.setArenaId(idArena);
+            c.setEventid(idEvent);
             c.setEventName(ed.getNamebyID(idEvent));
             c.setArena(ed.getArenabyID(idArena));
             c.setPrice(ed.getPricebyID(idArena));
@@ -261,12 +281,16 @@ public class CartBean {
         FacesContext context = FacesContext.getCurrentInstance();
         HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
         HttpSession appsession = request.getSession(true);
-
-        return acc.getInfobyusername((String) appsession.getAttribute("username"));
+        String usernameget = (String) appsession.getAttribute("username");
+        user u = new user();
+        u = acc.getInfobyusername(usernameget);
+        idUser = u.getId();
+        return u;
     }
 
     public String checkoutcompleted() {
         if (checkedpayment.contains("1")) {
+            int createOrder = 0;
             System.out.println(visanumber);
             System.out.println(fistnamepaypal);
             System.out.println(lastnamepaypal);
@@ -280,10 +304,36 @@ public class CartBean {
             formatter.setDecimalFormatSymbols(symbols);
             formatter.setMinimumFractionDigits(2);
             String totalString = formatter.format(total);
-            String payment = cart.payment(typecard, visanumber, monthvisa, yearvisa, fistnamepaypal, lastnamepaypal, totalString);
-            System.out.println(payment);
+            String statuspay = cart.payment(typecard, visanumber, monthvisa, yearvisa, fistnamepaypal, lastnamepaypal, totalString);
+            String payment = statuspay.substring(0, statuspay.indexOf("/"));
+            String idpay = statuspay.substring(statuspay.indexOf("/"), statuspay.length());
+            if (payment.contains("approved") || payment.equals("in_progress") || payment.equals("pending") || payment.equals("created")) {
+                user u = getuser();
+                int id = u.getId();
+                createOrder = cart.createOrder(id, payment, idpay);
+                if (createOrder > 0) {
+                    for (int i = 0; i < list.size(); i++) {
+                        int quantitylist = list.get(i).getQuantity();
+                        int pricetidget = list.get(i).getArenaId();
+                        double totalget = list.get(i).getQuantity() * list.get(i).getPrice();
+                        int createOrderDetail = cart.createOrderDetail(createOrder, pricetidget, quantitylist, totalget);
+                        int originalQuantity = cart.getquantity(pricetidget);
+                        int lastQuantity = originalQuantity - quantitylist;
+                        cart.changequantity(pricetidget, lastQuantity);
+                        for(int j=0;j==Quantity;j++){
+                            cart.createTicket(pricetidget,createOrderDetail,"wait"); 
+                        }
+                    }
+                }
+                return "paysuccess";
+            } else {
+                messageError = payment;
+                return "payerror";
+            }
+        } else {
+            // not payment
+            return null;
         }
-        return null;
     }
 
 }

@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -38,6 +39,23 @@ import java.util.logging.Logger;
 public class CartModel {
 
     private static ArrayList<cart> items;
+    private String messageError;
+
+    public static ArrayList<cart> getItems() {
+        return items;
+    }
+
+    public static void setItems(ArrayList<cart> items) {
+        CartModel.items = items;
+    }
+
+    public String getMessageError() {
+        return messageError;
+    }
+
+    public void setMessageError(String messageError) {
+        this.messageError = messageError;
+    }
 
     public CartModel() {
         items = new ArrayList<cart>();
@@ -109,7 +127,7 @@ public class CartModel {
             payment.setTransactions(transactions);
             Payment createdPayment;
             createdPayment = payment.create(apiContext);
-            String status = createdPayment.getState();
+            String status = createdPayment.getState() + "/" + createdPayment.getId();
             System.out.println(createdPayment.getId());
             System.out.println(createdPayment.getUpdateTime());
             return status;
@@ -119,14 +137,15 @@ public class CartModel {
         }
     }
 
-    public int createOrder(int userOrder, String statuspay) {
+    public int createOrder(int userOrder, String statuspay, String idpay) {
         int keyid = -1;
         GetConnect conn = new GetConnect();
         Connection con = conn.getConnection();
         try {
-            PreparedStatement ps = con.prepareStatement(" insert into [order](userOrder,statuspay) values(?,?)", Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement ps = con.prepareStatement(" insert into [order](userOrder,statuspay,payid) values(?,?,?)", Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, userOrder);
             ps.setString(2, statuspay);
+            ps.setString(3, idpay);
             ps.executeUpdate();
             ResultSet keys = ps.getGeneratedKeys();
             keys.next();
@@ -200,6 +219,35 @@ public class CartModel {
             Logger.getLogger(CartModel.class.getName()).log(Level.SEVERE, null, ex);
         }
         return status;
+    }
+
+    public String randomTicketCode() {
+        String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        Random rnd = new Random();
+        StringBuilder sb = new StringBuilder(18);
+        for (int i = 0; i < 18; i++) {
+            sb.append(AB.charAt(rnd.nextInt(AB.length())));
+        }
+        return sb.toString();
+    }
+    
+    public boolean createTicket(int priceid, int orderDetailid,String statusticket){
+    boolean status = false;
+        GetConnect conn = new GetConnect();
+        Connection con = conn.getConnection();
+        try {
+            PreparedStatement ps = con.prepareStatement("insert into Ticket(priceid, orderDetailid, codeticket,[status]) values(?,?,?,?)");
+            ps.setInt(1, priceid);
+            ps.setInt(2, orderDetailid);
+            ps.setString(3, randomTicketCode());
+            ps.setString(4, statusticket);
+            ps.executeUpdate();
+            ps.close();
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return status;   
     }
 
 }

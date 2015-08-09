@@ -89,7 +89,8 @@ create table [order](
 id int identity primary key,
 created datetime  DEFAULT GETDATE(),
 userOrder int foreign key references [user](id),
-statuspay nvarchar(20) not null
+statuspay nvarchar(20) not null,
+payid nvarchar(20)
 )
  --- hoa don ---
 
@@ -103,12 +104,13 @@ total float not null -- so tien
 
 create table [Ticket](
 	id int not null identity primary key,
-	userid int foreign key references [User](id),
-	Priceid int foreign key references [Price](id),
+	priceid int foreign key references Price(id),
+	orderDetailid int foreign key references orderDetail(id),
 	codeticket nvarchar(50) not null,
 	created datetime  DEFAULT GETDATE(),
 	[status] varchar(10)
 )
+
  --- thong tin ve da ban---
 
  select * from [Event] where DateStart >= GETDATE()
@@ -116,3 +118,4 @@ create table [Ticket](
 
  insert into [orderDetail](orderId,PriceId,quantity,total) values(1,1,10,500)
  select * from orderDetail where orderId =1
+   insert into Ticket(priceid, orderDetailid, codeticket,[status]) values(1,1,'12312789421749821','sent')

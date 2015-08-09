@@ -200,6 +200,7 @@ public class AccountModel {
             ps.setString(1, username);
             rs = ps.executeQuery();
             if (rs.next()) {
+                u.setId(rs.getInt("id"));
                 u.setFirstname(rs.getString("firstname"));
                 u.setLastname(rs.getString("lastname"));
                 u.setAddress(rs.getString("address"));
