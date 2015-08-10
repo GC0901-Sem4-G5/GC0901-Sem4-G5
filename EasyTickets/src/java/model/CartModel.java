@@ -17,6 +17,7 @@ import com.paypal.base.rest.OAuthTokenCredential;
 import com.paypal.base.rest.PayPalRESTException;
 import connection.GetConnect;
 import entity.cart;
+import entity.ticket;
 import java.io.File;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -28,9 +29,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 /**
  *
@@ -230,9 +239,9 @@ public class CartModel {
         }
         return sb.toString();
     }
-    
-    public boolean createTicket(int priceid, int orderDetailid,String statusticket){
-    boolean status = false;
+
+    public boolean createTicket(int priceid, int orderDetailid, String statusticket) {
+        boolean status = false;
         GetConnect conn = new GetConnect();
         Connection con = conn.getConnection();
         try {
@@ -247,7 +256,93 @@ public class CartModel {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return status;   
+        return status;
+    }
+
+    public List<ticket> getTicket(int orderId) {
+        List<ticket> list = new ArrayList<ticket>();
+        try {
+
+            GetConnect conn = new GetConnect();
+            Connection con = conn.getConnection();
+            ResultSet rs;
+            PreparedStatement ps = con.prepareStatement("select Ticket.id,Ticket.codeticket,Arena.area,[Event].DateStart,[Event].eventname,location.[address],location.city  from Ticket inner join Price on Price.id = Ticket.priceid inner join Arena on Price.arenaId = Arena.id inner join [Event] on [Event].id = Price.eventid inner join location on [Event].location = location.id inner join orderDetail on orderDetail.id = Ticket.orderDetailid inner join [order] on [order].id = orderDetail.orderId where [order].id = ? order by codeticket");
+            ps.setInt(1, orderId);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                ticket t = new ticket();
+                t.setId(rs.getInt("id"));
+                t.setTicketCode(rs.getString("codeticket"));
+                t.setArena(rs.getString("area"));
+                t.setDateStart(rs.getDate("DateStart").toString());
+                t.setEventName(rs.getString("eventname"));
+                t.setAddress(rs.getString("address"));
+                t.setCity(rs.getString("city"));
+                list.add(t);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(CartModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+
+    public void generateAndSendEmai(int orderId, String email) throws AddressException, MessagingException {
+        Properties mailServerProperties;
+        Session getMailSession;
+        MimeMessage generateMailMessage;
+        List<ticket> list = new ArrayList<ticket>();
+        list = getTicket(orderId);
+        // Step1
+        System.out.println("\n 1st ===> setup Mail Server Properties..");
+        mailServerProperties = System.getProperties();
+        mailServerProperties.put("mail.smtp.port", "587");
+        mailServerProperties.put("mail.smtp.auth", "true");
+        mailServerProperties.put("mail.smtp.starttls.enable", "true");
+        System.out.println("Mail Server Properties have been setup successfully..");
+
+        // Step2
+        System.out.println("\n\n 2nd ===> get Mail Session..");
+        getMailSession = Session.getDefaultInstance(mailServerProperties, null);
+        generateMailMessage = new MimeMessage(getMailSession);
+        generateMailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
+
+        generateMailMessage.setSubject("Ticket List Order");
+        String emailBody = "<center><h2>EASY TICKET CENTER</h2>"
+                + "<h4><i><b>8, Ton That Thuyet, Ha Noi</b></i></h4>"
+                + "<h1>YOUR TICKET</h1></center>"
+                + "<table style=\" border-collapse: collapse;\">\n"
+                + "<tr style=\" font-size: 16px;font-weight: bold;\">\n"
+                + "<td style=\" border: 1px solid black;width:5%;\">No</td>\n"
+                + "<td style=\" border: 1px solid black;width:20%;\">Name</td>\n"
+                + "<td style=\" border: 1px solid black;width:10%;\">Date</td>\n"
+                + "<td style=\" border: 1px solid black;width:10%;\">Time</td>\n"
+                + "<td style=\" border: 1px solid black;width:20%;\">Address</td>\n"
+                + "<td style=\" border: 1px solid black;width:10%;\">Arena</td>\n"
+                + "<td style=\" border: 1px solid black;width:25%;\">Code</td>\n"
+                + "<tr/>\n";
+        for (int i = 0; i < list.size(); i++) {
+            emailBody = emailBody + "<tr><td>" + i + "</td>";
+            emailBody = emailBody + "<td>" + list.get(i).getEventName() + "</td>";
+            emailBody = emailBody + "<td>" + list.get(i).getDateStart() + "</td>";
+            emailBody = emailBody + "<td>" + list.get(i).getDateStart() + "</td>";
+            emailBody = emailBody + "<td>" + list.get(i).getAddress() + ", " + list.get(i).getCity() + "</td>";
+            emailBody = emailBody + "<td>" + list.get(i).getArena() + "</td>";
+            emailBody = emailBody + "<td>" + list.get(i).getTicketCode() + "</td></tr>";
+        }
+        emailBody = emailBody + "</table>";
+        generateMailMessage.setContent(emailBody, "text/html");
+        System.out.println("Mail Session has been created successfully..");
+
+        // Step3
+        System.out.println("\n\n 3rd ===> Get Session and Send mail");
+        Transport transport = getMailSession.getTransport("smtp");
+
+        // Enter your correct gmail UserID and Password
+        // if you have 2FA enabled then provide App Specific Password
+        transport.connect("smtp.gmail.com", "viptranpro@gmail.com", "22072010");
+        transport.sendMessage(generateMailMessage, generateMailMessage.getAllRecipients());
+        transport.close();
     }
 
 }

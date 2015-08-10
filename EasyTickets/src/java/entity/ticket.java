@@ -10,12 +10,18 @@ package entity;
  * @author win pc
  */
 public class ticket {
+
     private int id;
-    private int userid;
-    private int eventid;
-    private int arena;
-    private String created;   
-    private String status;   
+    private String ticketCode;
+    private String Arena;
+    private String DateStart;
+    private String eventName;
+    private String address;
+    private String city;
+    private int priceid;
+    private int orderDetailid;
+    private String created;
+    private String status;
 
     public int getId() {
         return id;
@@ -25,28 +31,68 @@ public class ticket {
         this.id = id;
     }
 
-    public int getUserid() {
-        return userid;
+    public String getTicketCode() {
+        return ticketCode;
     }
 
-    public void setUserid(int userid) {
-        this.userid = userid;
+    public void setTicketCode(String ticketCode) {
+        this.ticketCode = ticketCode;
     }
 
-    public int getEventid() {
-        return eventid;
+    public String getArena() {
+        return Arena;
     }
 
-    public void setEventid(int eventid) {
-        this.eventid = eventid;
+    public void setArena(String Arena) {
+        this.Arena = Arena;
     }
 
-    public int getArena() {
-        return arena;
+    public String getDateStart() {
+        return DateStart;
     }
 
-    public void setArena(int arena) {
-        this.arena = arena;
+    public void setDateStart(String DateStart) {
+        this.DateStart = DateStart;
+    }
+
+    public String getEventName() {
+        return eventName;
+    }
+
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public int getPriceid() {
+        return priceid;
+    }
+
+    public void setPriceid(int priceid) {
+        this.priceid = priceid;
+    }
+
+    public int getOrderDetailid() {
+        return orderDetailid;
+    }
+
+    public void setOrderDetailid(int orderDetailid) {
+        this.orderDetailid = orderDetailid;
     }
 
     public String getCreated() {
@@ -65,13 +111,17 @@ public class ticket {
         this.status = status;
     }
 
-    public ticket(int id, int userid, int eventid, int arena, String created, String status) {
+    public ticket(int id, String ticketCode, String Arena, String DateStart, String eventName, String address, String city) {
         this.id = id;
-        this.userid = userid;
-        this.eventid = eventid;
-        this.arena = arena;
-        this.created = created;
-        this.status = status;
+        this.ticketCode = ticketCode;
+        this.Arena = Arena;
+        this.DateStart = DateStart;
+        this.eventName = eventName;
+        this.address = address;
+        this.city = city;
     }
-    
+
+    public ticket() {
+    }
+
 }

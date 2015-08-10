@@ -90,7 +90,7 @@ id int identity primary key,
 created datetime  DEFAULT GETDATE(),
 userOrder int foreign key references [user](id),
 statuspay nvarchar(20) not null,
-payid nvarchar(20)
+payid nvarchar(40)
 )
  --- hoa don ---
 
@@ -113,9 +113,4 @@ create table [Ticket](
 
  --- thong tin ve da ban---
 
- select * from [Event] where DateStart >= GETDATE()
-
-
- insert into [orderDetail](orderId,PriceId,quantity,total) values(1,1,10,500)
- select * from orderDetail where orderId =1
-   insert into Ticket(priceid, orderDetailid, codeticket,[status]) values(1,1,'12312789421749821','sent')
+ select Ticket.id,Ticket.codeticket,Arena.area,[Event].DateStart,[Event].eventname,location.[address],location.city  from Ticket inner join Price on Price.id = Ticket.priceid inner join Arena on Price.arenaId = Arena.id inner join [Event] on [Event].id = Price.eventid inner join location on [Event].location = location.id inner join orderDetail on orderDetail.id = Ticket.orderDetailid inner join [order] on [order].id = orderDetail.orderId where [order].id = 12 order by codeticket

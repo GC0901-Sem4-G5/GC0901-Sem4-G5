@@ -23,6 +23,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import model.AccountModel;
@@ -287,8 +288,9 @@ public class CartBean {
         idUser = u.getId();
         return u;
     }
+// visa number 5361084902279153
 
-    public String checkoutcompleted() {
+    public String checkoutcompleted() throws MessagingException {
         if (checkedpayment.contains("1")) {
             int createOrder = 0;
             System.out.println(visanumber);
@@ -306,7 +308,7 @@ public class CartBean {
             String totalString = formatter.format(total);
             String statuspay = cart.payment(typecard, visanumber, monthvisa, yearvisa, fistnamepaypal, lastnamepaypal, totalString);
             String payment = statuspay.substring(0, statuspay.indexOf("/"));
-            String idpay = statuspay.substring(statuspay.indexOf("/"), statuspay.length());
+            String idpay = statuspay.substring(statuspay.indexOf("/") + 1, statuspay.length());
             if (payment.contains("approved") || payment.equals("in_progress") || payment.equals("pending") || payment.equals("created")) {
                 user u = getuser();
                 int id = u.getId();
@@ -320,15 +322,19 @@ public class CartBean {
                         int originalQuantity = cart.getquantity(pricetidget);
                         int lastQuantity = originalQuantity - quantitylist;
                         cart.changequantity(pricetidget, lastQuantity);
-                        for(int j=0;j==Quantity;j++){
-                            cart.createTicket(pricetidget,createOrderDetail,"wait"); 
+                        for (int j = 0; j <= quantitylist; j++) {
+                            cart.createTicket(pricetidget, createOrderDetail, "success");
                         }
                     }
+                    cart.generateAndSendEmai(createOrder, u.getEmail());
+                } else {
+                    messageError = "Error !!!";
+                    return "checkout";
                 }
                 return "paysuccess";
             } else {
                 messageError = payment;
-                return "payerror";
+                return "checkout";
             }
         } else {
             // not payment
