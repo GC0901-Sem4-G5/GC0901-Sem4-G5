@@ -337,9 +337,38 @@ public class CartBean {
                 return "checkout";
             }
         } else {
-            // not payment
-            return null;
+            int createOrder = 0;
+            System.out.println(visanumber);
+            System.out.println(fistnamepaypal);
+            System.out.println(lastnamepaypal);
+            System.out.println(monthvisa);
+            System.out.println(yearvisa);
+            CartModel cart = new CartModel();
+            Double total = getTotal();
+            DecimalFormat formatter = (DecimalFormat) NumberFormat.getCurrencyInstance(Locale.US);
+            DecimalFormatSymbols symbols = formatter.getDecimalFormatSymbols();
+            symbols.setCurrencySymbol(""); // Don't use null.
+            formatter.setDecimalFormatSymbols(symbols);
+            formatter.setMinimumFractionDigits(2);
+            String totalString = formatter.format(total);
+            user u = getuser();
+            int id = u.getId();
+            createOrder = cart.createOrder(id, "unpaid", "");
+            if (createOrder > 0) {
+                for (int i = 0; i < list.size(); i++) {
+                    int quantitylist = list.get(i).getQuantity();
+                    int pricetidget = list.get(i).getArenaId();
+                    double totalget = list.get(i).getQuantity() * list.get(i).getPrice();
+                    int createOrderDetail = cart.createOrderDetail(createOrder, pricetidget, quantitylist, totalget);
+                    int originalQuantity = cart.getquantity(pricetidget);
+                    int lastQuantity = originalQuantity - quantitylist;
+                    cart.changequantity(pricetidget, lastQuantity);
+                    for (int j = 0; j <= quantitylist; j++) {
+                        cart.createTicket(pricetidget, createOrderDetail, "success");
+                    }
+                }
+            }
+            return "paysuccessnotpay";
         }
     }
-
 }
