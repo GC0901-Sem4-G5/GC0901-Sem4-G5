@@ -54,6 +54,23 @@ public class FAQModel {
         }
         return result;
     }
+    public boolean add(faq faq) {
+        boolean result = false;
+        try {
+            GetConnect conn = new GetConnect();
+            Connection con = conn.getConnection();
+            PreparedStatement ps = con.prepareStatement("Insert into FAQ (question,answer) Values(?,?)");
+            ps.setString(1, faq.getQuestion());
+            ps.setString(2, faq.getAnswer());
+            
+            ps.executeUpdate();
+            result = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            
+        }
+        return result;
+    }
     public boolean delete(faq faq) {
         boolean result = false;
         try {

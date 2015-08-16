@@ -47,10 +47,18 @@ public class AdminFAQBean {
         faq.delete(curFaq);
         return "addmin_faq";
     }
+    public String add() {
+        FAQModel faq = new FAQModel();
+        faq.add(curFaq);
+        return "addmin_faq";
+    }
     
     public String redirect() {
         return "addmin_faq";
         
+    }
+    public String redirectAdd() {
+        return "admin_add_faq";
     }
 
     public void setListfaq(List<faq> listfaq) {
