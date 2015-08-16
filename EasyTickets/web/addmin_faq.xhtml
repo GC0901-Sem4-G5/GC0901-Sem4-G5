@@ -61,17 +61,57 @@
         </div>
         <div id="mainPage" class="gkWrap">
             <div style="margin-bottom: 20px;margin-top: 20px;margin-left: auto; margin-right: auto;background-color: #FFF;text-align: -webkit-center;" id="gkHeader" class="gkMain">
-                <h:form>
-                    <h:panelGrid columns="2" cellpadding="5">
-                        <p:outputLabel value="Question" style=""/>
-                        <p:inputTextarea rows="10" cols="50"/>
-                        
-                        <p:outputLabel value="Answer" style=""/>
-                        <p:inputTextarea rows="10" cols="50"/>
+                <h:form prependId="false" id="form">
+                    <p:dataTable var="faq" value="#{adminFAQBean.listfaq}" rows="10" 
+                                 paginator="true"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15">
+                        <p:column headerText="Question">
+                            <h:outputText value="#{faq.question}" />
+                        </p:column>
 
-                        <p:commandButton value="Reset" type="reset" />
-                        <p:commandButton value="Submit" oncomplete="PF('dlg').show()"/>
-                    </h:panelGrid>
+                        <p:column headerText="Answer">
+                            <h:outputText value="#{faq.answer}" />
+                        </p:column>
+                        <p:column>
+                            <p:commandButton update=":form:edit" oncomplete="PF('editDialog').show()" icon="ui-icon-pencil" value="Edit" title="Edit" >
+                                <f:setPropertyActionListener value="#{faq}" target="#{adminFAQBean.curFaq}" />
+
+                            </p:commandButton>
+                            <p:commandButton update=":form:delete" oncomplete="PF('deleteDialog').show()" icon="ui-icon-trash" value="Delete" title="Delete" >
+                                <f:setPropertyActionListener value="#{faq}" target="#{adminFAQBean.curFaq}" />
+
+                            </p:commandButton>
+                        </p:column>
+
+                    </p:dataTable>
+                    <p:dialog header="Car Info" widgetVar="editDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                        <p:outputPanel id="edit" style="text-align:center;">
+                            <h:panelGrid columns="2" cellpadding="5">
+                                <p:outputLabel value="Question" style=""/>
+                                <p:inputTextarea rows="10" cols="50" value="#{adminFAQBean.curFaq.question}"/>
+
+                                <p:outputLabel value="Answer" style=""/>
+                                <p:inputTextarea rows="10" cols="50" value="#{adminFAQBean.curFaq.answer}"/>
+
+
+                                <h:commandButton value="Submit" action="#{adminFAQBean.edit()}">
+
+                                </h:commandButton>
+                            </h:panelGrid>
+                        </p:outputPanel>
+                    </p:dialog>
+                    <p:dialog style="text-align: center" width="300px" header="Delete Confirm" widgetVar="deleteDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                        <p:outputPanel id="delete" style="text-align:center;">
+                            <h:panelGrid columns="1" style="text-align: center">
+                                <p:outputLabel value="Are you sure to delete?" style="text-align:center;"/>
+                            </h:panelGrid>
+                            <h:commandButton value="Yes" action="#{adminFAQBean.delete()}">
+                            </h:commandButton>
+                            <h:commandButton value="No" action="#{adminFAQBean.redirect()}"/>
+                        </p:outputPanel>
+                    </p:dialog>
+
 
                 </h:form>
             </div>

@@ -37,4 +37,36 @@ public class FAQModel {
         }
         return listfaq;
     }
+    public boolean edit(faq faq) {
+        boolean result = false;
+        try {
+            GetConnect conn = new GetConnect();
+            Connection con = conn.getConnection();
+            PreparedStatement ps = con.prepareStatement("update FAQ set question = ?, answer = ? where id = ?");
+            ps.setString(1, faq.getQuestion());
+            ps.setString(2, faq.getAnswer());
+            ps.setInt(3, faq.getId());
+            ps.executeUpdate();
+            result = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            
+        }
+        return result;
+    }
+    public boolean delete(faq faq) {
+        boolean result = false;
+        try {
+            GetConnect conn = new GetConnect();
+            Connection con = conn.getConnection();
+            PreparedStatement ps = con.prepareStatement("Delete from FAQ where id = ?"); 
+            ps.setInt(1, faq.getId());
+            ps.executeUpdate();
+            result = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            
+        }
+        return result;
+    }
 }
