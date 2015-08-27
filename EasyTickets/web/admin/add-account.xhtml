@@ -54,7 +54,7 @@
                                 <h:inputText  value="#{account.curSubAccount.username}"
                                               class="form-control" id="name"
                                               k:placeholder="huynhdiemlx"
-                                              validator="noBlankSpaceValidator">
+                                              >
                                     <f:validateRegex pattern="^[A-Za-z0-9]{5,50}$"/>
                                     <p:ajax update="message" event="blur"/>
                                 </h:inputText>
@@ -73,7 +73,7 @@
                                         requiredMessage="Please input new password!"
                                         class="form-email form-control"
                                         k:placeholder="eg. X8df!90EO" match="confirm"
-                                        validator="noBlankSpaceValidator">
+                                        >
                                 <f:validateLength minimum="3"/>
                                 <p:ajax event="keyup" update="m_password" />
                             </p:password>

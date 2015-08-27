@@ -133,9 +133,6 @@ public class AdminLoginBean implements Serializable{
             if (role.contains(PermissionConstant.ROLE_MANAGE_EVENT)) {
                 mapRole.put("EVENT_PAGE", true);
             }
-            if (role.contains(PermissionConstant.ROLE_VIEW_REPORT)) {
-                mapRole.put("PRESENTATION_PAGE", true);
-            }
             if (role.contains(PermissionConstant.ROLE_MANAGE_FAQ)) {
                 mapRole.put("FAQ_PAGE", true);
             }
@@ -150,12 +147,9 @@ public class AdminLoginBean implements Serializable{
     
     private Map<String, Boolean> putDataRole(Map<String, Boolean> mapRole, boolean isAdmin) {
         mapRole.put("ADMIN_ACCOUNT_PAGE", isAdmin);
-        mapRole.put("CATEGORY_PAGE", isAdmin);
         mapRole.put("CUSTOMER_PAGE", isAdmin);
-        mapRole.put("NEWS_PAGE", isAdmin);
         mapRole.put("ORDER_PAGE", isAdmin);
         mapRole.put("EVENT_PAGE", isAdmin);
-        mapRole.put("PRESENTATION_PAGE", isAdmin);
         mapRole.put("FAQ_PAGE", isAdmin);
         mapRole.put("FEEDBACK_PAGE", isAdmin);
         return mapRole;

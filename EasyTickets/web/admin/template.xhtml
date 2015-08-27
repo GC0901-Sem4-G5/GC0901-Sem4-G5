@@ -84,25 +84,7 @@
                                         </ul>
                                     </li>
                                     </h:panelGroup> 
-                                    <h:panelGroup rendered="#{adminLoginBean.mapRole['CATEGORY_PAGE'] == true || adminLoginBean.mapRole['FOOD_PAGE'] == true}">
-                                    <li style="cursor: pointer"><a><i class="fa fa-list-alt"></i> Category <span class="fa fa-chevron-down"></span></a>
-                                        <ul class="nav child_menu" style="display: none">
-                                            <h:panelGroup rendered="#{adminLoginBean.mapRole['CATEGORY_PAGE'] == true}">
-                                            <li><h:link outcome="food-category.xhtml" >Categories Management</h:link></li>
-                                            </h:panelGroup>
-                                            <h:panelGroup rendered="#{adminLoginBean.mapRole['FOOD_PAGE'] == true}">
-                                            <li><h:link outcome="food.xhtml">Food Management</h:link></li>
-                                            </h:panelGroup>
-                                        </ul>
-                                    </li>
-                                    </h:panelGroup>
-                                    <h:panelGroup rendered="#{adminLoginBean.mapRole['NEWS_PAGE'] == true}">
-                                    <li style="cursor: pointer"><a><i class="fa fa-newspaper-o"></i> News <span class="fa fa-chevron-down"></span></a>
-                                        <ul class="nav child_menu" style="display: none">
-                                            <li><h:link outcome="news.xhtml">News Management</h:link></li>
-                                        </ul>
-                                    </li>
-                                    </h:panelGroup>
+                                    
                                     <h:panelGroup rendered="#{adminLoginBean.mapRole['ORDER_PAGE'] == true}">
                                         <li style="cursor: pointer"><a><i class="fa fa-shopping-cart"></i> Order Management <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
@@ -114,7 +96,6 @@
                                     <h:panelGroup rendered="#{adminLoginBean.mapRole['EVENT_PAGE'] == true}">
                                     <li style="cursor: pointer"><a><i class="fa fa-glass"></i> Events <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
-                                            <li><h:link outcome="event-category.xhtml">Event Type Management</h:link></li>
                                             <li><h:link outcome="event.xhtml">Event Management</h:link></li>
                                         </ul>
                                     </li>
@@ -126,27 +107,9 @@
                                         </ul>
                                     </li>
                                     </h:panelGroup>
-                                    <h:panelGroup rendered="#{adminLoginBean.mapRole['PROMOTION_PAGE'] == true}">
-                                    <li style="cursor: pointer"><a><i class="fa fa-barcode"></i> Promotion <span class="fa fa-chevron-down"></span></a>
-                                        <ul class="nav child_menu" style="display: none">
-                                            <li><h:link outcome="promotion.xhtml">Promotion Management</h:link></li>
-                                        </ul>
-                                    </li>
-                                    </h:panelGroup>
-                                    <h:panelGroup rendered="#{adminLoginBean.mapRole['CHEF_PAGE'] == true}">
-                                    <li style="cursor: pointer"><a><i class="fa fa-cutlery"></i> Chef <span class="fa fa-chevron-down"></span></a>
-                                        <ul class="nav child_menu" style="display: none">
-                                            <li><h:link outcome="chef.xhtml">Chef Management</h:link></li>
-                                        </ul>
-                                    </li>
-                                    </h:panelGroup>
-                                    <h:panelGroup rendered="#{adminLoginBean.mapRole['PRESENTATION_PAGE'] == true}">
-                                    <li style="cursor: pointer"><a><i class="fa fa-bar-chart-o"></i> Data Presentation <span class="fa fa-chevron-down"></span></a>
-                                        <ul class="nav child_menu" style="display: none">
-                                            <li><h:link outcome="chart-money-total-month.xhtml">Chart Order</h:link></li>
-                                        </ul>
-                                    </li>
-                                    </h:panelGroup>   
+                                   
+                                   
+                                      
                                     <h:panelGroup rendered="#{adminLoginBean.mapRole['FEEDBACK_PAGE'] == true}">
                                     <li style="cursor: pointer"><a><i class="fa fa-send-o"></i> Feedback <span class="fa fa-chevron-down"></span></a>
 
