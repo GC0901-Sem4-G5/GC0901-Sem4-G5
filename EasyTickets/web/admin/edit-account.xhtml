@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <body>
+
+        <ui:composition template="./template.xhtml"
+                        xmlns:h="http://xmlns.jcp.org/jsf/html"
+                        xmlns:k="http://java.sun.com/jsf/passthrough"
+                        xmlns:p="http://primefaces.org/ui"
+                        xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                        xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+            <ui:define name="header">
+                <script>
+                    $(document).ready(function () {
+                        
+                        var cateName = '#{account.editAccount.id}';
+                      
+                        if(cateName === ''){
+                            document.location.href = './account.xhtml';
+                        }
+                    });
+                </script>
+            </ui:define>
+
+            <ui:define name="pageTitle">
+                Modifier Account
+            </ui:define>
+
+            <ui:define name="nameContentPage">
+                
+            </ui:define>
+
+            <ui:define name="setting">
+                
+            </ui:define>
+
+            <ui:define name="contentPage">
+                <div class="x_content">
+
+                    <h:form enctype="multipart/form-data" class="form-horizontal form-label-left">
+
+
+                        <span class="section">Add New Account</span>
+
+                        <div class="item form-group" >
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Username<span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12" style="word-break: break-all;">
+                                <h:inputText  value="#{account.editAccount.username}"
+                                              class="form-control" id="name"
+                                              k:placeholder="huynhdiemlx"
+                                              validator="noBlankSpaceValidator">
+                                    <f:validateLength minimum="4" maximum="100"/>
+                                </h:inputText>
+                                <h:message for="name"  style="color: red"/>
+                                <h:outputText id="message" value="#{account.message}" style="color: red"/>
+                            </div>
+                        </div>
+
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="website">Role <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <p:selectManyCheckbox id="menu" value="#{account.selectedPermissions}" layout="grid" columns="1">
+                                    <f:selectItems value="#{account.permissions}" var="per" itemLabel="#{per.displayName}" itemValue="#{per.roleName}"/>
+                                    </p:selectManyCheckbox>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-3">
+                                <h:commandButton action="#{account.edit()}" class="btn btn-round btn-primary" value="Submit"/>
+                                <a href="account.xhtml" class="btn btn-round btn-success" value="Back" style="width: 70px">Back</a>
+
+                            </div>
+                        </div>
+                    </h:form>
+
+                </div>
+            </ui:define>
+
+            <ui:define name="dialog">
+                dialog
+            </ui:define>
+
+            <ui:define name="sourceJS">
+                sourceJS
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

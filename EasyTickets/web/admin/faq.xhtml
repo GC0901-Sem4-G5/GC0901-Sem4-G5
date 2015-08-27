@@ -1,0 +1,125 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./template.xhtml">
+
+            <ui:define name="header">
+                header
+            </ui:define>
+
+            <ui:define name="pageTitle">
+                Manage FAQ
+            </ui:define>
+
+            <ui:define name="nameContentPage">
+                
+            </ui:define>
+
+            <ui:define name="setting">
+                
+            </ui:define>
+
+            <ui:define name="contentPage">
+                <h:form prependId="false" id="form">
+                    <p:dataTable var="faq" value="#{adminFAQBean.listfaq}" rows="10" 
+                                 paginator="true"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15">
+                        <f:facet name="header">
+                            
+                            <p:outputLabel value="List FAQs" style="width: 70px"/>
+                            <p:commandButton update=":form:add" oncomplete="PF('addDialog').show()" action="#{adminFAQBean.redirectAdd()}" icon="ui-icon-plus" value="Add New" title="Edit" style="float: right" >
+                               
+
+                            </p:commandButton>
+                            
+                        </f:facet>
+                        <p:column headerText="Question">
+                            <h:outputText value="#{faq.question}" />
+                        </p:column>
+
+                        <p:column headerText="Answer">
+                            <h:outputText value="#{faq.answer}" />
+                        </p:column>
+                        <p:column>
+                            <p:commandButton update=":form:edit" oncomplete="PF('editDialog').show()" icon="ui-icon-pencil" value="Edit" title="Edit" >
+                                <f:setPropertyActionListener value="#{faq}" target="#{adminFAQBean.curFaq}" />
+
+                            </p:commandButton>
+                            <p:commandButton update=":form:delete" oncomplete="PF('deleteDialog').show()" icon="ui-icon-trash" value="Delete" title="Delete" >
+                                <f:setPropertyActionListener value="#{faq}" target="#{adminFAQBean.curFaq}" />
+
+                            </p:commandButton>
+                        </p:column>
+
+                    </p:dataTable>
+                    <p:dialog header="Edit FAQ" widgetVar="editDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                        <p:outputPanel id="edit" style="text-align:center;">
+                            <h:panelGrid columns="2" cellpadding="5" >
+                                <p:outputLabel value="Question" style=""/>
+                                <p:inputTextarea rows="10" style="width : 500px;" value="#{adminFAQBean.curFaq.question}"/>
+
+                                <p:outputLabel value="Answer" style=""/>
+                                <p:inputTextarea rows="10" style="width : 500px;" value="#{adminFAQBean.curFaq.answer}"/>
+                            </h:panelGrid>
+                            <h:commandButton image="ui-icon-check" value="Submit" action="#{adminFAQBean.edit()}" style="float:right;">
+
+                            </h:commandButton>
+                        </p:outputPanel>
+                    </p:dialog>
+                    <p:dialog style="text-align: center" width="300px" header="Delete Confirm" widgetVar="deleteDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                        <p:outputPanel id="delete" style="text-align:center;">
+                            <h:panelGrid columns="1" style="text-align: center">
+                                <p:outputLabel value="Are you sure to delete?" style="text-align:center;"/>
+                            </h:panelGrid>
+                            <h:commandButton value="Yes" action="#{adminFAQBean.delete()}">
+                            </h:commandButton>
+                            <h:commandButton value="No" action="#{adminFAQBean.redirect()}"/>
+                        </p:outputPanel>
+                    </p:dialog>
+                    <p:dialog header="Add FAQs" widgetVar="addDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="true">
+                        <p:outputPanel id="add" style="text-align:center;">
+                            <h:panelGrid columns="2" cellpadding="5">
+                                <p:outputLabel value="Question" style=""/>
+                                <p:inputTextarea validatorMessage="Question minimum 10 characters" rows="10" cols="50" value="#{adminFAQBean.curFaq.question}" id="addQuestion">
+                                   
+                                </p:inputTextarea>
+                               
+
+                                <p:outputLabel value="Answer" style=""/>
+                                <p:inputTextarea rows="10" cols="50" value="#{adminFAQBean.curFaq.answer}" id="answer">
+                                   
+                                    
+                                </p:inputTextarea>
+                                
+
+                                <h:commandButton value="Submit" action="#{adminFAQBean.add()}">
+
+                                </h:commandButton>
+                            </h:panelGrid>
+                        </p:outputPanel>
+                    </p:dialog>
+
+
+                </h:form>
+            </ui:define>
+
+            <ui:define name="dialog">
+                dialog
+            </ui:define>
+
+            <ui:define name="sourceJS">
+                sourceJS
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

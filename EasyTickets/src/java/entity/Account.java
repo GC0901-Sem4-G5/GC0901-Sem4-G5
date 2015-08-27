@@ -9,14 +9,20 @@ package entity;
  *
  * @author win pc
  */
-public class adminmaster {
+public class Account {
     
     private int id;
     private String username;
     private String password;
     private String fullname;
     private String email;
-    private String staffid;
+    private String staffid; 
+    private String role;
+
+    public Account() {
+    }
+    
+    
 
     public int getId() {
         return id;
@@ -66,13 +72,27 @@ public class adminmaster {
         this.staffid = staffid;
     }
 
-    public adminmaster(int id, String username, String password, String fullname, String email, String staffid) {
+    public Account(int id, String username, String password, String fullname, String email, String staffid) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.fullname = fullname;
         this.email = email;
         this.staffid = staffid;
+    }
+
+    /**
+     * @return the role
+     */
+    public String getRole() {
+        return role;
+    }
+
+    /**
+     * @param role the role to set
+     */
+    public void setRole(String role) {
+        this.role = role;
     }
     
     

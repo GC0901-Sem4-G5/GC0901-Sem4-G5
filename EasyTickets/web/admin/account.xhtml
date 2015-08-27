@@ -1,0 +1,141 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./template.xhtml"
+                        xmlns:f="http://xmlns.jcp.org/jsf/core"
+                        xmlns:h="http://xmlns.jcp.org/jsf/html"
+                        xmlns:k="http://java.sun.com/jsf/passthrough"
+                        xmlns:p="http://primefaces.org/ui">
+
+            <ui:define name="header">
+                 <script>
+                    function handleConfirmRequest(xhr, status, args) {
+                        if (!args.loggedIn) {
+                            PF('dlg').jq.effect("shake", {times: 5}, 100);
+                            $('#mess').text("Can't remove this food !!!");
+                        }
+                        else {
+                            PF('dlg').hide();
+                            $('#loginLink').fadeOut();
+                            document.location.href = './account.xhtml';
+                        }
+                    }
+                    function closeDialog() {
+
+                        PF('dlg').hide();
+                        $('#loginLink').fadeOut();
+
+
+                    }
+                </script>
+            </ui:define>
+
+            <ui:define name="pageTitle">
+                Account Management
+            </ui:define>
+
+            <ui:define name="nameContentPage">
+
+            </ui:define>
+
+            <ui:define name="setting">
+                <h:form>
+                    <ul class="nav navbar-right panel_toolbox">
+
+                        <li><h:commandLink  action="#{account.showAdd()}"><i class="fa fa-plus"></i></h:commandLink>
+                        </li>
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                        </li>
+
+                    </ul>
+                </h:form>
+            </ui:define>
+
+            <ui:define name="contentPage">
+                <h:form id="form">
+                    <p:growl id="msgs" showDetail="true" />
+                    <div class="x_content">
+                        <p:dataTable id="accounts" var="item" value="#{adminLoginBean.accounts}" rows="10"
+                                     paginator="true" reflow="true"
+                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                     rowsPerPageTemplate="5,10,15,20"
+                                     widgetVar="accountTable" resizableColumns="true"
+                                     emptyMessage="No cars found with given criteria" filteredValue="#{adminLoginBean.filteredAccounts}"
+                                     class="table table-striped responsive-utilities jambo_table"
+                                     rendered="#{not empty adminLoginBean}"
+                                     styleClass="table table-striped table-bordered">
+
+
+                            <p:column filterBy="#{item.fullname}" headerText="Full Name" footerText="contains" filterMatchMode="contains">
+                                <h:outputText value="#{item.fullname}" />
+                            </p:column>
+                            <p:column filterBy="#{item.username}" headerText="Username" footerText="contains" filterMatchMode="contains">
+                                <h:outputText value="#{item.username}" />
+                            </p:column>
+
+                            <p:column filterBy="#{item.role}" headerText="Role" footerText="contains" filterMatchMode="contains">
+                                <h:outputText value="#{item.role}" />
+                            </p:column>
+                            <p:column style="width: 240px">
+                                <f:facet name="header">Action</f:facet>
+                                <h:commandLink action="edit-account" class="btn btn-round btn-success" style="height: 30px" rendered="${item.role != 'admin'}" ><i class="fa fa-pencil"></i> Edit
+                                    <f:setPropertyActionListener value="#{item}" target="#{adminLoginBean.editAccount}"/>
+                                </h:commandLink>
+
+
+                                <p:commandLink title="Delete Account" class="btn btn-round btn-danger" process="@this" update="form" actionListener="#{account.showConfirm()}" oncomplete="PF('dlg').show();" rendered="${item.role != 'admin'}"><i class="fa fa-trash">Delete</i>
+                                    <f:setPropertyActionListener value="#{item}" target="#{adminLoginBean.editAccount}"/>
+
+                                </p:commandLink>
+
+
+                               
+
+
+                            </p:column>
+                        </p:dataTable>
+                        <p:dialog id="lpcDlg" modal="true" rendered="true" header="Delete Confirm" widgetVar="dlg" resizable="false" style="font-size: 20px; text-align: center;width: 550px">
+                            <h:form id="dlgform">
+                                <h:outputLabel id="msg"/>
+                                <h:panelGrid columns="1" cellpadding="5">
+            
+                                    <h:outputLabel for="username" value="Are you sure to delete this account?" style="font-size: 17px;color: #005780; padding-right: 30px;float: left;" />
+                                    <h:outputText/>
+                                    <h4 id="mess" style="color: red;word-break:  normal;width: 300px"></h4>
+
+
+                                </h:panelGrid>
+                                <div  style="float: right;">
+                                    <p:commandButton  class="btn btn-primary" value="OK" actionListener="#{adminLoginBean.delete()}"  ajax="true" oncomplete="handleConfirmRequest(xhr, status, args)"/>
+                                    <p:commandButton oncomplete="closeDialog()"  class="btn btn-primary" value="Cancel"  ajax="true" style="float: right"/>
+
+                                </div>
+
+                            </h:form>
+                        </p:dialog>
+
+                    </div>
+                </h:form>
+            </ui:define>
+
+            <ui:define name="dialog">
+                dialog
+            </ui:define>
+
+            <ui:define name="sourceJS">
+                sourceJS
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
