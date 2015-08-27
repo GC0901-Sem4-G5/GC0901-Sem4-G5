@@ -290,7 +290,7 @@ public class CartBean {
     }
 // visa number 5361084902279153
 
-    public String checkoutcompleted() throws MessagingException {
+    public void checkoutcompleted() throws MessagingException {
         if (checkedpayment.contains("1")) {
             int createOrder = 0;
             System.out.println(visanumber);
@@ -329,12 +329,12 @@ public class CartBean {
                     cart.generateAndSendEmai(createOrder, u.getEmail());
                 } else {
                     messageError = "Error !!!";
-                    return "checkout";
+                    FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "checkout.xhtml");
                 }
-                return "paysuccess";
+                FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "paysuccess.xhtml");
             } else {
                 messageError = payment;
-                return "checkout";
+                FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "checkout.xhtml");
             }
         } else {
             int createOrder = 0;
@@ -368,7 +368,7 @@ public class CartBean {
                     }
                 }
             }
-            return "paysuccessnotpay";
+            FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "paysuccessnotpay.xhtml");
         }
     }
 }
