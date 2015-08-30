@@ -1,6 +1,8 @@
-﻿USE [EasyTicket]
+﻿CREATE DATABASE EasyTicket
 GO
-/****** Object:  Table [dbo].[Adminmaster]    Script Date: 8/27/2015 9:17:00 PM ******/
+USE [EasyTicket]
+GO
+/****** Object:  Table [dbo].[Adminmaster]    Script Date: 8/30/2015 3:51:11 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -13,9 +15,9 @@ CREATE TABLE [dbo].[Adminmaster](
 	[password] [nvarchar](50) NOT NULL,
 	[fullname] [nvarchar](100) NULL,
 	[email] [nvarchar](100) NULL,
-	[staffid] [nvarchar](20) NOT NULL,
+	[staffid] [nvarchar](20) NULL,
 	[role] [varchar](4000) NULL,
-PRIMARY KEY CLUSTERED 
+ CONSTRAINT [PK__Adminmas__3213E83F52D99406] PRIMARY KEY CLUSTERED 
 (
 	[id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
@@ -24,7 +26,7 @@ PRIMARY KEY CLUSTERED
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [dbo].[Arena]    Script Date: 8/27/2015 9:17:00 PM ******/
+/****** Object:  Table [dbo].[Arena]    Script Date: 8/30/2015 3:51:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -43,7 +45,7 @@ PRIMARY KEY CLUSTERED
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [dbo].[ContactUs]    Script Date: 8/27/2015 9:17:00 PM ******/
+/****** Object:  Table [dbo].[ContactUs]    Script Date: 8/30/2015 3:51:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -62,7 +64,7 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Event]    Script Date: 8/27/2015 9:17:00 PM ******/
+/****** Object:  Table [dbo].[Event]    Script Date: 8/30/2015 3:51:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -87,7 +89,7 @@ PRIMARY KEY CLUSTERED
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [dbo].[FAQ]    Script Date: 8/27/2015 9:17:00 PM ******/
+/****** Object:  Table [dbo].[FAQ]    Script Date: 8/30/2015 3:51:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -103,7 +105,7 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[location]    Script Date: 8/27/2015 9:17:00 PM ******/
+/****** Object:  Table [dbo].[location]    Script Date: 8/30/2015 3:51:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -119,7 +121,7 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[order]    Script Date: 8/27/2015 9:17:00 PM ******/
+/****** Object:  Table [dbo].[order]    Script Date: 8/30/2015 3:51:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -137,7 +139,7 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[orderDetail]    Script Date: 8/27/2015 9:17:00 PM ******/
+/****** Object:  Table [dbo].[orderDetail]    Script Date: 8/30/2015 3:51:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -155,7 +157,28 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Price]    Script Date: 8/27/2015 9:17:00 PM ******/
+/****** Object:  Table [dbo].[Permission]    Script Date: 8/30/2015 3:51:12 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[Permission](
+	[id] [int] NOT NULL,
+	[role_name] [varchar](50) NULL,
+	[display_name] [varchar](50) NULL,
+	[version] [int] NULL,
+ CONSTRAINT [PK_permission] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[Price]    Script Date: 8/30/2015 3:51:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -173,7 +196,7 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Ticket]    Script Date: 8/27/2015 9:17:00 PM ******/
+/****** Object:  Table [dbo].[Ticket]    Script Date: 8/30/2015 3:51:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -196,7 +219,7 @@ PRIMARY KEY CLUSTERED
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [dbo].[Type]    Script Date: 8/27/2015 9:17:00 PM ******/
+/****** Object:  Table [dbo].[Type]    Script Date: 8/30/2015 3:51:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -211,7 +234,7 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[user]    Script Date: 8/27/2015 9:17:00 PM ******/
+/****** Object:  Table [dbo].[user]    Script Date: 8/30/2015 3:51:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -245,6 +268,7 @@ SET IDENTITY_INSERT [dbo].[Adminmaster] ON
 INSERT [dbo].[Adminmaster] ([id], [username], [password], [fullname], [email], [staffid], [role]) VALUES (1, N'admin', N'admin', N'Vu Manh Hung', N'hungvmgc00672@fpt.edu.vn', N'AD01', N'admin')
 INSERT [dbo].[Adminmaster] ([id], [username], [password], [fullname], [email], [staffid], [role]) VALUES (2, N'hanh', N'nguyenhoangha', N'Nguyen Hoang Ha', N'hanh@fpt.edu.vn', N'AM122', NULL)
 INSERT [dbo].[Adminmaster] ([id], [username], [password], [fullname], [email], [staffid], [role]) VALUES (3, N'dattv', N'tranvandat', N'Tran Van Dat', N'dattv@fpt.edu.vn', N'MIN11', NULL)
+INSERT [dbo].[Adminmaster] ([id], [username], [password], [fullname], [email], [staffid], [role]) VALUES (5, N'sssssaa', N'aaaa', NULL, NULL, NULL, N'ROLE_MANAGE_CATEGORY,ROLE_MANAGE_ORDER,ROLE_MANAGE_FEEDBACK')
 SET IDENTITY_INSERT [dbo].[Adminmaster] OFF
 SET IDENTITY_INSERT [dbo].[Arena] ON 
 
@@ -274,10 +298,10 @@ INSERT [dbo].[Event] ([id], [typeid], [DateStart], [eventname], [content], [enve
 SET IDENTITY_INSERT [dbo].[Event] OFF
 SET IDENTITY_INSERT [dbo].[FAQ] ON 
 
-INSERT [dbo].[FAQ] ([id], [question], [answer]) VALUES (2, N'sdfas', N'sdfasdfag76574567537')
-INSERT [dbo].[FAQ] ([id], [question], [answer]) VALUES (3, N'asdf', N'asdf')
 INSERT [dbo].[FAQ] ([id], [question], [answer]) VALUES (5, N'adssdfdfsdsfdfdsf', N'asfaf')
-INSERT [dbo].[FAQ] ([id], [question], [answer]) VALUES (6, N'fjhgfhhgynjvjhjj', N'ddasdadasddfdff')
+INSERT [dbo].[FAQ] ([id], [question], [answer]) VALUES (7, N'bdfgdgaaaa', N'ddddaaaa')
+INSERT [dbo].[FAQ] ([id], [question], [answer]) VALUES (9, N'dfdddd', N'hjghjgj')
+INSERT [dbo].[FAQ] ([id], [question], [answer]) VALUES (12, N'aadfsdfsfsss', N'sssdfsfsfsfsssssss')
 SET IDENTITY_INSERT [dbo].[FAQ] OFF
 SET IDENTITY_INSERT [dbo].[location] ON 
 
@@ -287,6 +311,11 @@ INSERT [dbo].[location] ([id], [city], [address]) VALUES (3, N'Da Nang', N'so 10
 INSERT [dbo].[location] ([id], [city], [address]) VALUES (4, N'TP Ho Chi Minh', N'so 97 Nguyen Thi Minh Khai')
 INSERT [dbo].[location] ([id], [city], [address]) VALUES (5, N'TP Ho Chi Minh', N'so 77-89 phuong Ben Thanh - quan 1')
 SET IDENTITY_INSERT [dbo].[location] OFF
+INSERT [dbo].[Permission] ([id], [role_name], [display_name], [version]) VALUES (2, N'ROLE_MANAGE_CUSTOMER_ACCOUNT', N'Manage Customer Account', 0)
+INSERT [dbo].[Permission] ([id], [role_name], [display_name], [version]) VALUES (4, N'ROLE_MANAGE_CATEGORY', N'Manage Category', 0)
+INSERT [dbo].[Permission] ([id], [role_name], [display_name], [version]) VALUES (5, N'ROLE_MANAGE_ORDER', N'Manage Order', 0)
+INSERT [dbo].[Permission] ([id], [role_name], [display_name], [version]) VALUES (10, N'ROLE_MANAGE_FAQ', N'Manage FAQ', 0)
+INSERT [dbo].[Permission] ([id], [role_name], [display_name], [version]) VALUES (12, N'ROLE_MANAGE_FEEDBACK', N'Manage Feedback', 0)
 SET IDENTITY_INSERT [dbo].[Price] ON 
 
 INSERT [dbo].[Price] ([id], [quantity], [eventid], [arenaId], [price]) VALUES (1, 50, 1, 1, 80)
