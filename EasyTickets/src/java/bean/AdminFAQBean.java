@@ -29,7 +29,7 @@ public class AdminFAQBean {
      * Creates a new instance of AdminFAQBean
      */
     public AdminFAQBean() {
-        curFaq = new faq("", "");
+        curFaq = new faq();
     }
 
     public List<faq> getListfaq() {

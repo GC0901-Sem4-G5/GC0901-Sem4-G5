@@ -14,6 +14,9 @@ public class faq {
     private String question;
     private String answer;
 
+    public faq() {
+    }
+
     public int getId() {
         return id;
     }

@@ -21,9 +21,10 @@ import java.util.List;
 public class FAQModel {
 
     private ResultSet rs;
-    private List<faq> listfaq = new ArrayList<>();
+    
 
     public List<faq> getFAQ() {
+        List<faq> listfaq = new ArrayList<>();
         try {
             GetConnect conn = new GetConnect();
             Connection con = conn.getConnection();
