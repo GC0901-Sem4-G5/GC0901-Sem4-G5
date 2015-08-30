@@ -74,9 +74,9 @@
                                      rendered="#{not empty adminLoginBean}">
 
 
-                            <p:column filterBy="#{item.fullname}" headerText="Full Name" footerText="contains" filterMatchMode="contains">
+<!--                            <p:column filterBy="#{item.fullname}" headerText="Full Name" footerText="contains" filterMatchMode="contains">
                                 <h:outputText value="#{item.fullname}" />
-                            </p:column>
+                            </p:column>-->
                             <p:column filterBy="#{item.username}" headerText="Username" footerText="contains" filterMatchMode="contains">
                                 <h:outputText value="#{item.username}" />
                             </p:column>
@@ -87,12 +87,12 @@
                             <p:column style="width: 240px">
                                 <f:facet name="header">Action</f:facet>
                                 <h:commandLink action="edit-account" styleClass="btn btn-round btn-success" style="height: 30px" rendered="${item.role != 'admin'}" ><i class="fa fa-pencil"></i> Edit
-                                    <f:setPropertyActionListener value="#{item}" target="#{adminLoginBean.editAccount}"/>
+                                    <f:setPropertyActionListener value="#{item}" target="#{account.editAccount}"/>
                                 </h:commandLink>
 
 
                                 <p:commandLink title="Delete Account" styleClass="btn btn-round btn-danger" process="@this" update="form" actionListener="#{account.showConfirm()}" oncomplete="PF('dlg').show();" rendered="${item.role != 'admin'}"><i class="fa fa-trash">Delete</i>
-                                    <f:setPropertyActionListener value="#{item}" target="#{adminLoginBean.editAccount}"/>
+                                    <f:setPropertyActionListener value="#{item}" target="#{account.editAccount}"/>
 
                                 </p:commandLink>
 
@@ -114,7 +114,7 @@
 
                                 </h:panelGrid>
                                 <div  style="float: right;">
-                                    <p:commandButton  styleClass="btn btn-primary" value="OK" actionListener="#{adminLoginBean.delete()}"  ajax="true" oncomplete="handleConfirmRequest(xhr, status, args)"/>
+                                    <p:commandButton  styleClass="btn btn-primary" value="OK" actionListener="#{account.delelete()}"  ajax="true" oncomplete="handleConfirmRequest(xhr, status, args)"/>
                                     <p:commandButton oncomplete="closeDialog()"  styleClass="btn btn-primary" value="Cancel"  ajax="true" style="float: right"/>
 
                                 </div>

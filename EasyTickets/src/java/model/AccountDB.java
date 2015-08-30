@@ -71,7 +71,7 @@ public class AccountDB {
         try {
             GetConnect conn = new GetConnect();
             Connection con = conn.getConnection();
-            PreparedStatement ps = con.prepareStatement("Insert into Account (username,email,fullname,role,password) Values(?,?,?,?,?)");
+            PreparedStatement ps = con.prepareStatement("Insert into Adminmaster (username,email,fullname,role,password) Values(?,?,?,?,?)");
             ps.setString(1, account.getUsername());
             ps.setString(2, account.getEmail());
             ps.setString(3, account.getFullname());
