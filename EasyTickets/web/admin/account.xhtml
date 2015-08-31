@@ -96,7 +96,10 @@
 
                                 </p:commandLink>
 
-
+                                <p:commandLink action="#{account.showChangePassword()}" title="Change Password" styleClass="btn btn-round btn-primary" style="height: 30px"><i class="fa fa-refresh"></i> 
+                                    <f:setPropertyActionListener value="#{item}" target="#{account.editAccount}"/>
+                                    <f:setPropertyActionListener value="changepass" target="#{account.changepass}"/>
+                                </p:commandLink>    
                                
 
 
