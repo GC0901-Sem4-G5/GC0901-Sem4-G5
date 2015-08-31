@@ -1,0 +1,145 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <body>
+
+        <ui:composition template="./template.xhtml"
+                        xmlns:h="http://xmlns.jcp.org/jsf/html"
+                        xmlns:p="http://primefaces.org/ui"
+                        xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+            <ui:define name="header">
+                <script>
+                    function handleConfirmRequest(xhr, status, args) {
+                        if (!args.loggedIn) {
+                            PF('dlg').jq.effect("shake", {times: 5}, 100);
+                            $('#mess').text("Can't remove this feedback !!!");
+                        }
+                        else {
+                            PF('dlg').hide();
+                            $('#loginLink').fadeOut();
+                            document.location.href = './feedback.xhtml';
+                        }
+                    }
+                    function closeDialog() {
+
+                        PF('dlg').hide();
+                        $('#loginLink').fadeOut();
+
+
+                    }
+                    
+                    function showConfirmDelete() {
+                        $("#modalConfirmDelete").removeClass("fade").addClass("show");
+
+                    }
+                    function closeActionDeleteDialog() {
+                        $("#modalConfirmDelete").removeClass("show").addClass("fade");
+                        document.location.href = './feedback.xhtml';
+                    }
+
+                    function closeDeleteDialog() {
+                        $("#modalConfirmDelete").removeClass("show").addClass("fade");
+
+                    }
+                </script>
+            </ui:define>
+
+            <ui:define name="pageTitle">
+                Manage Feedback
+            </ui:define>
+
+            <ui:define name="nameContentPage">
+                
+            </ui:define>
+
+            <ui:define name="contentPage">
+                <h:form>
+                <p:growl id="msgs" showDetail="true" />
+                <div class="x_content">
+                    <p:dataTable id="contactus" var="item" value="#{contactus.listContacts}" rows="10"
+                                 paginator="true"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15,20"
+                                 widgetVar="contactusTable"
+                                 emptyMessage="No cars found with given criteria"
+                                 styleClass="table table-striped responsive-utilities jambo_table table-bordered"
+                                 rendered="#{not empty contactus.listContacts}"
+                                 >
+
+
+
+
+                        <p:column filterBy="#{item.email}" headerText="Email" footerText="contains" filterMatchMode="contains">
+                            <h:outputText value="#{item.email}" />
+                        </p:column>
+
+                        <p:column filterBy="#{item.phone}" headerText="Phone" footerText="contains" filterMatchMode="contains">
+                            <h:outputText value="#{item.phone}" />
+                        </p:column>
+
+                       <p:column filterBy="#{item.created}" headerText="Date Create" footerText="contains" filterMatchMode="contains">
+                           <h:outputText value="#{item.created}" />
+                        </p:column>
+                        
+                        <p:column style="width: 240px">
+                            <f:facet name="header">Action</f:facet>
+                            <h:commandLink action="contactus-detail"  styleClass="btn btn-info btn-xs" style="background-color: #1A82C3;color: white"><i class="fa fa-folder"></i> View
+                                <f:setPropertyActionListener value="#{item}" target="#{contactus.curContact}"/>
+                            </h:commandLink>
+                            <p:commandLink onclick="showConfirmDelete()" styleClass="btn btn-info btn-xs" style="background-color: #FF8080;color: white"><i class="fa fa-trash-o"></i> Delete
+                                <f:setPropertyActionListener  value="#{item}" target="#{contactus.curContact}"/>
+                            </p:commandLink> 
+                        </p:column>
+                        
+                    </p:dataTable>
+
+                </div>
+                </h:form>
+            </ui:define>
+      
+       <ui:define name="dialog">
+               
+                
+        <!--============Dialog Show Confirm Delete==============-->
+        
+    
+                <div id="modalConfirmDelete" class="modal fade" data-backdrop="false" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <h:form  styleClass="form-horizontal calender">
+                            <div class="modal-content">
+
+                                <div class="modal-header">
+                                    <button onclick="closeDeleteDialog()" type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                    <h3 class="modal-title" id="myModalLabel">Confirm Delete</h3>
+                                </div>
+                                <div class="modal-body">
+                                    <div id="testmodal" style="padding: 5px 20px;">
+                                        <h4>Are you sure ?</h4>
+                                    </div>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <p:commandButton onsuccess="closeActionDeleteDialog()" action="#{contactus.delete()}" value="Ok" style="border-radius: 5px;color: white;background-color: #FF8080;width: 80px;height: 35px;margin-right: 15px;"/><t/>
+
+                                    <p:commandButton onclick="closeDeleteDialog()" value="Cancel" style="border-radius: 5px;color: white;background-color: #5BC0DE;width: 80px;height: 35px;margin-right: 15px;"/><t/>
+
+                                </div>
+
+                            </div>
+                        </h:form>
+                    </div>
+                </div> 
+                <!--  ===============End Dialog Show Confirm Delete==============-->
+            </ui:define>
+
+            <ui:define name="sourceJS">
+                sourceJS
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
