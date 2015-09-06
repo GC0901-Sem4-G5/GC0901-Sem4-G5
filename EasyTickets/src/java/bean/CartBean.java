@@ -7,6 +7,7 @@ package bean;
 
 import entity.cart;
 import entity.event;
+import entity.ticket;
 import entity.user;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
@@ -46,6 +47,7 @@ public class CartBean {
     private int idEvent;
     private int idUser;
     private int idArena;
+    List<ticket> listtk = new ArrayList<ticket>();
     private event e = new event();
     private int quantityup;
     private String checkedpayment = "1";
@@ -91,6 +93,14 @@ public class CartBean {
 
     public String getFistnamepaypal() {
         return fistnamepaypal;
+    }
+
+    public List<ticket> getListtk() {
+        return listtk;
+    }
+
+    public void setListtk(List<ticket> listtk) {
+        this.listtk = listtk;
     }
 
     public void setFistnamepaypal(String fistnamepaypal) {
@@ -326,12 +336,14 @@ public class CartBean {
                             cart.createTicket(pricetidget, createOrderDetail, "success");
                         }
                     }
-                    cart.generateAndSendEmai(createOrder, u.getEmail());
+                    listtk = cart.generateAndSendEmai(createOrder, u.getEmail());
+                    FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "print.xhtml");
+                    FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "paysuccess.xhtml");
                 } else {
                     messageError = "Error !!!";
                     FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "checkout.xhtml");
                 }
-                FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "paysuccess.xhtml");
+
             } else {
                 messageError = payment;
                 FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "checkout.xhtml");

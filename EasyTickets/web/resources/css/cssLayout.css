@@ -212,6 +212,8 @@ div.gk-menu>ul.level0>li>a>span.menu-title {
     width: 100%;
     background: #ED4B24 url(/templates/gk_musicity/images/footer.jpg) no-repeat 50% 0;
     overflow: hidden;
+    position: absolute;
+    display: inline;
 }
 
 #gkBottom1, #gkBottom2, #gkFooter {

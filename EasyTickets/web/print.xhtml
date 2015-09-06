@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{accountBean.autoLogin()}"/>
+    </f:metadata>
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+        <link rel="icon" type="image/x-icon" href="resources/images/icon.ico"/>
+        <title>About Us - Easy Tickets G5</title>
+    </h:head>
+
+    <h:body>
+        <script type="text/javascript">
+            function printDiv(divName) {
+                var printContents = document.getElementById(divName).innerHTML;
+                var originalContents = document.body.innerHTML;
+
+                document.body.innerHTML = printContents;
+
+                window.print();
+
+                document.body.innerHTML = originalContents;
+            }
+        </script>
+        <input type="button" style="height: 100px;width: 200px;margin: 30px 30px;" onclick="printDiv('printableArea')" value="PRINT YOUR TICKET" />
+        <div id="printableArea" style="width: 200mm;margin: auto auto;">
+            <center><h2>EASY TICKET CENTER</h2></center>
+
+            <center><h3> 8, Ton That Thuyet, Ha Noi</h3></center>
+
+            <center><h1>YOUR TICKET</h1></center>
+            <p:dataTable rowIndexVar="rows" value="#{cartBean.listtk}" var="ticket">
+                <p:column style="width: 5%;" headerText="NO">
+                    <h:outputText value=" #{rows + 1}" />
+                </p:column>
+                <p:column headerText="Name">
+                    <h:outputText value="#{ticket.eventName}" />
+                </p:column>
+                <p:column style="width: 10%;" headerText="Date">
+                    <h:outputText value="#{ticket.dateStart}" />
+                </p:column>
+                <p:column style="width: 10%;" headerText="Time">
+                    <h:outputText value="#{ticket.dateStart}" />
+                </p:column>
+                <p:column style="width: 15%" headerText="Address">
+                    <h:outputText value="#{ticket.address}, #{ticket.city}" />
+                </p:column>
+                <p:column style="width: 10%;" headerText="Arena">
+                    <h:outputText value="#{ticket.arena}" />
+                </p:column>
+                <p:column style="width: 30%" headerText="CODE">
+                    <h:outputText value="#{ticket.ticketCode}" />
+                </p:column>
+            </p:dataTable>
+        </div>
+    </h:body>
+
+</html>

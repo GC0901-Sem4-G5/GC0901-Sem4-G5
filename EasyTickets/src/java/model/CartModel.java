@@ -287,7 +287,7 @@ public class CartModel {
         return list;
     }
 
-    public void generateAndSendEmai(int orderId, String email) throws AddressException, MessagingException {
+    public List<ticket> generateAndSendEmai(int orderId, String email) throws AddressException, MessagingException {
         Properties mailServerProperties;
         Session getMailSession;
         MimeMessage generateMailMessage;
@@ -343,6 +343,7 @@ public class CartModel {
         transport.connect("smtp.gmail.com", "viptranpro@gmail.com", "22072010");
         transport.sendMessage(generateMailMessage, generateMailMessage.getAllRecipients());
         transport.close();
+        return list;
     }
 
 }

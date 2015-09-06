@@ -3,16 +3,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <f:metadata>
-        <f:event type="preRenderView" listener="#{accountBean.autoLogin()}"/>
-    </f:metadata>
+      xmlns:p="http://primefaces.org/ui"  
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <h:outputStylesheet name="./css/default.css"/>
         <h:outputStylesheet name="./css/cssLayout.css"/>
         <link rel="icon" type="image/x-icon" href="resources/images/icon.ico"/>
-        <title>Home - Easy Tickets G5</title>
+        <title>#{eventDetailBean.eventname} - Easy Tickets G5</title>
     </h:head>
 
     <h:body>
@@ -61,37 +60,61 @@
         </div>
 
         <div id="mainPage" class="gkWrap">
-            <div id="gkHeader" class="gkMain">
-                <figure id="slide">
-                    <img src="resources/images/event.jpg" alt="Image 1" />
-                    <img src="resources/images/DJ Soda.jpg" alt="Image 2" />
-                    <img src="resources/images/images (3).jpg" alt="Image 3" />
-                </figure> 
-                <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-                <script type="text/javascript">
-                    $(document).ready(function () {
-                        $("#slide img:eq(0)").addClass("active").show();
-                        var text = $(".active").attr("alt");
-                        $("#slide").prepend("<p>" + text + "</p>");
-                        setInterval(slide, 3000);
-
-                        function slide() {
-                            if ($(".active").next().size()) {
-                                $(".active").fadeOut().removeClass("active").next().fadeIn().addClass("active");
-                            } else {
-                                $(".active").fadeOut().removeClass("active");
-                                $("#slide img:eq(0)").fadeIn().addClass("active");
+            <div style="margin-bottom: 20px;margin-top: 20px;margin-left: auto; margin-right: auto;background-color: #FFF;text-align: -webkit-center;" id="gkHeader" class="gkMain">
+                <div id="content">
+                    <center><h1>CHECK YOUR TICKET STATUS</h1></center>
+                    <h:form id="contentc" style="display:inherit;">
+                        <div style=" padding-bottom: 10px;display: inline-flex;">
+                            <div>
+                                <p:inputText value="#{checkEventBean.search}" type="search" style="width: 400px;height: 50px;font-size: 24px;border-radius: 50px;
+                                             background: white url(resources/images/Search.png) left no-repeat;padding-left: 45px;background-size: contain;" 
+                                             placeholder="Enter Ticket Code"/>
+                            </div>
+                            <div style="margin-left: 10px;">
+                                <p:commandButton  actionListener="#{checkEventBean.Checkticket()}" ajax="false"  update="contentc" value="" style="background-image: url(resources/images/Ampeross-Qetto-2-Search.png);background-size: contain;width: 45px;height: 45px;background-color: #fff;border-radius: 30px;" />
+                            </div>                
+                        </div>
+                        <script language="JavaScript">
+                            function ShowHide(divId)
+                            {
+                                if (document.getElementById(divId).style.display == 'none')
+                                {
+                                    document.getElementById(divId).style.display = 'block';
+                                }
                             }
-
-                            var text = $(".active").attr("alt");
-                            $("#slide p").hide().html(text).delay(500).fadeIn();
-                        }
-                    });
-                </script>
+                        </script>
+                        <div id="noidung" style="display: #{checkEventBean.display};">
+                            <div class="box-heading" id="contentmain">
+                                <h1 class="mijoshop_heading_h1">#{checkEventBean.eventName}</h1>
+                            </div>
+                            <div class="box-content">
+                                <div class="product-info">
+                                    <div class="box-heading">
+                                        <h1 class="mijoshop_heading_h1">#{checkEventBean.statusEvent}</h1>
+                                    </div>
+                                    <div class="left">
+                                        <div class="image">
+                                            <img style="height: 180px;width: 180px;" src="poster/#{checkEventBean.img}" />
+                                        </div>
+                                    </div>
+                                    <div class="right">
+                                        <div>
+                                            <h3>City: <span style="color: #FF4500;">#{checkEventBean.city}</span></h3>  
+                                            <h3>Address: <span style="color: #FF4500;">#{checkEventBean.address}</span></h3>  
+                                            <h3>Date: <span style="color: #FF4500;">#{checkEventBean.date}</span></h3>  
+                                            <h3>Time: <span style="color: #FF4500;">#{checkEventBean.time}</span></h3>  
+                                            <br/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </h:form>
+                </div>  
             </div>
         </div>
 
-        <div id="gkBottomWrap">
+        <div id="gkBottomWrap" style="margin-top: 125px;">
             <div>
                 <div id="gkBottom1" class="gkMain gkWrap ">
                     <div id="gkbottombottom2" class="gkCol gkColLeft">
@@ -105,7 +128,7 @@
                                 <img style="width: 15px;height: 15px;" src="resources/images/email.png" /> contact@easytickets.com
                             </p>
                             <p>
-                                <img style="width: 15px;height: 15px;" src="resources/images/phone.png" /> 04.7300888
+                                <img style="width: 15px;height: 15px;" src="resources/images/phone.png" /> 04.113
                             </p>
                         </div>
                     </div>

@@ -9,8 +9,8 @@
     <f:metadata>
         <f:event type="preRenderView" listener="#{accountBean.checkSession()}"/>
     </f:metadata>
-        <f:metadata>
-            <f:event type="preRenderView" listener="#{cartBean.getuser()}"/>
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{cartBean.getuser()}"/>
     </f:metadata>
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -52,6 +52,9 @@
                                 </li>
                                 <li class="menu-title">
                                     <span class="menu-title" onmouseover=""><h:link value="FAQ" outcome="faq" /></span>
+                                </li>
+                                <li class="menu-title">
+                                    <span class="menu-title" onmouseover=""><h:link value="CHECK TICKET" outcome="checkticket" /></span>
                                 </li>
                             </ul>
                         </div>
@@ -103,7 +106,7 @@
                                     <div style="width: 100%;background-color: #CCC;margin-top: 10px;height: 30px;font-size: 24px;color: #fff;text-align: right;">
                                         <span style="margin-right: 20px;"> Total: $ #{cartBean.getTotal()}  </span>
                                     </div>
-                                 
+
                                     <div class="buttons">
                                         <div class="left">
                                             <h:link class="button_oc" value="Back" outcome="events" />
