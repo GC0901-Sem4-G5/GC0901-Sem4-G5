@@ -21,14 +21,7 @@
             <div id="gkTopWrap" class="gkWrap">
                 <div id="gkTopInterface">
                     <h1 id="gkLogo"> <a href="" class="cssLogo"></a></h1>
-                    <h:form>
-                        <div style=" float: left;margin-left: 500px;margin-top: 54px;">
-                            Hello <h:link value="#{accountBean.firstName}" outcome="#{accountBean.linkmanager}" />
-                        </div>
-                        <div id="gkButtons">
-                            <h:commandButton class="btnLogin" value="#{accountBean.button}" action="#{accountBean.eventAcc()}" />  
-                        </div>
-                    </h:form>
+
                 </div>
 
                 <div id="gkMainNav" class="gkWrap">
@@ -36,19 +29,16 @@
                         <div class="gk-menu">
                             <ul class="gkmenu level0">
                                 <li class="menu-title">
-                                    <span class="menu-title" onmouseover=""><h:link value="CUSTOMER" /></span>
+                                    <span class="menu-title" onmouseover=""><h:link value="CUSTOMER" outcome="admin_customer" /></span>
                                 </li>
                                 <li class="menu-title">
-                                    <span class="menu-title" onmouseover=""><h:link value="EVENT" /></span>
+                                    <span class="menu-title" onmouseover=""><h:link value="EVENT" outcome="admin_home"/></span>
                                 </li>
                                 <li class="menu-title">
-                                    <span class="menu-title" onmouseover=""><h:link value="ORDER HISTORY"/></span>
+                                    <span class="menu-title" onmouseover=""><h:link value="ADMIN"/></span>
                                 </li>
                                 <li class="menu-title">
-                                    <span class="menu-title" onmouseover=""><h:link value="ACCOUNT" /></span>
-                                </li>
-                                <li class="menu-title">
-                                    <span class="menu-title" onmouseover=""><h:link value="CUSTOMER'S CONTACT" /></span>
+                                    <span class="menu-title" onmouseover=""><h:link value="STATISTICS" outcome="admin_statistics" /></span>
                                 </li>
                                 <li class="menu-title">
                                     <span class="menu-title" onmouseover=""><h:link value="FAQ" /></span>
@@ -107,14 +97,14 @@
                                 </f:facet>
                             </p:cellEditor>
                         </p:column>
-                        
+
                         <p:column headerText="Content">
                             <p:cellEditor>
                                 <f:facet name="output"><h:outputText value="#{car.year}" /></f:facet>
                                 <f:facet name="input"><p:inputText value="#{car.year}" style="width:100%" label="Content"/></f:facet>
                             </p:cellEditor>
                         </p:column>
-                        
+
                         <p:column headerText="Image">
                             <p:cellEditor>
                                 <f:facet name="output"><h:outputText value="#{car.year}" /></f:facet>

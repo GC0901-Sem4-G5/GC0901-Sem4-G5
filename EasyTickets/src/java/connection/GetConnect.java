@@ -42,9 +42,9 @@ public class GetConnect {
     public Connection getConnection() {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            String url = "jdbc:sqlserver://TIENDAT;databaseName=EasyTicket";
+            String url = "jdbc:sqlserver://192.168.1.61:1433;databaseName=EasyTicket";
             String id = "sa";
-            String pass = "123456";
+            String pass = "123";
             conn = DriverManager.getConnection(url, id, pass);
         } catch (Exception e) {
             e.printStackTrace();

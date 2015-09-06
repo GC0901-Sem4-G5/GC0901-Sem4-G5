@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{accountBean.autoLogin()}"/>
+    </f:metadata>
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+        <link rel="icon" type="image/x-icon" href="resources/images/icon.ico"/>
+        <title>Admin - Statistics</title>
+    </h:head>
+    <h:body>
+        <div id="gkTopShadow">
+
+            <div id="gkTopWrap" class="gkWrap">
+                <div id="gkTopInterface">
+                    <h1 id="gkLogo"> <a href="" class="cssLogo"></a></h1>
+
+                </div>
+
+                <div id="gkMainNav" class="gkWrap">
+                    <div id="gkMenu">
+                        <div class="gk-menu">
+                            <ul class="gkmenu level0">
+                                <li class="menu-title">
+                                    <span class="menu-title" onmouseover=""><h:link value="CUSTOMER" outcome="admin_customer" /></span>
+                                </li>
+                                <li class="menu-title">
+                                    <span class="menu-title" onmouseover=""><h:link value="EVENT" outcome="admin_home"/></span>
+                                </li>
+                                <li class="menu-title">
+                                    <span class="menu-title" onmouseover=""><h:link value="ADMIN"/></span>
+                                </li>
+                                <li class="menu-title">
+                                    <span class="menu-title" onmouseover=""><h:link value="STATISTICS" outcome="admin_statistics" /></span>
+                                </li>
+                                <li class="menu-title">
+                                    <span class="menu-title" onmouseover=""><h:link value="FAQ" /></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="mainPage" class="gkWrap">
+            <div style="margin-bottom: 20px;margin-top: 20px;margin-left: auto; margin-right: auto;background-color: #FFF;text-align: -webkit-center;" id="gkHeader" class="gkMain">
+                <p:chart type="line" model="#{chartView.dateModel}" style="height:400px;"/>
+            </div>
+        </div>
+    </h:body>
+</html>

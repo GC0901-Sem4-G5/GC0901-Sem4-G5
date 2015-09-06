@@ -11,11 +11,14 @@ package entity;
  */
 public class contactus {
     private int id;
-    private int name;
+    private String name;
     private String email;
    private String phone;
     private String content;     
     private String created;
+
+    public contactus() {
+    }
 
     public int getId() {
         return id;
@@ -25,11 +28,11 @@ public class contactus {
         this.id = id;
     }
 
-    public int getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(int name) {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -65,7 +68,7 @@ public class contactus {
         this.created = created;
     }
 
-    public contactus(int name, String email, String phone, String content, String created) {
+    public contactus(String name, String email, String phone, String content, String created) {
         this.name = name;
         this.email = email;
         this.phone = phone;
