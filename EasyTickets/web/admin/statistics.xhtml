@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./template.xhtml">
+
+            <ui:define name="header">
+                <script>
+                    function handleConfirmRequest(xhr, status, args) {
+                        if (!args.loggedIn) {
+                            PF('dlg').jq.effect("shake", {times: 5}, 100);
+                            $('#mess').text("Can't remove this food !!!");
+                        }
+                        else {
+                            PF('dlg').hide();
+                            $('#loginLink').fadeOut();
+                            document.location.href = './account.xhtml';
+                        }
+                    }
+                    function closeDialog() {
+
+                        PF('dlg').hide();
+                        $('#loginLink').fadeOut();
+
+
+                    }
+                </script>
+            </ui:define>
+
+            <ui:define name="pageTitle">
+                Event Management
+            </ui:define>
+
+            <ui:define name="nameContentPage">
+                nameContentPage
+            </ui:define>
+
+            <ui:define name="setting">
+                <h:form>
+                    <ul class="nav navbar-right panel_toolbox">
+
+                        <li><h:commandLink  action="#{account.showAdd()}"><i class="fa fa-plus"></i></h:commandLink>
+                        </li>
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                        </li>
+
+                    </ul>
+                </h:form>
+            </ui:define>
+
+            <ui:define name="contentPage">
+                <div style="margin-bottom: 20px;margin-top: 20px;margin-left: auto; margin-right: auto;background-color: #FFF;text-align: -webkit-center;" id="gkHeader" class="gkMain">
+                    <p:chart type="line" model="#{chartView.dateModel}" style="height:400px;"/>
+                </div>
+            </ui:define>
+
+            <ui:define name="sourceJS">
+                sourceJS
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
