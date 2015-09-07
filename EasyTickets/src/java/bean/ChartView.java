@@ -45,15 +45,25 @@ public class ChartView implements Serializable {
         series1.set("2015-10-06", 24);
         series1.set("2015-10-07", 51);
  
+        LineChartSeries series2 = new LineChartSeries();
+        series2.setLabel("Series 2");
+ 
+        series2.set("2015-09-12", 32);
+        series2.set("2015-09-18", 73);
+        series2.set("2015-09-12", 24);
+        series2.set("2015-09-30", 12);
+        series2.set("2015-10-05", 74);
+        series2.set("2015-10-30", 62);
  
         dateModel.addSeries(series1);
+        dateModel.addSeries(series2);
          
         dateModel.setTitle("Ticket Sold");
         dateModel.setZoom(true);
         dateModel.getAxis(AxisType.Y).setLabel("Values");
         DateAxis axis = new DateAxis("Dates");
         axis.setTickAngle(-50);
-        axis.setMax("2015-12-01");
+        axis.setMax("2016-02-01");
         axis.setTickFormat("%b %#d, %y");
          
         dateModel.getAxes().put(AxisType.X, axis);
